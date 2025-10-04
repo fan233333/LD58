@@ -5497,7 +5497,7 @@ Transform:
   m_GameObject: {fileID: 703308712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1, y: 5.75, z: 0}
+  m_LocalPosition: {x: 7.1, y: 6.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15008,6 +15008,12 @@ MonoBehaviour:
   maxRotationSpeed: 200
   right: {fileID: -760350900, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
   left: {fileID: -417843153, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
+  up: {fileID: -1054972560, guid: 7c49e7dc396a01f4aa42c11d4a4aa74c, type: 3}
+  down: {fileID: 343380137, guid: 7c49e7dc396a01f4aa42c11d4a4aa74c, type: 3}
+  ur: {fileID: 187237764, guid: d9ac7ba1708b2284db5175f0a5c28857, type: 3}
+  ul: {fileID: 1748782730, guid: d9ac7ba1708b2284db5175f0a5c28857, type: 3}
+  dr: {fileID: -1415330045, guid: d9ac7ba1708b2284db5175f0a5c28857, type: 3}
+  dl: {fileID: 1990661293, guid: d9ac7ba1708b2284db5175f0a5c28857, type: 3}
   spriteRenderer: {fileID: 1874416751}
   rotateObject: {fileID: 862985201}
   minMovementThreshold: 0.1

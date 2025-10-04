@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     public float maxRotationSpeed = 90f;
     public Sprite right;
     public Sprite left;
+    public Sprite up;
+    public Sprite down;
+    public Sprite ur;
+    public Sprite ul;
+    public Sprite dr;
+    public Sprite dl;
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
     public float minMovementThreshold = 0.1f; // 最小移动阈值
@@ -43,14 +49,6 @@ public class PlayerController : MonoBehaviour
 
         //rotateObject.localRotation = targetRotation;
 
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            spriteRenderer.sprite = left;
-        }
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            spriteRenderer.sprite = right;
-        }
     }
 
     void FixedUpdate()
@@ -63,12 +61,45 @@ public class PlayerController : MonoBehaviour
         {
             // 直接计算看向方向的角度
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
 
             // 创建目标旋转
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // 平滑旋转
-            rotateObject.rotation = targetRotation;//Quaternion.Slerp(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.fixedDeltaTime);
+            rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
+
+            float z = rotateObject.rotation.z;
+
+            //Debug.Log(z);
+            if(angle == 0)
+            {
+                spriteRenderer.sprite = right;
+            }else if(angle == 180)
+            {
+                spriteRenderer.sprite = left;
+            }else if(angle == 90)
+            {
+                spriteRenderer.sprite = up;
+            }else if(angle == -90)
+            {
+                spriteRenderer.sprite = down;
+            }else if(angle == 45)
+            {
+                spriteRenderer.sprite = ur;
+            }
+            else if(angle == -45)
+            {
+                spriteRenderer.sprite = dr;
+            }
+            else if(angle == 135)
+            {
+                spriteRenderer.sprite = ul;
+            }
+            else if(angle == -135)
+            {
+                spriteRenderer.sprite = dl;
+            }
         }
     }
 }
