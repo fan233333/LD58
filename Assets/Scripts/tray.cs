@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class tray : MonoBehaviour
@@ -31,6 +32,7 @@ public class tray : MonoBehaviour
 
         // 生成 prefab
         GameObject newObject = Instantiate(pre, spawnPos, spawnRot);
+        newObject.layer = 7;
 
         // 如果设置了父物体，则设为其子物体
         newObject.transform.SetParent(transform);

@@ -12,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Ignore Collision
-  - 
+  - UI Collision(ignore same layer)
+  - UI Collision
   - 
   - 
   - 
