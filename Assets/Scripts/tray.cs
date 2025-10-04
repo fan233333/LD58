@@ -5,6 +5,8 @@ using UnityEngine;
 public class tray : MonoBehaviour
 {
     public GameObject prefab;
+    public float minHorizontalForce = -2f;
+    public float maxHorizontalForce = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +18,11 @@ public class tray : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnPrefab();
+            SpawnPrefab(prefab);
         }
     }
 
-    void SpawnPrefab()
+    public void SpawnPrefab(GameObject pre)
     {
 
         // 获取生成位置与旋转
@@ -28,9 +30,24 @@ public class tray : MonoBehaviour
         Quaternion spawnRot = transform.rotation;
 
         // 生成 prefab
-        GameObject newObject = Instantiate(prefab, spawnPos, spawnRot);
+        GameObject newObject = Instantiate(pre, spawnPos, spawnRot);
 
         // 如果设置了父物体，则设为其子物体
         newObject.transform.SetParent(transform);
+
+        Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1f;
+
+        Collider2D col = rb.GetComponent<Collider2D>();
+        col.enabled = true;
+
+        newObject.tag = "Untagged";
+
+        if (rb != null)
+        {
+            // 添加随机水平力
+            float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
+            rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
+        }
     }
 }
