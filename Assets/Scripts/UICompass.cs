@@ -3,78 +3,45 @@ using UnityEngine.UI;
 
 public class UICompass : MonoBehaviour
 {
-    [Header("角色（通常是玩家）")]
+    public Image Arrow;
     public Transform target;
-
-    [Header("箭头 UI 对象")]
-    public RectTransform compassArrow;
-
-    [Header("主摄像机")]
-    public Camera mainCamera;
-
-    [Header("距离屏幕边缘的偏移")]
-    public float edgeOffset = 50f;
-
-    [Header("隐藏距离阈值（屏幕内多少范围算可见）")]
-    [Range(0f, 1f)] public float screenVisibleThreshold = 0.1f;
+    Camera mainCamera => Camera.main;
+    RectTransform indicator => Arrow.rectTransform;
+    static Rect rect=new Rect(0,0,1, 1);
 
     void Update()
     {
-        if (target == null || compassArrow == null || mainCamera == null)
+        if (target == null || mainCamera == null)
             return;
-
-        // 世界中原点 (0,0)
-        Vector3 origin = Vector3.zero;
-
-        // 将原点转换到屏幕坐标
-        Vector3 screenPos = mainCamera.WorldToViewportPoint(origin);
-
-        bool isInFront = screenPos.z > 0;
-        bool isInsideScreen =
-            screenPos.x > 0 + screenVisibleThreshold &&
-            screenPos.x < 1 - screenVisibleThreshold &&
-            screenPos.y > 0 + screenVisibleThreshold &&
-            screenPos.y < 1 - screenVisibleThreshold;
-
-        // 如果原点在屏幕内，则隐藏箭头
-        compassArrow.gameObject.SetActive(!(isInFront && isInsideScreen));
-
-        if (!compassArrow.gameObject.activeSelf)
-            return;
-
-        // 计算角色到原点的方向
-        Vector3 dir = (origin - target.position).normalized;
-
-        // 箭头旋转
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        compassArrow.rotation = Quaternion.Euler(0, 0, angle - 90f); // UI箭头一般朝上，所以减90度
-
-        // 将方向投影到屏幕边缘
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
-        Vector3 targetScreenPos = mainCamera.WorldToScreenPoint(origin);
-        Vector3 dirFromCenter = (targetScreenPos - screenCenter).normalized;
-
-        // 计算箭头在屏幕边缘的位置
-        float halfW = Screen.width / 2f - edgeOffset;
-        float halfH = Screen.height / 2f - edgeOffset;
-        float slope = dirFromCenter.y / dirFromCenter.x;
-        Vector3 pos = screenCenter;
-
-        if (Mathf.Abs(slope) < (halfH / halfW))
+        
+        Vector3 targetViewportPos = mainCamera.WorldToViewportPoint(target.position);
+        //如果目标在摄像机的视野内
+        if (targetViewportPos.z > 0 && rect.Contains(targetViewportPos))
         {
-            pos.x += (dirFromCenter.x > 0 ? halfW : -halfW);
-            pos.y += slope * (dirFromCenter.x > 0 ? halfW : -halfW);
+            
+            indicator.anchoredPosition = new Vector2((targetViewportPos.x-0.5f)* Screen.width,(targetViewportPos.y-0.5f)* Screen.height);
+            indicator.rotation = Quaternion.identity;
         }
         else
         {
-            pos.y += (dirFromCenter.y > 0 ? halfH : -halfH);
-            pos.x += (halfH / Mathf.Abs(slope)) * (dirFromCenter.x > 0 ? 1 : -1);
+            
+            Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0)/ 2;
+            Vector3 targetScreenPos = mainCamera.WorldToScreenPoint(target.position);//确保目标在摄像机前方
+            if(targetScreenPos.z < 0)
+                targetScreenPos *=-1;
+            Vector3 directionFromCenter = (targetScreenPos -screenCenter).normalized;float aspect =Screen.width/(float)Screen.height /2;
+// 根据屏幕的长宽比调整方向
+            directionFromCenter.y /= aspect;
+// 计算与屏幕边缘的交点
+            float x= screenCenter.y / Mathf.Abs(directionFromCenter.y);
+            float y=screenCenter.x/ Mathf.Abs(directionFromCenter.x);
+            float d = Mathf.Min(x,y);Vector3 edgePosition = screenCenter + directionFromCenter * d * aspect;//将z坐标设置为0以保持在UI层
+            edgePosition.z = 0;
+            indicator.position =edgePosition;
+//计算角度
+            float angle = Mathf.Atan2(directionFromCenter.y, directionFromCenter.x)* Mathf.Rad2Deg;
+//旋转箭头以指向目标
+            indicator.rotation =Quaternion.Euler(0,0,angle + 90);
         }
-
-        // 设置 UI 位置
-        Vector2 anchoredPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            compassArrow.parent as RectTransform, pos, mainCamera, out anchoredPos);
-        compassArrow.anchoredPosition = anchoredPos;
     }
 }
