@@ -51,15 +51,7 @@ public class SectorAbsorb : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SetDirection(false);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            SetDirection(true);
-            
-        }
+
 
         // 定时检测扇形区域内的物品
         checkTimer += Time.deltaTime;
