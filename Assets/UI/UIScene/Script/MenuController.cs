@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
     [Header("Main Menu")]
     public GameObject mainMenuPanel;
     public Button gameStartButton;
-    public Button optionsButton;
+    // public Button optionsButton;
     public Button creditsButton;
     public Button exitButton;
     public Button mainMenuButton;
@@ -49,7 +49,7 @@ public class MenuController : MonoBehaviour
         intro3.SetActive(false);
         intro4.SetActive(false);
         gameStartButton.onClick.AddListener(Intro);
-        optionsButton.onClick.AddListener(Options);
+        // optionsButton.onClick.AddListener(Options);
         creditsButton.onClick.AddListener(Credits);
         exitButton.onClick.AddListener(Exit);
         mainMenuButton.onClick.AddListener(MainMenu);
