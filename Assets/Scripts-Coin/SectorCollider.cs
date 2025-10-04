@@ -62,6 +62,16 @@ public class SectorCollider : MonoBehaviour
     {
         if (polygonCollider != null)
             UpdateSectorCollider();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SetDirection(false);
+            UpdateSectorCollider();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SetDirection(true);
+            UpdateSectorCollider();
+        }
     }
 
     // 公开方法，用于动态修改参数

@@ -5,6 +5,7 @@ public class tray : MonoBehaviour
     public GameObject prefab;
     public float minHorizontalForce = -2f;
     public float maxHorizontalForce = 2f;
+    public Transform bagParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +30,11 @@ public class tray : MonoBehaviour
 
         // 生成 prefab
         GameObject newObject = Instantiate(pre, spawnPos, spawnRot);
+        newObject.transform.localScale = pre.transform.localScale;
         newObject.layer = 7;
 
         // 如果设置了父物体，则设为其子物体
-        newObject.transform.SetParent(transform);
+        newObject.transform.SetParent(bagParent);
 
         Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
         rb.gravityScale = 1f;
