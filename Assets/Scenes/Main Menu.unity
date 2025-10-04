@@ -2085,7 +2085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &448293360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4502,7 +4502,6 @@ MonoBehaviour:
   creditsPanel: {fileID: 448293359}
   mainMenuPanel: {fileID: 1956006965}
   gameStartButton: {fileID: 60603054}
-  optionsButton: {fileID: 0}
   creditsButton: {fileID: 1072652645}
   exitButton: {fileID: 653926378}
   mainMenuButton: {fileID: 1085276783}
@@ -8162,7 +8161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1956006966
 RectTransform:
   m_ObjectHideFlags: 0
