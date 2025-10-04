@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public float maxSpeed = 2f;
     public float maxRotationSpeed = 90f;
+    public Sprite right;
+    public Sprite left;
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private SpriteRenderer spriteRenderer;
     private Quaternion targetRotation;
 
     // Start is called before the first frame update
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         targetRotation = transform.rotation;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -34,7 +38,16 @@ public class PlayerController : MonoBehaviour
         }
 
         // 使用固定旋转速度逐步转向目标方向
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationSpeed * Time.deltaTime);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationSpeed * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            spriteRenderer.sprite = left;
+        }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            spriteRenderer.sprite = right;
+        }
     }
 
     void FixedUpdate()

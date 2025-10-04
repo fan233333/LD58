@@ -23,7 +23,7 @@ public class CheckFall : MonoBehaviour
         {
             GameObject newObject = Instantiate(collision.gameObject, player.transform.position, Quaternion.identity);
 
-            newObject.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            newObject.transform.localScale = collision.transform.localScale;
 
             Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
@@ -34,6 +34,11 @@ public class CheckFall : MonoBehaviour
             newObject.layer = 0;
 
             newObject.tag = "Collectible";
+
+            SpriteRenderer spriteRenderer = newObject.GetComponent<SpriteRenderer>();
+
+            // 方法1：通过名称设置Sorting Layer
+            spriteRenderer.sortingLayerName = "Default";
 
             Destroy(collision.gameObject);
 

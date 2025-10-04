@@ -26,6 +26,7 @@ public class SmoothCameraFollow : MonoBehaviour
         if (player == null) return;
 
         // 使用SmoothDamp实现更平滑的跟随
+        Debug.Log(player.position);
         Vector3 targetPosition = player.position + offset;
         targetPosition.z = -10;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
