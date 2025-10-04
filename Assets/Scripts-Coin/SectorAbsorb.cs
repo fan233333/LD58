@@ -329,6 +329,7 @@ public class SectorAbsorb : MonoBehaviour
         {
             // 记录统计
             ItemStatistics.Instance.RecordItem(collectible);
+            ProcessBars.myHealth -= collectible.value;
 
             // 播放收集效果
             if (collectible.collectEffect != null)
