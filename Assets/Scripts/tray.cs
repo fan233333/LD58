@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class tray : MonoBehaviour
@@ -43,7 +40,12 @@ public class tray : MonoBehaviour
         Collider2D col = rb.GetComponent<Collider2D>();
         col.enabled = true;
 
-        newObject.tag = "Untagged";
+        newObject.tag = "ReadyToFall";
+
+        SpriteRenderer spriteRenderer = newObject.GetComponent<SpriteRenderer>();
+
+        // 方法1：通过名称设置Sorting Layer
+        spriteRenderer.sortingLayerName = "UI";
 
         if (rb != null)
         {

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collectible
+  - ReadyToFall
   layers:
   - Default
   - TransparentFX
@@ -41,4 +42,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Scene
+    uniqueID: 3390681423
+    locked: 0
+  - name: BG
+    uniqueID: 3872345023
+    locked: 0
+  - name: UI
+    uniqueID: 4060383259
     locked: 0
