@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckFall : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public float minHorizontalForce = 10f;
     public float maxHorizontalForce = 20f;
     public float friction = 5f;
@@ -13,7 +13,11 @@ public class CheckFall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player");
+        minHorizontalForce = 10f;
+        maxHorizontalForce = 20f;
+        friction = 5f;
+        angle = 180;
     }
 
     // Update is called once per frame
@@ -26,6 +30,14 @@ public class CheckFall : MonoBehaviour
     {
         if(collision.gameObject.tag == "ReadyToFall")
         {
+            CollectibleItem collectibleItem = collision.gameObject.GetComponent<CollectibleItem>();
+            if(collectibleItem != null)
+            {
+                float mass = collectibleItem.mass;
+                float currentTotalMass = ItemStatistics.Instance.GetTotalMass();
+                ItemStatistics.Instance.SetTotalMass(currentTotalMass - mass);
+            }
+            
             GameObject newObject = Instantiate(collision.gameObject, player.transform.position, Quaternion.identity);
             //Debug.Log(collision.transform.localScale);
             newObject.transform.localScale = collision.transform.localScale;
@@ -34,21 +46,6 @@ public class CheckFall : MonoBehaviour
             // 设置线性阻尼 - 模拟空气/流体阻力
             rb.drag = friction; // 值越大，停止越快
             rb.gravityScale = 0;
-            
-
-            Collider2D col = rb.GetComponent<Collider2D>();
-            col.enabled = true;
-
-            newObject.layer = 0;
-
-            newObject.tag = "Collectible";
-
-            SpriteRenderer spriteRenderer = newObject.GetComponent<SpriteRenderer>();
-
-            // Sorting Layer
-            spriteRenderer.sortingLayerName = "Default";
-
-            angle = PlayerController.playerangle;
 
             if (rb != null)
             {
@@ -66,31 +63,45 @@ public class CheckFall : MonoBehaviour
                 }
                 else if (angle == 90)
                 {
-                    rb.AddForce(new Vector2(0, randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(0, -randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == -90)
                 {
-                    rb.AddForce(new Vector2(0, -randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(0, randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == 45)
                 {
-                    rb.AddForce(new Vector2(randomForcex, randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-randomForcex, -randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == -45)
                 {
-                    rb.AddForce(new Vector2(-randomForcex, randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(randomForcex, -randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == 135)
                 {
-                    rb.AddForce(new Vector2(randomForcex, -randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-randomForcex, randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == -135)
                 {
-                    rb.AddForce(new Vector2(-randomForcex, -randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(randomForcex, randomForcey), ForceMode2D.Impulse);
                 }
 
                 rb.angularVelocity = 0;
             }
+
+            Collider2D col = rb.GetComponent<Collider2D>();
+            col.enabled = true;
+
+            newObject.layer = 0;
+
+            newObject.tag = "Collectible";
+
+            SpriteRenderer spriteRenderer = newObject.GetComponent<SpriteRenderer>();
+
+            // Sorting Layer
+            spriteRenderer.sortingLayerName = "Default";
+
+            angle = PlayerController.playerangle;
 
 
             Destroy(collision.gameObject);

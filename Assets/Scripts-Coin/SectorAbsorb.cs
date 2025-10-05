@@ -159,6 +159,9 @@ public class SectorAbsorb : MonoBehaviour
 
         float distance = itemDistances[item];
 
+        CollectibleItem collectible = item.GetComponent<CollectibleItem>();
+        float mass = collectible.mass;
+
         // 将距离转换为0-1的范围（0=最近，1=最远）
         float normalizedDistance = Mathf.Clamp01(distance / radius);
 
@@ -169,11 +172,11 @@ public class SectorAbsorb : MonoBehaviour
         //float speed = Mathf.Lerp(minAbsorbSpeed, maxAbsorbSpeed, speedFactor);
         if(distance < radius/3*2)
         {
-            return maxAbsorbSpeed;
+            return maxAbsorbSpeed * (1/mass);
         }
         else
         {
-            return minAbsorbSpeed;
+            return minAbsorbSpeed * (1/mass);
         }
 
             //return speed;
@@ -359,6 +362,7 @@ public class SectorAbsorb : MonoBehaviour
         }
 
         Bag.SpawnPrefab(item.gameObject);
+        Debug.Log("Spawn");
 
         // 销毁物品
         Destroy(item.gameObject);
@@ -447,4 +451,6 @@ public class SectorAbsorb : MonoBehaviour
         if (sectorCollider != null)
             UpdateSectorCollider();
     }
+
+    
 }
