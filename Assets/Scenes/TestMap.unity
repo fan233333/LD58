@@ -172,6 +172,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -339,6 +340,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -506,6 +508,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -673,6 +676,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -840,6 +844,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -1012,6 +1017,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -1236,6 +1242,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -1403,6 +1410,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -1570,6 +1578,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -1687,11 +1696,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &139341098 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-  m_PrefabInstance: {fileID: 1541235284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147883376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +1938,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2101,6 +2106,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2325,6 +2331,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2492,6 +2499,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2659,6 +2667,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2826,6 +2835,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -2993,6 +3003,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -3326,6 +3337,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -3493,6 +3505,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -3722,6 +3735,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -3889,6 +3903,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -4118,6 +4133,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -4285,6 +4301,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -4452,6 +4469,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -4619,6 +4637,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -4870,6 +4889,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -5037,6 +5057,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -5204,6 +5225,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -5371,6 +5393,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -5538,6 +5561,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -5829,6 +5853,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6027,6 +6052,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6194,6 +6220,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6361,6 +6388,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6595,6 +6623,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6762,6 +6791,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -6929,6 +6959,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -7141,6 +7172,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -7388,7 +7420,6 @@ Transform:
   - {fileID: 1527101465}
   - {fileID: 232556546}
   - {fileID: 704795690}
-  - {fileID: 139341098}
   - {fileID: 574062804}
   - {fileID: 703308713}
   m_Father: {fileID: 0}
@@ -7567,6 +7598,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -7734,6 +7766,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -7901,6 +7934,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -8068,6 +8102,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -8235,6 +8270,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -8452,6 +8488,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -8619,6 +8656,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -8786,6 +8824,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9046,6 +9085,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9213,6 +9253,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9380,6 +9421,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9547,6 +9589,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9714,6 +9757,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -9881,6 +9925,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -10048,6 +10093,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -10215,6 +10261,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -10444,6 +10491,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -10611,6 +10659,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -10953,6 +11002,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -11120,6 +11170,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -11487,6 +11538,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -11654,6 +11706,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -11821,6 +11874,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -11988,6 +12042,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -12155,6 +12210,8 @@ MonoBehaviour:
   attract: {fileID: 703308713}
   attractSpeed: 8
   destroyDelay: 0.5
+  layerSpacing: 1
+  delayBetweenLayers: 0.5
 --- !u!61 &797334046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12250,6 +12307,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -12417,6 +12475,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -12584,6 +12643,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -12751,6 +12811,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -12918,6 +12979,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -13085,6 +13147,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -13283,7 +13346,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   faceRight: 1
-  Bag: {fileID: 1449218876}
+  Bag: {fileID: 0}
 --- !u!60 &862985204
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -13384,6 +13447,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -13551,6 +13615,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -13768,6 +13833,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -13935,6 +14001,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -14226,6 +14293,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -14393,6 +14461,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -14560,6 +14629,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -14727,6 +14797,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -14894,6 +14965,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -15123,6 +15195,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -15375,6 +15448,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -15542,6 +15616,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -15784,6 +15859,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -15951,6 +16027,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -16118,6 +16195,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -16285,6 +16363,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -16452,6 +16531,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -16619,6 +16699,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -16786,6 +16867,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -17151,6 +17233,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -17280,6 +17363,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -17447,6 +17531,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -17614,6 +17699,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -17838,6 +17924,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18005,6 +18092,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18172,6 +18260,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18401,6 +18490,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18635,6 +18725,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18802,6 +18893,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -18969,6 +19061,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -19136,6 +19229,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -19303,6 +19397,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -19532,6 +19627,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -19699,6 +19795,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -19866,6 +19963,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -20248,6 +20346,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -20415,6 +20514,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -20639,6 +20739,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -20813,17 +20914,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d46d4c8fe0cfcc449a95a3199260a84, type: 3}
---- !u!114 &1449218876 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4380958402792494236, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-  m_PrefabInstance: {fileID: 1541235284}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f72ae8eeb1ac248a30f8f41fc11c9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1458405956
 GameObject:
   m_ObjectHideFlags: 0
@@ -20874,6 +20964,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21041,6 +21132,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21208,6 +21300,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21375,6 +21468,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21542,6 +21636,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21709,6 +21804,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -21876,6 +21972,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -22043,6 +22140,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -22210,6 +22308,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -22453,7 +22552,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 3.5502567, y: 3.5549998, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -23224,6 +23323,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -23391,6 +23491,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -23553,7 +23654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e613a608c45aae94fbaf76030d149715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1874416746}
+  minHorizontalForce: 10
+  maxHorizontalForce: 20
+  friction: 5
 --- !u!61 &1527101467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23649,6 +23752,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -23816,6 +23920,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -23995,183 +24100,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7366430875970426873, guid: 3d46d4c8fe0cfcc449a95a3199260a84, type: 3}
   m_PrefabInstance: {fileID: 1540156464}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1541235284
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 441465444}
-    m_Modifications:
-    - target: {fileID: 127523882740880479, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 310287136764515516, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 686248064126823208, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 686248064126823208, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -234584037
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142509078407562521, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683930357179350217, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3174263953929397867, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312550976468637561, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_Creator
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3357458439321384019, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4380958402792494236, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: bagParent
-      value: 
-      objectReference: {fileID: 574062804}
-    - target: {fileID: 4395265718540749066, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484235637900610398, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759959760635112450, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759959760635112450, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -234584037
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208967115043769298, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5778914979440841686, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.062439
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.5592127
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.916198
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5780559154182338928, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6985101943176155519, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_Name
-      value: tray
-      objectReference: {fileID: 0}
-    - target: {fileID: 7183940323807773523, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7361718475317514052, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_Distance
-      value: 0.20000029
-      objectReference: {fileID: 0}
-    - target: {fileID: 7361718475317514052, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7777097071183071493, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7796408776919756969, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7796408776919756969, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7796408776919756969, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -234584037
-      objectReference: {fileID: 0}
-    - target: {fileID: 7983423678165238719, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 8412671849475140667, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_Distance
-      value: 0.19999981
-      objectReference: {fileID: 0}
-    - target: {fileID: 8412671849475140667, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8576519739005962996, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8880645113279593939, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8934263492265966940, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8934263492265966940, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -234584037
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2c32865fd7c36cd4395ae432f5b84104, type: 3}
 --- !u!1 &1541800922
 GameObject:
   m_ObjectHideFlags: 0
@@ -24222,6 +24150,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -24389,6 +24318,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -24617,6 +24547,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -24784,6 +24715,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -24951,6 +24883,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25118,6 +25051,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25285,6 +25219,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25452,6 +25387,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25619,6 +25555,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25786,6 +25723,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -25953,6 +25891,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -26177,6 +26116,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -26344,6 +26284,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -26511,6 +26452,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -26678,6 +26620,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27040,6 +26983,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27207,6 +27151,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27374,6 +27319,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27603,6 +27549,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27770,6 +27717,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -27937,6 +27885,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -28166,6 +28115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  moveForce: 10
   maxRotationSpeed: 200
   right: {fileID: -760350900, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
   left: {fileID: -417843153, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
@@ -28453,6 +28403,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -28754,6 +28705,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -28921,6 +28873,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29150,6 +29103,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29317,6 +29271,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29484,6 +29439,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29651,6 +29607,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29818,6 +29775,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -29985,6 +29943,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30152,6 +30111,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30319,6 +30279,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30486,6 +30447,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30653,6 +30615,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30820,6 +30783,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -30987,6 +30951,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31154,6 +31119,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31321,6 +31287,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31488,6 +31455,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31655,6 +31623,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31822,6 +31791,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -31989,6 +31959,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
@@ -32156,6 +32127,7 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
