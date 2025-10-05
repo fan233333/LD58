@@ -6,20 +6,6 @@ public class tray : MonoBehaviour
     public float minHorizontalForce = -2f;
     public float maxHorizontalForce = 2f;
     public Transform bagParent;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnPrefab(prefab);
-        }
-    }
 
     public void SpawnPrefab(GameObject pre)
     {

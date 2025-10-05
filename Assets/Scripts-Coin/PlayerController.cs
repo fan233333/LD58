@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public Sprite dl;
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
-    public float minMovementThreshold = 0.1f; // ×îĞ¡ÒÆ¶¯ãĞÖµ
+    public float minMovementThreshold = 0.1f; // æœ€å°ç§»åŠ¨é˜ˆå€¼
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // »ñÈ¡ÊäÈë
-        movement.x = Input.GetAxisRaw("Horizontal"); // A/D »ò ×óÓÒ¼ıÍ·
-        movement.y = Input.GetAxisRaw("Vertical");   // W/S »ò ÉÏÏÂ¼ıÍ·
+        // è·å–è¾“å…¥
+        movement.x = Input.GetAxisRaw("Horizontal"); // A/D æˆ– å·¦å³ç®­å¤´
+        movement.y = Input.GetAxisRaw("Vertical");   // W/S æˆ– ä¸Šä¸‹ç®­å¤´
 
         //if (movement != Vector2.zero)
         //{
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         //    targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //}
 
-        // Ê¹ÓÃ¹Ì¶¨Ğı×ªËÙ¶ÈÖğ²½×ªÏòÄ¿±ê·½Ïò
+        // ä½¿ç”¨å›ºå®šæ—‹è½¬é€Ÿåº¦é€æ­¥è½¬å‘ç›®æ ‡æ–¹å‘
         //rotateObject.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationSpeed * Time.deltaTime);
 
         //rotateObject.localRotation = targetRotation;
@@ -53,20 +53,20 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // ÒÆ¶¯½ÇÉ«
+        // ç§»åŠ¨è§’è‰²
         rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
 
 
         if (movement != Vector2.zero)
         {
-            // Ö±½Ó¼ÆËã¿´Ïò·½ÏòµÄ½Ç¶È
+            // ç›´æ¥è®¡ç®—çœ‹å‘æ–¹å‘çš„è§’åº¦
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             Debug.Log(angle);
 
-            // ´´½¨Ä¿±êĞı×ª
+            // åˆ›å»ºç›®æ ‡æ—‹è½¬
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            // Æ½»¬Ğı×ª
+            // å¹³æ»‘æ—‹è½¬
             rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
 
             float z = rotateObject.rotation.z;
