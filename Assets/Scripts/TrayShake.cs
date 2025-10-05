@@ -39,11 +39,24 @@ public class TrayShake : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            var rgd = child.GetComponent<Rigidbody2D>();
-            if (rgd is not null && !child.CompareTag("Rope"))
+            Rigidbody2D rgd;
+            try
             {
-                rgd.AddForce(acc.magnitude * rgd.mass * coef * (acc.normalized + randomness * Random.insideUnitCircle), ForceMode2D.Force);
+                rgd = child.GetComponent<Rigidbody2D>();
+
+                if (rgd is not null && !child.CompareTag("Rope"))
+                {
+                    rgd.AddForce(
+                        acc.magnitude * rgd.mass * coef * (acc.normalized + randomness * Random.insideUnitCircle),
+                        ForceMode2D.Force);
+                }
             }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+            
+
         }
     }
 }

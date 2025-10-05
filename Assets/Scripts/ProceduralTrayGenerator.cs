@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(RopeSpriteShape))]
+[RequireComponent(typeof(RopeController))]
 public class ProceduralTrayGenerator : MonoBehaviour
 {
     public enum RopeJointType
@@ -25,12 +25,12 @@ public class ProceduralTrayGenerator : MonoBehaviour
     public float springDamping = 0.9f;      // 弹簧阻尼
     public float hingeDistance = 0.5f;      // 铰链连接的节点距离（可调）
 
-    private RopeSpriteShape ropeSpriteShape;
+    private RopeController ropeController;
     private List<Transform> ropeNodes = new List<Transform>();
 
     void Start()
     {
-        ropeSpriteShape = GetComponent<RopeSpriteShape>();
+        ropeController = GetComponent<RopeController>();
 
         if (nodePrefab == null || startPoint == null || endPoint == null)
         {
@@ -109,7 +109,7 @@ public class ProceduralTrayGenerator : MonoBehaviour
         }
 
         // 更新 RopeSpriteShape 的节点
-        ropeSpriteShape.ropeNodes = ropeNodes;
+        ropeController.ropeNodes = ropeNodes;
     }
 
     void AddSpringJoint(GameObject node, Rigidbody2D connectedBody)

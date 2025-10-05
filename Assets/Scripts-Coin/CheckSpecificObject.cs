@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CheckSpecificObject : MonoBehaviour
 {
-    [Header("ÎüÒıÉèÖÃ")]
-    [SerializeField] private string targetTag = "ReadyToFall"; // Òª¼ì²âµÄÎïÌå±êÇ©
-    [SerializeField] private string parentName = "BagParent"; // ¸¸ÎïÌåÃû³Æ
-    [SerializeField] private string typeName = "Triangle"; // ¸¸ÎïÌåÃû³Æ
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    [SerializeField] private string targetTag = "ReadyToFall"; // Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç©
+    [SerializeField] private string parentName = "BagParent"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private string typeName = "Triangle"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private Transform attract;
-    [SerializeField] private float attractSpeed = 2f; // ÎüÒıËÙ¶È
-    [SerializeField] private float destroyDelay = 0.5f; // É¾³ıÑÓ³Ù
+    [SerializeField] private float attractSpeed = 2f; // ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    [SerializeField] private float destroyDelay = 0.5f; // É¾ï¿½ï¿½ï¿½Ó³ï¿½
 
     public static bool gainEnough = false;
 
@@ -20,20 +19,20 @@ public class CheckSpecificObject : MonoBehaviour
     private List<GameObject> otherChildren = new List<GameObject>();
     private bool isAttracting = false;
 
-    // ´¥·¢Æ÷¼ì²â
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
     //
-    // ¼ì²âµ½Ö¸¶¨±êÇ©µÄÎïÌåÇÒÎ´¿ªÊ¼ÎüÒı¹ı³Ì
+    // ï¿½ï¿½âµ½Ö¸ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //  if (collision.CompareTag(targetTag) && !isAttracting && rb.velocity.y >= 0)
     //   {
-    //       Debug.Log($"¼ì²âµ½ÎïÌå {collision.gameObject.name} ½øÈë´¥·¢ÇøÓò");
+    //       Debug.Log($"ï¿½ï¿½âµ½ï¿½ï¿½ï¿½ï¿½ {collision.gameObject.name} ï¿½ï¿½ï¿½ë´¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     //       StartAttractionProcess();
     //  }
     //}
 
-    // ¿ªÊ¼ÎüÒı¹ı³Ì
+    // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void StartAttractionProcess()
     {
         //StartCoroutine(Wait());
@@ -41,12 +40,12 @@ public class CheckSpecificObject : MonoBehaviour
         GameObject parentObj = GameObject.Find(parentName);
         if (parentObj == null)
         {
-            Debug.LogError($"Î´ÕÒµ½ÃûÎª {parentName} µÄ¸¸ÎïÌå!");
+            Debug.LogError($"Î´ï¿½Òµï¿½ï¿½ï¿½Îª {parentName} ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½!");
             return;
         }
 
 
-        // »ñÈ¡ËùÓĞ×ÓÎïÌå
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (Transform child in parentObj.transform)
         {
             CollectibleItem collectibleItem = child.GetComponent<CollectibleItem>();
@@ -69,7 +68,7 @@ public class CheckSpecificObject : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"¸¸ÎïÌå {parentName} ÏÂÃ»ÓĞ×ÓÎïÌå!");
+            Debug.LogWarning($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {parentName} ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
         }
     }
 
@@ -78,7 +77,7 @@ public class CheckSpecificObject : MonoBehaviour
         yield return new WaitForSeconds(2f);
     }
 
-    // ÎüÒı²¢Ïú»Ù×ÓÎïÌåµÄĞ­³Ì
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ­ï¿½ï¿½
     private IEnumerator AttractAndDestroyChildren()
     {
         yield return new WaitForSeconds(2f);
@@ -88,9 +87,9 @@ public class CheckSpecificObject : MonoBehaviour
             yield break;
         }
         yield return null;
-        Debug.Log($"¿ªÊ¼ÎüÒı {childrenToAttract.Count} ¸ö×ÓÎïÌå");
+        Debug.Log($"ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ {childrenToAttract.Count} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
-        // ½ûÓÃËùÓĞ×ÓÎïÌåµÄÎïÀíĞ§¹ûºÍÅö×²Ìå
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½
         foreach (GameObject child in childrenToAttract)
         {
             if (child != null)
@@ -105,7 +104,7 @@ public class CheckSpecificObject : MonoBehaviour
             }
         }
 
-        // ÎüÒı¹ı³Ì£º½«ËùÓĞ×ÓÎïÌåÒÆ¶¯µ½Ä¿±êÎ»ÖÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½
         bool allReachedTarget = false;
         while (!allReachedTarget)
         {
@@ -136,7 +135,7 @@ public class CheckSpecificObject : MonoBehaviour
             yield return null;
         }
 
-        // µÈ´ıÒ»¶ÎÊ±¼äºóÏú»ÙËùÓĞ×ÓÎïÌå
+        // ï¿½È´ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(destroyDelay);
 
         foreach (GameObject child in childrenToAttract)
@@ -150,7 +149,7 @@ public class CheckSpecificObject : MonoBehaviour
         childrenToAttract.Clear();
         isAttracting = false;
         gainEnough = true;
-        Debug.Log("ËùÓĞ×ÓÎïÌåÒÑ±»ÎüÒı²¢É¾³ı");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½");
         foreach (GameObject child in otherChildren)
         {
             if (child != null)
@@ -165,18 +164,18 @@ public class CheckSpecificObject : MonoBehaviour
             }
         }
 
-        // ¿ÉÑ¡£ºÕâÀï¿ÉÒÔÌí¼ÓÉ¾³ı¸¸ÎïÌåµÄ´úÂë
+        // ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
         // Destroy(GameObject.Find(parentName));
     }
 
-    // ÔÚSceneÊÓÍ¼ÖĞ¿ÉÊÓ»¯Ä¿±êÎ»ÖÃ
+    // ï¿½ï¿½Sceneï¿½ï¿½Í¼ï¿½Ğ¿ï¿½ï¿½Ó»ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½
     private void OnDrawGizmosSelected()
     {
         Vector2 attractPosition = attract.position;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attractPosition, 0.3f);
 
-        // »æÖÆ´Ó´¥·¢Æ÷µ½Ä¿±êÎ»ÖÃµÄÁ¬Ïß
+        // ï¿½ï¿½ï¿½Æ´Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, attractPosition);
     }

@@ -3904,7 +3904,6 @@ MonoBehaviour:
   processBar: {fileID: 1195887281}
   healthBar: {fileID: 290632072}
   timeBar: {fileID: 1725303907}
-  collectingNum: 0
   totalNum: 100
   maxHP: 100
   maxTime: 5
@@ -4495,6 +4494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574062804}
+  - component: {fileID: 574062805}
   m_Layer: 0
   m_Name: BagParent
   m_TagString: Untagged
@@ -4517,6 +4517,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 441465444}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &574062805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574062803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea19d19929464f98865810281a61a6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1874416754}
+  coef: 0.1
+  randomness: 0.05
 --- !u!1 &613823933
 GameObject:
   m_ObjectHideFlags: 0
@@ -18123,7 +18138,6 @@ GameObject:
   - component: {fileID: 3312550975030703405}
   - component: {fileID: 7796408777654620927}
   - component: {fileID: 7796408777654620926}
-  - component: {fileID: 7796408777654620928}
   m_Layer: 6
   m_Name: tray
   m_TagString: Untagged
@@ -18226,21 +18240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ropeNodes: []
   smoothness: 0.1
---- !u!114 &7796408777654620928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985101942208508715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea19d19929464f98865810281a61a6df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1874416754}
-  coef: 0.1
-  randomness: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
