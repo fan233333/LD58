@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
     public float minMovementThreshold = 0.1f; // 最小移动阈值
+    public static float playerangle = 0;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             // 直接计算看向方向的角度
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            playerangle = angle;
 
             // 创建目标旋转
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
