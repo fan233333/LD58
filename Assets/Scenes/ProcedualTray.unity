@@ -5257,6 +5257,7 @@ MonoBehaviour:
   playerTag: Player
   stopThreshold: 0.1
   checkFull: {fileID: 0}
+  checkSpecificObject: {fileID: 0}
 --- !u!1 &696255457
 GameObject:
   m_ObjectHideFlags: 0
@@ -14173,6 +14174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  moveForce: 10
   maxRotationSpeed: 200
   right: {fileID: -760350900, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
   left: {fileID: -417843153, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
@@ -17470,6 +17472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea19d19929464f98865810281a61a6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1874416750}
+  coef: 100
+  randomness: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
