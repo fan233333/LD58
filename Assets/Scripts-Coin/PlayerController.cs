@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float maxSpeed = 2f;
+    public float moveForce = 10f;
     public float maxRotationSpeed = 90f;
     public Sprite right;
     public Sprite left;
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public Sprite dl;
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
-    public float minMovementThreshold = 0.1f; // æœ€å°ç§»åŠ¨é˜ˆå€¼
+    public float minMovementThreshold = 0.1f; // ×îĞ¡ÒÆ¶¯ãĞÖµ
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -28,15 +29,20 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        // ÉèÖÃÏßĞÔ×èÄá - Ä£Äâ¿ÕÆø/Á÷Ìå×èÁ¦
+        rb.drag = 1f; // ÖµÔ½´ó£¬Í£Ö¹Ô½¿ì
+
+        // ÉèÖÃ½ÇËÙ¶È×èÄá
+        rb.angularDrag = 0.5f;
         targetRotation = rotateObject.rotation;
         
     }
 
     void Update()
     {
-        // è·å–è¾“å…¥
-        movement.x = Input.GetAxisRaw("Horizontal"); // A/D æˆ– å·¦å³ç®­å¤´
-        movement.y = Input.GetAxisRaw("Vertical");   // W/S æˆ– ä¸Šä¸‹ç®­å¤´
+        // »ñÈ¡ÊäÈë
+        movement.x = Input.GetAxisRaw("Horizontal"); // A/D »ò ×óÓÒ¼ıÍ·
+        movement.y = Input.GetAxisRaw("Vertical");   // W/S »ò ÉÏÏÂ¼ıÍ·
 
         //if (movement != Vector2.zero)
         //{
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
         //    targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //}
 
-        // ä½¿ç”¨å›ºå®šæ—‹è½¬é€Ÿåº¦é€æ­¥è½¬å‘ç›®æ ‡æ–¹å‘
+        // Ê¹ÓÃ¹Ì¶¨Ğı×ªËÙ¶ÈÖğ²½×ªÏòÄ¿±ê·½Ïò
         //rotateObject.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationSpeed * Time.deltaTime);
 
         //rotateObject.localRotation = targetRotation;
@@ -53,20 +59,25 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // ç§»åŠ¨è§’è‰²
-        rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
+        // ÒÆ¶¯½ÇÉ«
+        //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
+        rb.AddForce(movement * moveForce);
 
+        // ÏŞÖÆ×î´óËÙ¶È
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
 
         if (movement != Vector2.zero)
         {
-            // ç›´æ¥è®¡ç®—çœ‹å‘æ–¹å‘çš„è§’åº¦
+            // Ö±½Ó¼ÆËã¿´Ïò·½ÏòµÄ½Ç¶È
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
 
-            // åˆ›å»ºç›®æ ‡æ—‹è½¬
+            // ´´½¨Ä¿±êĞı×ª
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            // å¹³æ»‘æ—‹è½¬
+            // Æ½»¬Ğı×ª
             rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
 
             float z = rotateObject.rotation.z;
