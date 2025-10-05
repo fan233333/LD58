@@ -7,11 +7,11 @@ public class ProcessBars : MonoBehaviour
     public Transform processBar;
     public Transform healthBar;
     public Transform timeBar;
-    public static float myHealth = 100;
+    public static float myHealth;
 
-    public float collectingNum;
-    public float totalNum = 100;
-    public float maxHP = 100;
+    private float collectingNum;
+    public float totalNum;
+    public float maxHP;
     public float maxTime;
 
     private bool isTiming = false;
@@ -21,9 +21,9 @@ public class ProcessBars : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalNum = 100;
-        myHealth = 100;
-        maxHP = 100;
+        //totalNum = 100;
+        myHealth = maxHP;
+        //maxHP = 100;
         isTiming = false;
     }
 
