@@ -15,22 +15,22 @@ public class TrayShake : MonoBehaviour
 
     void Start()
     {
-        lastVelocity = Vector2.zero;
+        lastVelocity = player.velocity;
     }
 
     void Update()
     {
         // // 计算加速度 = (当前速度 - 上一帧速度) / deltaTime
-        // Vector2 currentVelocity = player.velocity;
-        // Vector2 acceleration = (currentVelocity - lastVelocity) / Time.deltaTime;
-        //
-        // lastVelocity = currentVelocity;
-        
-        Vector2 currentVelocity = (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"))).normalized;
-        
-        Vector2 acceleration = (currentVelocity - lastVelocity);
+        Vector2 currentVelocity = player.velocity;
+        Vector2 acceleration = (currentVelocity - lastVelocity) / Time.deltaTime;
         
         lastVelocity = currentVelocity;
+        
+        // Vector2 currentVelocity = (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"))).normalized;
+        //
+        // Vector2 acceleration = (currentVelocity - lastVelocity);
+        //
+        // lastVelocity = currentVelocity;
         
         Shake(-acceleration);
     }

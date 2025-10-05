@@ -17473,7 +17473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1874416750}
-  coef: 100
+  coef: 0.1
   randomness: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
