@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -176,7 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Triangle
   itemType: 1
-  value: 1
+  value: 10
+  mass: 5
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}

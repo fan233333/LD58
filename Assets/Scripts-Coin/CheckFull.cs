@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckFull: MonoBehaviour
@@ -10,6 +12,8 @@ public class CheckFull: MonoBehaviour
     [SerializeField] private Transform attract;
     [SerializeField] private float attractSpeed = 2f; // 吸引速度
     [SerializeField] private float destroyDelay = 0.5f; // 删除延迟
+    public float layerSpacing = 1f; // 层间距
+    public float delayBetweenLayers = 0.5f; // 层间延迟
     public static int attractCount = 0;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
@@ -46,7 +50,9 @@ public class CheckFull: MonoBehaviour
         foreach (Transform child in parentObj.transform)
         {
             childrenToAttract.Add(child.gameObject);
-            if(child.transform.position.y >= transform.position.y)
+
+
+            if (child.transform.position.y >= transform.position.y)
             {
                 full = true;
             }
@@ -71,7 +77,7 @@ public class CheckFull: MonoBehaviour
     // 吸引并销毁子物体的协程
     private IEnumerator AttractAndDestroyChildren()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         if (!StopAreaDetector.playerInArea)
         {
             childrenToAttract.Clear();
@@ -80,62 +86,131 @@ public class CheckFull: MonoBehaviour
         yield return null;
         Debug.Log($"开始吸引 {childrenToAttract.Count} 个子物体");
 
-        // 禁用所有子物体的物理效果和碰撞体
-        foreach (GameObject child in childrenToAttract)
-        {
-            if (child != null)
-            {
-                Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
-                if (rb != null) rb.simulated = false;
+        childrenToAttract = childrenToAttract.Where(obj => obj != null).ToList();
+        childrenToAttract.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
 
-                Collider2D collider = child.GetComponent<Collider2D>();
-                if (collider != null) collider.enabled = false;
-            }
+        isAttracting = true;
+
+        // 计算分层
+        var layers = GroupObjectsIntoLayers();
+        Debug.Log(layers.Count);
+
+        // 按层依次吸收
+        for (int i = 0; i < layers.Count; i++)
+        {
+            yield return StartCoroutine(AbsorbLayer(layers[i], i));
+            yield return new WaitForSeconds(delayBetweenLayers);
         }
 
-        // 吸引过程：将所有子物体移动到目标位置
-        bool allReachedTarget = false;
-        while (!allReachedTarget)
-        {
-            allReachedTarget = true;
-            Vector2 attractPosition = attract.position;
-
-            foreach (GameObject child in childrenToAttract)
-            {
-                if (child == null) continue;
-
-                Vector2 currentPos = child.transform.position;
-                float distance = Vector2.Distance(currentPos, attractPosition);
-
-                if (attractPosition.y - child.transform.position.y > 1f)
-                {
-                    child.transform.position = Vector2.MoveTowards(
-                        currentPos, attractPosition, attractSpeed * Time.deltaTime);
-                    allReachedTarget = false;
-                }
-            }
-
-            yield return null;
-        }
-
-        // 等待一段时间后销毁所有子物体
-        yield return new WaitForSeconds(destroyDelay);
-
-        foreach (GameObject child in childrenToAttract)
-        {
-            if (child != null)
-            {
-                Destroy(child);
-            }
-        }
-        attractCount = childrenToAttract.Count;
-        childrenToAttract.Clear();
         isAttracting = false;
-
         Debug.Log("所有子物体已被吸引并删除");
+
 
         // 可选：这里可以添加删除父物体的代码
         // Destroy(GameObject.Find(parentName));
+    }
+
+    List<List<Transform>> GroupObjectsIntoLayers()
+    {
+        List<List<Transform>> layers = new List<List<Transform>>();
+
+        if (childrenToAttract.Count == 0) return layers;
+
+        // 使用阈值进行分层
+        float heightThreshold = 0.4f; // 高度阈值，可根据需要调整
+
+        List<Transform> currentLayer = new List<Transform>();
+        float lastHeight = childrenToAttract[0].transform.position.y;
+
+        foreach (var obj in childrenToAttract)
+        {
+
+            if (Mathf.Abs(obj.transform.position.y - lastHeight) > heightThreshold)
+            {
+                // 开始新的一层
+                if (currentLayer.Count > 0)
+                {
+                    layers.Add(new List<Transform>(currentLayer));
+                    currentLayer.Clear();
+                }
+            }
+
+            currentLayer.Add(obj.transform);
+            lastHeight = obj.transform.position.y;
+        }
+
+        // 添加最后一层
+        if (currentLayer.Count > 0)
+        {
+            layers.Add(currentLayer);
+        }
+
+        return layers;
+    }
+
+    // 吸收单层物体
+    IEnumerator AbsorbLayer(List<Transform> layerObjects, int layerIndex)
+    {
+        List<Coroutine> coroutines = new List<Coroutine>();
+
+        // 计算该层的目标高度
+        float targetY = attract.position.y;
+
+        // 为该层所有物体启动吸收协程
+        foreach (var obj in layerObjects)
+        {
+            if(obj == null) continue;
+            Coroutine coroutine = StartCoroutine(MoveObjectToHeight(obj, targetY));
+            coroutines.Add(coroutine);
+
+        }
+
+        // 等待该层所有物体吸收完成
+        foreach (var coroutine in coroutines)
+        {
+            yield return coroutine;
+        }
+        DestroyLayerObjects(layerObjects);
+    }
+
+    void DestroyLayerObjects(List<Transform> layerObjects)
+    {
+        foreach (var obj in layerObjects)
+        {
+            // 销毁游戏对象
+            if(obj != null)
+            {
+                Destroy(obj.gameObject);
+            }
+            
+
+            // 如果需要，可以在这里添加销毁特效、声音等
+            // PlayDestroyEffect(obj.position);
+        }
+
+        layerObjects.Clear();
+    }
+
+    // 移动物体到指定高度
+    IEnumerator MoveObjectToHeight(Transform obj, float targetHeight)
+    {
+        if (obj == null) yield break;
+
+        Vector3 startPos = obj.position;
+        Vector3 targetPos = new Vector3(obj.position.x, targetHeight, obj.position.z);
+        float journey = 0f;
+
+        while (obj != null && journey <= 1f)
+        {
+            journey += Time.deltaTime * attractSpeed;
+            obj.position = Vector3.Lerp(startPos, targetPos, journey);
+            yield return null;
+        }
+
+        if (obj != null)
+        {
+            obj.position = targetPos;
+        }
     }
 
     // 在Scene视图中可视化目标位置

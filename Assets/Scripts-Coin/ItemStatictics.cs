@@ -20,6 +20,7 @@ public class ItemStatistics : MonoBehaviour
 
     // 总收集物品数量
     private int totalItemsCollected = 0;
+    private float totalMass = 0;
 
     // 单例模式
     private static ItemStatistics _instance;
@@ -72,6 +73,7 @@ public class ItemStatistics : MonoBehaviour
         }
 
         totalItemsCollected += value;
+        totalMass += item.mass;
 
         // 触发事件
         onItemCollected?.Invoke(typeKey, value);
@@ -83,6 +85,7 @@ public class ItemStatistics : MonoBehaviour
             Debug.Log($"收集物品: {item.GetTypeName()} (价值: {value})");
             Debug.Log($"当前物品数量: {GetItemCount(item.GetTypeKey())}");
             Debug.Log($"当前统计: {GetStatisticsString()}");
+            Debug.Log($"当前重量: {GetTotalMass()}");
         }
     }
 
@@ -96,6 +99,16 @@ public class ItemStatistics : MonoBehaviour
     public int GetItemCount(CollectibleItem.ItemType itemType)
     {
         return GetItemCount(itemType.ToString());
+    }
+
+    public float GetTotalMass()
+    {
+        return totalMass;
+    }
+
+    public void SetTotalMass(float newMass)
+    {
+        totalMass = newMass;
     }
 
     // 获取总物品数量

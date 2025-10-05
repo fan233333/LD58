@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckSpecificObject : MonoBehaviour
@@ -10,13 +12,14 @@ public class CheckSpecificObject : MonoBehaviour
     [SerializeField] private string typeName = "Triangle"; // 父物体名称
     [SerializeField] private Transform attract;
     [SerializeField] private float attractSpeed = 2f; // 吸引速度
-    [SerializeField] private float destroyDelay = 0.5f; // 删除延迟
+    public float layerSpacing = 1f; // 层间距
+    public float delayBetweenLayers = 0.5f; // 层间延迟
 
     public static bool gainEnough = false;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
-    private List<GameObject> otherChildren = new List<GameObject>();
-    private bool isAttracting = false;
+        private bool isAbsorbing = false;
+
 
     // 触发器检测
     //private void OnTriggerEnter2D(Collider2D collision)
@@ -51,18 +54,16 @@ public class CheckSpecificObject : MonoBehaviour
             if(collectibleItem.GetTypeKey() == typeName)
             {
                 childrenToAttract.Add(child.gameObject);
+                Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
+                rb.gravityScale = 0;
+
             }
-            else
-            {
-                otherChildren.Add(child.gameObject);
-            }
-            
-            
         }
 
         if (childrenToAttract.Count > 0)
         {
-            isAttracting = true;
+            isAbsorbing = true;
+            
             StartCoroutine(AttractAndDestroyChildren());
         }
         else
@@ -79,7 +80,7 @@ public class CheckSpecificObject : MonoBehaviour
     // 吸引并销毁子物体的协程
     private IEnumerator AttractAndDestroyChildren()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         if (!StopAreaDetector.playerInArea)
         {
             childrenToAttract.Clear();
@@ -88,71 +89,147 @@ public class CheckSpecificObject : MonoBehaviour
         yield return null;
         Debug.Log($"开始吸引 {childrenToAttract.Count} 个子物体");
 
-        // 禁用所有子物体的物理效果和碰撞体
-        foreach (GameObject child in childrenToAttract)
-        {
-            if (child != null)
-            {
-                
-                Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
-                rb.gravityScale = 0;
-                //if (rb != null) rb.simulated = false;
+        childrenToAttract = childrenToAttract.Where(obj => obj != null).ToList();
+        childrenToAttract.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
 
-                //Collider2D collider = child.GetComponent<Collider2D>();
-                //if (collider != null) collider.enabled = false;
-            }
+        isAbsorbing = true;
+
+        // 计算分层
+        var layers = GroupObjectsIntoLayers();
+
+        // 按层依次吸收
+        for (int i = 0; i < layers.Count; i++)
+        {
+            yield return StartCoroutine(AbsorbLayer(layers[i], i));
+            yield return new WaitForSeconds(delayBetweenLayers);
         }
 
-        // 吸引过程：将所有子物体移动到目标位置
-        bool allReachedTarget = false;
-        while (!allReachedTarget)
-        {
-            allReachedTarget = true;
-            Vector2 attractPosition = attract.position;
-
-            foreach (GameObject child in childrenToAttract)
-            {
-                if (child == null) continue;
-
-                Vector2 currentPos = child.transform.position;
-                float distance = Vector2.Distance(currentPos, attractPosition);
-
-                if (attractPosition.y- child.transform.position.y > 1f)
-                {
-                    Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
-                    if (rb != null)
-                    {
-                        Vector2 direction = (attractPosition - currentPos).normalized;
-                        rb.velocity = direction * attractSpeed;
-                        allReachedTarget = false;
-                    }
-
-                }
-
-            }
-
-            yield return null;
-        }
-
-        // 等待一段时间后销毁所有子物体
-        yield return new WaitForSeconds(destroyDelay);
-
-        foreach (GameObject child in childrenToAttract)
-        {
-            if (child != null)
-            {
-                Destroy(child);
-            }
-        }
-
-        childrenToAttract.Clear();
-        isAttracting = false;
+        isAbsorbing = false;
         gainEnough = true;
         Debug.Log("所有子物体已被吸引并删除");
 
 
         // 可选：这里可以添加删除父物体的代码
         // Destroy(GameObject.Find(parentName));
+    }
+
+    List<List<Transform>> GroupObjectsIntoLayers()
+    {
+        List<List<Transform>> layers = new List<List<Transform>>();
+
+        if (childrenToAttract.Count == 0) return layers;
+
+        // 使用阈值进行分层
+        float heightThreshold = 0.4f; // 高度阈值，可根据需要调整
+
+        List<Transform> currentLayer = new List<Transform>();
+        float lastHeight = childrenToAttract[0].transform.position.y;
+
+        foreach (var obj in childrenToAttract)
+        {
+            if (Mathf.Abs(obj.transform.position.y - lastHeight) > heightThreshold)
+            {
+                // 开始新的一层
+                if (currentLayer.Count > 0)
+                {
+                    layers.Add(new List<Transform>(currentLayer));
+                    currentLayer.Clear();
+                }
+            }
+
+            currentLayer.Add(obj.transform);
+            lastHeight = obj.transform.position.y;
+        }
+
+        // 添加最后一层
+        if (currentLayer.Count > 0)
+        {
+            layers.Add(currentLayer);
+        }
+
+        return layers;
+    }
+
+    // 吸收单层物体
+    IEnumerator AbsorbLayer(List<Transform> layerObjects, int layerIndex)
+    {
+        List<Coroutine> coroutines = new List<Coroutine>();
+
+        // 计算该层的目标高度
+        float targetY = attract.position.y;// + (layerIndex * layerSpacing);
+
+        // 为该层所有物体启动吸收协程
+        foreach (var obj in layerObjects)
+        {
+            Coroutine coroutine = StartCoroutine(MoveObjectToHeight(obj, targetY));
+            coroutines.Add(coroutine);
+            
+        }
+
+        // 等待该层所有物体吸收完成
+        foreach (var coroutine in coroutines)
+        {
+            yield return coroutine;
+        }
+        DestroyLayerObjects(layerObjects);
+    }
+
+    void DestroyLayerObjects(List<Transform> layerObjects)
+    {
+        foreach (var obj in layerObjects)
+        {
+            // 销毁游戏对象
+            Destroy(obj.gameObject);
+
+            // 如果需要，可以在这里添加销毁特效、声音等
+            // PlayDestroyEffect(obj.position);
+        }
+
+        layerObjects.Clear();
+    }
+
+    // 移动物体到指定高度
+    IEnumerator MoveObjectToHeight(Transform obj, float targetHeight)
+    {
+        Vector2 startPos = obj.position;
+        Vector2 targetPos = new Vector2(obj.position.x, targetHeight);
+
+        // 获取物体的 Rigidbody2D 组件
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogWarning($"物体 {obj.name} 没有 Rigidbody2D 组件，无法进行物理移动");
+            yield break;
+        }
+
+        // 确保 Rigidbody2D 设置为动态类型，以便响应物理
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        // 设置速度或力来移动物体
+        while (Vector2.Distance(obj.position, targetPos) > 0.1f)
+        {
+            if(obj != null)
+            {
+                // 方法1：使用速度直接移动
+                Vector2 direction = (targetPos - (Vector2)obj.position).normalized;
+                rb.velocity = direction * attractSpeed;
+
+                // 如果物体卡住，可以添加一个小力来推动
+                if (rb.velocity.magnitude < 0.1f)
+                {
+                    rb.AddForce(direction * 10f);
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+            
+        }
+
+        // 到达目标位置后停止移动
+        rb.velocity = Vector2.zero;
+
+        // 可选：将物体设置为静态，防止后续移动
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     // 在Scene视图中可视化目标位置

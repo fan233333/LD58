@@ -6,6 +6,7 @@ public class CollectibleItem : MonoBehaviour
     public string itemName = "未命名物品"; // 物品名称
     public ItemType itemType = ItemType.Circle; // 物品类型
     public int value = 1; // 物品价值
+    public float mass = 1;
 
     [Header("视觉效果")]
     public Color itemColor = Color.white; // 物品颜色
