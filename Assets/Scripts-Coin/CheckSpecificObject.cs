@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class CheckFull: MonoBehaviour
+public class CheckSpecificObject : MonoBehaviour
 {
     [Header("吸引设置")]
     [SerializeField] private string targetTag = "ReadyToFall"; // 要检测的物体标签
     [SerializeField] private string parentName = "BagParent"; // 父物体名称
+    [SerializeField] private string typeName = "Triangle"; // 父物体名称
     [SerializeField] private Transform attract;
     [SerializeField] private float attractSpeed = 2f; // 吸引速度
     [SerializeField] private float destroyDelay = 0.5f; // 删除延迟
-    public static int attractCount = 0;
+
+    public static bool gainEnough = false;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
+    private List<GameObject> otherChildren = new List<GameObject>();
     private bool isAttracting = false;
 
     // 触发器检测
@@ -20,12 +25,12 @@ public class CheckFull: MonoBehaviour
     //{
     //    Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
     //
-        // 检测到指定标签的物体且未开始吸引过程
-     //  if (collision.CompareTag(targetTag) && !isAttracting && rb.velocity.y >= 0)
-     //   {
-     //       Debug.Log($"检测到物体 {collision.gameObject.name} 进入触发区域");
-     //       StartAttractionProcess();
-      //  }
+    // 检测到指定标签的物体且未开始吸引过程
+    //  if (collision.CompareTag(targetTag) && !isAttracting && rb.velocity.y >= 0)
+    //   {
+    //       Debug.Log($"检测到物体 {collision.gameObject.name} 进入触发区域");
+    //       StartAttractionProcess();
+    //  }
     //}
 
     // 开始吸引过程
@@ -40,19 +45,24 @@ public class CheckFull: MonoBehaviour
             return;
         }
 
-        bool full = false;
 
         // 获取所有子物体
         foreach (Transform child in parentObj.transform)
         {
-            childrenToAttract.Add(child.gameObject);
-            if(child.transform.position.y >= transform.position.y)
+            CollectibleItem collectibleItem = child.GetComponent<CollectibleItem>();
+            if(collectibleItem.GetTypeKey() == typeName)
             {
-                full = true;
+                childrenToAttract.Add(child.gameObject);
             }
+            else
+            {
+                otherChildren.Add(child.gameObject);
+            }
+            
+            
         }
 
-        if (childrenToAttract.Count > 0 && full)
+        if (childrenToAttract.Count > 0)
         {
             isAttracting = true;
             StartCoroutine(AttractAndDestroyChildren());
@@ -85,11 +95,13 @@ public class CheckFull: MonoBehaviour
         {
             if (child != null)
             {
+                
                 Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
-                if (rb != null) rb.simulated = false;
+                rb.gravityScale = 0;
+                //if (rb != null) rb.simulated = false;
 
-                Collider2D collider = child.GetComponent<Collider2D>();
-                if (collider != null) collider.enabled = false;
+                //Collider2D collider = child.GetComponent<Collider2D>();
+                //if (collider != null) collider.enabled = false;
             }
         }
 
@@ -107,12 +119,18 @@ public class CheckFull: MonoBehaviour
                 Vector2 currentPos = child.transform.position;
                 float distance = Vector2.Distance(currentPos, attractPosition);
 
-                if (attractPosition.y - child.transform.position.y > 1f)
+                if (attractPosition.y- child.transform.position.y > 1f)
                 {
-                    child.transform.position = Vector2.MoveTowards(
-                        currentPos, attractPosition, attractSpeed * Time.deltaTime);
-                    allReachedTarget = false;
+                    Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        Vector2 direction = (attractPosition - currentPos).normalized;
+                        rb.velocity = direction * attractSpeed;
+                        allReachedTarget = false;
+                    }
+
                 }
+
             }
 
             yield return null;
@@ -128,11 +146,24 @@ public class CheckFull: MonoBehaviour
                 Destroy(child);
             }
         }
-        attractCount = childrenToAttract.Count;
+
         childrenToAttract.Clear();
         isAttracting = false;
-
+        gainEnough = true;
         Debug.Log("所有子物体已被吸引并删除");
+        foreach (GameObject child in otherChildren)
+        {
+            if (child != null)
+            {
+
+                Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
+                rb.gravityScale = 1;
+                //if (rb != null) rb.simulated = false;
+
+                //Collider2D collider = child.GetComponent<Collider2D>();
+                //if (collider != null) collider.enabled = false;
+            }
+        }
 
         // 可选：这里可以添加删除父物体的代码
         // Destroy(GameObject.Find(parentName));

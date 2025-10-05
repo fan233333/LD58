@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         {
             // 直接计算看向方向的角度
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
 
             // 创建目标旋转
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
