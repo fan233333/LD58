@@ -18032,7 +18032,7 @@ MonoBehaviour:
   prefab: {fileID: 5776966768311452725, guid: 3d46d4c8fe0cfcc449a95a3199260a84, type: 3}
   minHorizontalForce: -2
   maxHorizontalForce: 2
-  bagParent: {fileID: 5780559155453942564}
+  bagParent: {fileID: 574062804}
 --- !u!4 &5780559155453942564
 Transform:
   m_ObjectHideFlags: 0
