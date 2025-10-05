@@ -61,6 +61,7 @@ public class StopAreaDetector : MonoBehaviour
         {
             checkSpecificObject.StartAttractionProcess();
         }
+        Debug.Log(transform.tag);
         
     }
 

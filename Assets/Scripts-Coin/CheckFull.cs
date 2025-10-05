@@ -15,6 +15,7 @@ public class CheckFull: MonoBehaviour
     public float layerSpacing = 1f; // 层间距
     public float delayBetweenLayers = 0.5f; // 层间延迟
     public static int attractCount = 0;
+    public ContainerManager containerManager;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
     private bool isAttracting = false;
@@ -180,6 +181,18 @@ public class CheckFull: MonoBehaviour
             // 销毁游戏对象
             if(obj != null)
             {
+                CollectibleItem collectibleItem = obj.GetComponent<CollectibleItem>();
+                if (collectibleItem != null)
+                {
+                    if(collectibleItem.GetTypeKey() == "Circle")
+                    {
+                        containerManager.CreateBall(obj.gameObject);
+                    }
+                    if (collectibleItem.GetTypeKey() == "Triangle")
+                    {
+                        containerManager.CreateTriangle(obj.gameObject);
+                    }
+                }
                 Destroy(obj.gameObject);
             }
             

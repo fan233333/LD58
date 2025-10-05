@@ -18,7 +18,7 @@ public class CheckSpecificObject : MonoBehaviour
     public static bool gainEnough = false;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
-        private bool isAbsorbing = false;
+    private bool isAbsorbing = false;
 
 
     // 触发器检测
@@ -161,8 +161,11 @@ public class CheckSpecificObject : MonoBehaviour
         // 为该层所有物体启动吸收协程
         foreach (var obj in layerObjects)
         {
-            Coroutine coroutine = StartCoroutine(MoveObjectToHeight(obj, targetY));
-            coroutines.Add(coroutine);
+            if (obj != null)
+            {
+                Coroutine coroutine = StartCoroutine(MoveObjectToHeight(obj, targetY));
+                coroutines.Add(coroutine);
+            }
             
         }
 
@@ -204,12 +207,14 @@ public class CheckSpecificObject : MonoBehaviour
 
         // 确保 Rigidbody2D 设置为动态类型，以便响应物理
         rb.bodyType = RigidbodyType2D.Dynamic;
+        float journey = 0f;
 
         // 设置速度或力来移动物体
-        while (Vector2.Distance(obj.position, targetPos) > 0.1f)
+        while (journey <= 3f)
         {
             if(obj != null)
             {
+                journey += Time.deltaTime * attractSpeed;
                 // 方法1：使用速度直接移动
                 Vector2 direction = (targetPos - (Vector2)obj.position).normalized;
                 rb.velocity = direction * attractSpeed;
