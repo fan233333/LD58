@@ -7,8 +7,9 @@ public class StopAreaDetector : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float stopThreshold = 0.1f; // 停止判定阈值
     public CheckFull checkFull;
+    public CheckSpecificObject checkSpecificObject;
 
-    private bool playerInArea = false;
+    public static bool playerInArea = false;
     private bool readyToGetout = false;
     private Rigidbody2D playerRigidbody;
 
@@ -52,7 +53,15 @@ public class StopAreaDetector : MonoBehaviour
     {
         Debug.Log("玩家在区域内停下来了!");
         // 在这里执行相应的逻辑
-        checkFull.StartAttractionProcess();
+        if (transform.tag == "StopArea")
+        {
+            checkFull.StartAttractionProcess();
+        }
+        if(transform.tag == "ManufactureArea")
+        {
+            checkSpecificObject.StartAttractionProcess();
+        }
+        
     }
 
  

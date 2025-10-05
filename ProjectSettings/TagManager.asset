@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Collectible
   - ReadyToFall
+  - StopArea
+  - ManufactureArea
+  - Rope
   layers:
   - Default
   - TransparentFX

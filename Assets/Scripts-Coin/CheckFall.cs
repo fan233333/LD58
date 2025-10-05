@@ -22,7 +22,7 @@ public class CheckFall : MonoBehaviour
         if(collision.gameObject.tag == "ReadyToFall")
         {
             GameObject newObject = Instantiate(collision.gameObject, player.transform.position, Quaternion.identity);
-
+            Debug.Log(collision.transform.localScale);
             newObject.transform.localScale = collision.transform.localScale;
 
             Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
@@ -37,7 +37,7 @@ public class CheckFall : MonoBehaviour
 
             SpriteRenderer spriteRenderer = newObject.GetComponent<SpriteRenderer>();
 
-            // ·½·¨1£ºÍ¨¹ýÃû³ÆÉèÖÃSorting Layer
+            // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sorting Layer
             spriteRenderer.sortingLayerName = "Default";
 
             Destroy(collision.gameObject);
