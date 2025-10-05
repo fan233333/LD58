@@ -149,19 +149,7 @@ public class CheckSpecificObject : MonoBehaviour
         isAttracting = false;
         gainEnough = true;
         Debug.Log("所有子物体已被吸引并删除");
-        foreach (GameObject child in otherChildren)
-        {
-            if (child != null)
-            {
 
-                Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
-                rb.gravityScale = 1;
-                //if (rb != null) rb.simulated = false;
-
-                //Collider2D collider = child.GetComponent<Collider2D>();
-                //if (collider != null) collider.enabled = false;
-            }
-        }
 
         // 可选：这里可以添加删除父物体的代码
         // Destroy(GameObject.Find(parentName));

@@ -167,13 +167,13 @@ public class SectorAbsorb : MonoBehaviour
 
         // 计算最终速度
         //float speed = Mathf.Lerp(minAbsorbSpeed, maxAbsorbSpeed, speedFactor);
-        if(normalizedDistance < 0.3f)
+        if(distance < radius/3*2)
         {
-            return minAbsorbSpeed;
+            return maxAbsorbSpeed;
         }
         else
         {
-            return maxAbsorbSpeed;
+            return minAbsorbSpeed;
         }
 
             //return speed;
