@@ -163,12 +163,20 @@ public class SectorAbsorb : MonoBehaviour
         float normalizedDistance = Mathf.Clamp01(distance / radius);
 
         // 使用速度曲线计算速度系数
-        float speedFactor = speedCurve.Evaluate(1 - normalizedDistance); // 反转，因为距离越近速度越快
+        //float speedFactor = speedCurve.Evaluate(1 - normalizedDistance); // 反转，因为距离越近速度越快
 
         // 计算最终速度
-        float speed = Mathf.Lerp(minAbsorbSpeed, maxAbsorbSpeed, speedFactor);
+        //float speed = Mathf.Lerp(minAbsorbSpeed, maxAbsorbSpeed, speedFactor);
+        if(distance < radius/3*2)
+        {
+            return maxAbsorbSpeed;
+        }
+        else
+        {
+            return minAbsorbSpeed;
+        }
 
-        return speed;
+            //return speed;
     }
 
     // 检查已吸收物品是否仍在扇形区域内
