@@ -8,9 +8,9 @@ public class ProcessBars : MonoBehaviour
     public Transform healthBar;
     public static float myHealth = 100;
 
-    private float collectingNum;
-    private float totalNum = 100;
-    private float maxHP = 100;
+    public float collectingNum;
+    public float totalNum = 100;
+    public float maxHP = 100;
 
     // Start is called before the first frame update
     void Start()
