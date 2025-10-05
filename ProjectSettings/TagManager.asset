@@ -8,6 +8,7 @@ TagManager:
   - ReadyToFall
   - StopArea
   - ManufactureArea
+  - Rope
   layers:
   - Default
   - TransparentFX

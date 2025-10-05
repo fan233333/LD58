@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float maxSpeed = 2f;
+    public float moveForce = 10f;
     public float maxRotationSpeed = 90f;
     public Sprite right;
     public Sprite left;
@@ -28,6 +29,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        // 设置线性阻尼 - 模拟空气/流体阻力
+        rb.drag = 1f; // 值越大，停止越快
+
+        // 设置角速度阻尼
+        rb.angularDrag = 0.5f;
         targetRotation = rotateObject.rotation;
         
     }
@@ -54,8 +60,14 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // 移动角色
-        rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
+        //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
+        rb.AddForce(movement * moveForce);
 
+        // 限制最大速度
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
 
         if (movement != Vector2.zero)
         {
