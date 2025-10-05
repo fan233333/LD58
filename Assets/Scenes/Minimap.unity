@@ -2007,7 +2007,7 @@ MonoBehaviour:
   snowResourcePrefab: {fileID: 7571417092938645708, guid: f5ad56089ae146a4e90f6f8519d064ab, type: 3}
   grassDensity: 0.05
   sandDensity: 0.02
-  snowDensity: 0.01
+  snowDensity: 0.08
   resourceParent: {fileID: 427429394}
 --- !u!1 &280665851
 GameObject:
@@ -16360,7 +16360,7 @@ Transform:
   m_GameObject: {fileID: 1879663187}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16406,7 +16406,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
