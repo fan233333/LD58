@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5615759805590007137}
   - component: {fileID: 684519371157490745}
   - component: {fileID: 182193586914592098}
+  - component: {fileID: 6380343755685593174}
   m_Layer: 0
   m_Name: BuleOre
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,3 +121,23 @@ CircleCollider2D:
   m_Offset: {x: 0.105653286, y: 0.07314515}
   serializedVersion: 2
   m_Radius: 2.2474916
+--- !u!114 &6380343755685593174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005786936513043718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483f182773cd5664dab41b724fd0cc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Diamond
+  itemType: 3
+  value: 1
+  mass: 1
+  itemColor: {r: 1, g: 1, b: 1, a: 1}
+  collectEffect: {fileID: 0}
+  collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}

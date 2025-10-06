@@ -14,7 +14,7 @@ public class CheckSpecificObject : MonoBehaviour
     [SerializeField] private float attractSpeed = 2f; // 吸引速度
     public float layerSpacing = 1f; // 层间距
     public float delayBetweenLayers = 0.5f; // 层间延迟
-    public ContainerManager containerManager;
+    //public ContainerManager containerManager;
     public TaskManager taskManager;
 
     public static bool gainEnough = false;
@@ -188,8 +188,8 @@ public class CheckSpecificObject : MonoBehaviour
             {
                 if (collectibleItem.GetTypeKey() == typeName)
                 {
-                    containerManager.CreateObject(typeName);
-                    taskManager.ItemCollected(typeName);
+                    //containerManager.CreateObject(obj.gameObject, typeName);
+                    taskManager.ItemCollected(obj.gameObject, typeName);
                 }
                 //if (collectibleItem.GetTypeKey() == "Triangle")
                 //{

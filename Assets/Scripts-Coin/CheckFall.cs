@@ -7,6 +7,8 @@ public class CheckFall : MonoBehaviour
     private GameObject player;
     public float minHorizontalForce = 10f;
     public float maxHorizontalForce = 20f;
+    public float minVF = -10f;
+    public float maxVF = 10f;
     public float friction = 5f;
 
     private float angle = 180;
@@ -52,24 +54,26 @@ public class CheckFall : MonoBehaviour
                 // 添加随机水平力
                 float randomForcex = Random.Range(minHorizontalForce, maxHorizontalForce);
                 float randomForcey = Random.Range(minHorizontalForce, maxHorizontalForce);
+
+                float offsetForce = Random.Range(minVF, maxVF);
                 angle = PlayerController.playerangle;
                 //Debug.Log(angle);
                 //rb.AddForce(new Vector2(randomForcex, randomForcey), ForceMode2D.Impulse);
                 if (angle == 0)
                 {
-                    rb.AddForce(new Vector2(-randomForcex, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-randomForcex, offsetForce), ForceMode2D.Impulse);
                 }
                 else if (angle == 180)
                 {
-                    rb.AddForce(new Vector2(randomForcex, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(randomForcex, offsetForce), ForceMode2D.Impulse);
                 }
                 else if (angle == 90)
                 {
-                    rb.AddForce(new Vector2(0, -randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(offsetForce, -randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == -90)
                 {
-                    rb.AddForce(new Vector2(0, randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(offsetForce, randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == 45)
                 {
