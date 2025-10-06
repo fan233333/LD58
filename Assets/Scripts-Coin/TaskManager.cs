@@ -39,6 +39,10 @@ public class TaskManager : MonoBehaviour
     public int minYear;
     public int maxYear;
 
+    public GameObject img1;
+    public GameObject img2;
+    public int highLightYear = 100;
+
 
     private float currentTime;
     private bool isTaskActive = false;
@@ -57,6 +61,20 @@ public class TaskManager : MonoBehaviour
         if (isTaskActive)
         {
             UpdateTimer();
+            if(SeedStatic.lightYear <= highLightYear)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    img2.SetActive(true);
+                }
+                if(img2.activeSelf)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                }
+            }
         }
     }
 
@@ -191,17 +209,25 @@ public class TaskManager : MonoBehaviour
     {
         isTaskActive = false;
         Debug.Log("ÈÎÎñÊ§°Ü£¡");
-        SeedStatic.tileSeed = Random.Range(1, 10000);
-        SeedStatic.objectSeed = Random.Range(1, 10000);
-        SeedStatic.lightYear += Random.Range(minYear, maxYear);
-        Debug.Log(SeedStatic.tileSeed);
-        Debug.Log(SeedStatic.objectSeed);
-        SceneManager.LoadScene(nextSceneName);
+        //SeedStatic.tileSeed = Random.Range(1, 10000);
+        //SeedStatic.objectSeed = Random.Range(1, 10000);
+        //SeedStatic.lightYear += Random.Range(minYear, maxYear);
+        //Debug.Log(SeedStatic.tileSeed);
+        //Debug.Log(SeedStatic.objectSeed);
+        //SceneManager.LoadScene(nextSceneName);
 
-        if (failPanel)
+        if(SeedStatic.lightYear < highLightYear)
         {
-            failPanel.SetActive(true);
+            if (failPanel)
+            {
+                failPanel.SetActive(true);
+            }
         }
+        else
+        {
+            img1.SetActive(true);
+        }
+
     }
 
     IEnumerator LoadNextSceneAfterDelay(float delay)

@@ -22,4 +22,14 @@ public class GameStart : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
