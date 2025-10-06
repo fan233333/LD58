@@ -192,6 +192,9 @@ public class CheckFull: MonoBehaviour
                     {
                         containerManager.CreateTriangle(obj.gameObject);
                     }
+                    float mass = collectibleItem.mass;
+                    float totalMass = ItemStatistics.Instance.GetTotalMass();
+                    ItemStatistics.Instance.SetTotalMass(totalMass -  mass);
                 }
                 Destroy(obj.gameObject);
             }

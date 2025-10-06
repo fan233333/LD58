@@ -18,10 +18,13 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
     public float minMovementThreshold = 0.1f; // 最小移动阈值
+    public float maxMass = 10f;
+
     public static float playerangle = 0;
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private float totalMass = 0;
     
     private Quaternion targetRotation;
     private Vector2 lastValidDirection = Vector2.right;
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         // 设置角速度阻尼
         rb.angularDrag = 0.5f;
         targetRotation = rotateObject.rotation;
+        totalMass = 0;
         
     }
 
@@ -60,9 +64,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        totalMass = ItemStatistics.Instance.GetTotalMass();
+        if(totalMass <= 0)
+        {
+            totalMass = 1;
+        }else if(totalMass > maxMass)
+        {
+            totalMass = maxMass;
+        }
         // 移动角色
         //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
-        rb.AddForce(movement * moveForce);
+        rb.AddForce(movement * moveForce * (1/totalMass));
 
         // 限制最大速度
         if (rb.velocity.magnitude > maxSpeed)
@@ -77,13 +89,23 @@ public class PlayerController : MonoBehaviour
             playerangle = angle;
             Debug.Log(playerangle);
 
-            // 创建目标旋转
-            Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            if(angle == 0)
+            {
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
+                rotateObject.rotation = targetRotation;
+            }else if(angle == 180)
+            {
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
+                rotateObject.rotation = targetRotation;
+            }
+            else
+            {
+                // 创建目标旋转
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            // 平滑旋转
-            rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
-
-            float z = rotateObject.rotation.z;
+                // 平滑旋转
+                rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
+            }
 
             //Debug.Log(z);
             if(angle == 0)

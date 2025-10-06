@@ -181,6 +181,13 @@ public class CheckSpecificObject : MonoBehaviour
     {
         foreach (var obj in layerObjects)
         {
+            CollectibleItem collectibleItem = obj.GetComponent<CollectibleItem>();
+            if (collectibleItem != null)
+            {
+                float mass = collectibleItem.mass;
+                float totalMass = ItemStatistics.Instance.GetTotalMass();
+                ItemStatistics.Instance.SetTotalMass(totalMass - mass);
+            }
             // 销毁游戏对象
             Destroy(obj.gameObject);
 

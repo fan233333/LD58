@@ -50,9 +50,6 @@ public class ContainerManager : MonoBehaviour
         {
             StartAttractionProcess(triangleParent, triangleContainer.transform);
         }
-
-
-
     }
 
     public void CreateBall(GameObject ballPrefab)
