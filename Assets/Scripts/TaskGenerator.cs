@@ -12,6 +12,7 @@ public struct AmountRange
 public class ItemConfig
 {
     public string itemName;
+    public string itemContainer;
     [Min(1)] public int maxNumber = 1;
 
     [Header("当本次任务包含 1/2/3 种物品时，对应的 requiredAmount 区间")]
@@ -32,9 +33,6 @@ public class ItemConfig
 
 public class TaskGenerator : MonoBehaviour
 {
-    [Header("目标：把生成结果写入 TaskManager.TaskItems")]
-    public TaskManager taskManager;
-
     [Header("物品配置（每种一个配置）")]
     public List<ItemConfig> itemConfigs = new List<ItemConfig>();
 
@@ -48,19 +46,8 @@ public class TaskGenerator : MonoBehaviour
     public bool allowZeroRequired = false;
 
     /// <summary> 生成并直接赋值给 TaskManager.TaskItems </summary>
-    public void GenerateAndAssign()
+    public List<TaskItem> GenerateAndAssign()
     {
-        if (taskManager == null)
-        {
-            Debug.LogError("[TaskGenerator] 请先指定 TaskManager 引用。");
-            return;
-        }
-        if (itemConfigs == null || itemConfigs.Count == 0)
-        {
-            Debug.LogError("[TaskGenerator] itemConfigs 为空。");
-            return;
-        }
-
         // 随机源
         System.Random rng = useSeed ? new System.Random(seed) : new System.Random();
 
@@ -102,25 +89,12 @@ public class TaskGenerator : MonoBehaviour
                 itemName = cfg.itemName,
                 requiredAmount = val,
                 maxNumber = cfg.maxNumber,
-                Container = null,           // 按你的要求：不生成
-                currentAmount = 0           // 按你的要求：不生成（HideInInspector）
+                Container = null, // 按你的要求：不生成
+                currentAmount = 0 // 按你的要求：不生成（HideInInspector）
             };
             result.Add(ti);
         }
 
-        // 4) 写回 TaskManager
-        taskManager.taskItems = result;
-
-#if UNITY_EDITOR
-        // 标记脏，方便编辑器下保存
-        UnityEditor.EditorUtility.SetDirty(taskManager);
-        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(taskManager.gameObject.scene);
-#endif
-
-        Debug.Log($"[TaskGenerator] 已生成 {result.Count} 个任务物品，并写入 TaskManager.TaskItems。");
+        return result;
     }
-
-    // 右键组件标题 → Generate & Assign
-    [ContextMenu("Generate & Assign")]
-    private void ContextGenerate() => GenerateAndAssign();
 }

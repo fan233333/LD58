@@ -10,6 +10,7 @@ public class CheckFall : MonoBehaviour
     public float minVF = -10f;
     public float maxVF = 10f;
     public float friction = 5f;
+    public float size = 0.3f;
 
     private float angle = 180;
     // Start is called before the first frame update
@@ -42,7 +43,7 @@ public class CheckFall : MonoBehaviour
             
             GameObject newObject = Instantiate(collision.gameObject, player.transform.position, Quaternion.identity);
             //Debug.Log(collision.transform.localScale);
-            newObject.transform.localScale = collision.transform.localScale;
+            newObject.transform.localScale = collision.transform.localScale / size;
 
             Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
             // 设置线性阻尼 - 模拟空气/流体阻力

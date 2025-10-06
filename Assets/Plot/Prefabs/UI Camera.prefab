@@ -1160,7 +1160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5137540044219563696}
   - component: {fileID: 1689694119403171035}
-  - component: {fileID: 4636151010644767939}
+  - component: {fileID: 6061177162295977397}
   m_Layer: 7
   m_Name: Square (5)
   m_TagString: Untagged
@@ -1236,7 +1236,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4636151010644767939
+--- !u!114 &6061177162295977397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1252,6 +1252,7 @@ MonoBehaviour:
   minHorizontalForce: -2
   maxHorizontalForce: 2
   bagParent: {fileID: 0}
+  size: 0.9
 --- !u!1 &4747353581429810994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,7 +1875,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minHorizontalForce: 10
   maxHorizontalForce: 15
+  minVF: -10
+  maxVF: 10
   friction: 3
+  size: 0.3
 --- !u!1 &6807801964264566927
 GameObject:
   m_ObjectHideFlags: 0

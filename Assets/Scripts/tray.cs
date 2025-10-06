@@ -6,6 +6,7 @@ public class tray : MonoBehaviour
     public float minHorizontalForce = -2f;
     public float maxHorizontalForce = 2f;
     public Transform bagParent;
+    public float size = 0.8f;
 
     public void SpawnPrefab(GameObject pre)
     {
@@ -16,7 +17,7 @@ public class tray : MonoBehaviour
 
         // 生成 prefab
         GameObject newObject = Instantiate(pre, spawnPos, spawnRot);
-        newObject.transform.localScale = pre.transform.localScale;
+        newObject.transform.localScale = pre.transform.localScale * size;
         newObject.layer = 7;
 
         // 如果设置了父物体，则设为其子物体
