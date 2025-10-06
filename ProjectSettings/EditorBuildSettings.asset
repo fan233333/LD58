@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CollectorTest2.unity
     guid: 90c221df7e7c4e54c9dda125fd38c45b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: d4413a309b26daa4fa046582e6d791b0
   - enabled: 0
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ProcedualTray.unity
     guid: 97d2993a1d5213343a421f1a07cf1d9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UITest.unity
     guid: 5257c0e53b3539340ad8c95c8116855f
   m_configObjects: {}
