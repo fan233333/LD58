@@ -16,6 +16,12 @@ namespace Phosphorescence.Narration
     {
         private PlotData _currentPlot;
         private Story _currentStory;
+        [SerializeField] private TextAsset currentStory;
+        private bool isStoryPlaying = false;
+
+        // 公共属性
+        public bool IsStoryPlaying => isStoryPlaying;
+        public TextAsset CurrentStory => currentStory;
         public TextAsset ToInitializeStory { get; set; }
 
         private void Awake()
@@ -40,6 +46,47 @@ namespace Phosphorescence.Narration
 
                 _currentStory.variablesState[e.variableName] = e.value;
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+
+        // 设置并初始化故事
+        public void SetAndInitializeStory(TextAsset storyAsset)
+        {
+            if (storyAsset == null)
+            {
+                Debug.LogError("Story asset is null!");
+                return;
+            }
+
+            currentStory = storyAsset;
+            InitializeStory();
+        }
+
+        // 初始化当前故事
+        public void InitializeStory()
+        {
+            if (currentStory == null)
+            {
+                Debug.LogError("No story assigned!");
+                return;
+            }
+
+            if (isStoryPlaying)
+            {
+                StopStory();
+            }
+
+            // 调用您的原有初始化方法
+            Initialize(currentStory)?.Continue();
+            isStoryPlaying = true;
+
+            Debug.Log($"Started story: {currentStory.name}");
+        }
+
+        // 停止故事
+        public void StopStory()
+        {
+            Stop(); // 调用您原有的Stop方法
+            isStoryPlaying = false;
         }
 
         public InkReader Initialize(TextAsset rawStory)
@@ -104,6 +151,7 @@ namespace Phosphorescence.Narration
 
                 _currentPlot = null;
                 _currentStory = null;
+                isStoryPlaying = false;
             }
         }
 
@@ -131,40 +179,47 @@ namespace Phosphorescence.Narration
         }
     }
 
-    public struct InitializeStoryEvent {
+    public struct InitializeStoryEvent
+    {
         public PlotData plot;
     }
 
-    public struct OnLineReadEvent {
+    public struct OnLineReadEvent
+    {
         public string content;
         public Dictionary<string, string> tags;
     }
 
-    public struct OnLinesReadEvent {
+    public struct OnLinesReadEvent
+    {
         public Dictionary<string, string> tags;
         public List<OnLineReadEvent> lines;
     }
 
-    public struct OnStoryEndEvent {
+    public struct OnStoryEndEvent
+    {
         public PlotData plot;
     }
 
-    public struct OnStoryEventTriggerEvent {
+    public struct OnStoryEventTriggerEvent
+    {
         public string eventName;
     }
 
-    public struct RequestNewLineEvent {}
+    public struct RequestNewLineEvent { }
 
-    public struct SelectOptionEvent {
+    public struct SelectOptionEvent
+    {
         public int index;
     }
 
-    public struct RequestSetVariableEvent {
+    public struct RequestSetVariableEvent
+    {
         public string variableName;
         public object value;
     }
 
-    
+
 #if UNITY_EDITOR
 
     [CustomEditor(typeof(InkReader))]
