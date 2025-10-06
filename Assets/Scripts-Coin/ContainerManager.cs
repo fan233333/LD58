@@ -39,15 +39,15 @@ public class ContainerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            StartAttractionProcess(ballParent, ballContainer.transform);
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    StartAttractionProcess(ballParent, ballContainer.transform);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            StartAttractionProcess(triangleParent, triangleContainer.transform);
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    StartAttractionProcess(triangleParent, triangleContainer.transform);
+        //}
     }
 
     public void CreateObject(GameObject obj, string typeName)
