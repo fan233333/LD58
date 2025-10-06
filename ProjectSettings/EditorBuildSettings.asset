@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ProcedualTray.unity
     guid: 97d2993a1d5213343a421f1a07cf1d9f
   - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 089dfa8459e501d42ba50195ce47162b
+  - enabled: 0
     path: Assets/Scenes/UITest.unity
     guid: 5257c0e53b3539340ad8c95c8116855f
   m_configObjects: {}
