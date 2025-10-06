@@ -49,6 +49,7 @@ public class RepairArea : MonoBehaviour
 
     private void OnPlayerStoppedInArea()
     {
+        Debug.Log("Repair");
         ptg.GenerateRope();
     }
 }
