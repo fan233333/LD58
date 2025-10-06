@@ -32,46 +32,46 @@ public class ParticlesToPlane : MonoBehaviour
         if (ps == null)
         {
             ps = GetComponent<ParticleSystem>();
-            Debug.Log($"ps was null, GetComponent result: {ps}");
+            //Debug.Log($"ps was null, GetComponent result: {ps}");
         }
         else
         {
-            Debug.Log($"ps assigned: {ps.name}");
+            //Debug.Log($"ps assigned: {ps.name}");
         }
         
         if (ps == null)
         {
-            Debug.LogError("ParticleSystem is NULL! Script will not work.");
+            //Debug.LogError("ParticleSystem is NULL! Script will not work.");
             enabled = false;
             return;
         }
         
         if (targetPlane == null)
         {
-            Debug.LogError("targetPlane is NULL! Please assign it in Inspector.");
+            //Debug.LogError("targetPlane is NULL! Please assign it in Inspector.");
         }
         else
         {
-            Debug.Log($"targetPlane assigned: {targetPlane.name} at position {targetPlane.position}");
+            //Debug.Log($"targetPlane assigned: {targetPlane.name} at position {targetPlane.position}");
         }
         
         var main = ps.main;
         particles = new ParticleSystem.Particle[main.maxParticles];
         
-        Debug.Log($"Simulation Space: {main.simulationSpace}, Max Particles: {main.maxParticles}, Kill Distance: {killDistance}");
+        //Debug.Log($"Simulation Space: {main.simulationSpace}, Max Particles: {main.maxParticles}, Kill Distance: {killDistance}");
     }
 
     void Update()
     {
         if (ps == null)
         {
-            Debug.LogError("ps is null in Update!");
+            //Debug.LogError("ps is null in Update!");
             return;
         }
         
         if (targetPlane == null)
         {
-            Debug.LogError("targetPlane is null in Update!");
+            //Debug.LogError("targetPlane is null in Update!");
             return;
         }
 
@@ -79,7 +79,7 @@ public class ParticlesToPlane : MonoBehaviour
         
         if (showDebug)
         {
-            Debug.Log($"Frame {Time.frameCount}: Particle count = {count}");
+            //Debug.Log($"Frame {Time.frameCount}: Particle count = {count}");
         }
         
         if (count == 0) return;
@@ -95,7 +95,7 @@ public class ParticlesToPlane : MonoBehaviour
 
         if (showDebug && Time.frameCount % 30 == 0) // Log every 30 frames
         {
-            Debug.Log($"Checking {count} particles. Target: {targetPos}, IsLocalSpace: {isLocalSpace}");
+            //Debug.Log($"Checking {count} particles. Target: {targetPos}, IsLocalSpace: {isLocalSpace}");
         }
 
         for (int i = 0; i < count; i++)
@@ -128,13 +128,13 @@ public class ParticlesToPlane : MonoBehaviour
                 if (showDebug && i == 0 && Time.frameCount % 30 == 0)
                 {
                     dist = Vector3.Distance(particleWorldPos, targetPos);
-                    Debug.Log($"First particle - WorldPos: {particleWorldPos}, LocalPos: {localPos}, BoxHalfSize: {halfSize}, Inside: {shouldKill}");
+                    //Debug.Log($"First particle - WorldPos: {particleWorldPos}, LocalPos: {localPos}, BoxHalfSize: {halfSize}, Inside: {shouldKill}");
                 }
             }
             
             if (showDebug && i == 0 && Time.frameCount % 30 == 0 && killZoneShape == KillZoneShape.Sphere)
             {
-                Debug.Log($"First particle - Pos: {particleWorldPos}, Dist to target: {dist:F3}, Kill dist: {killDistance}");
+                //Debug.Log($"First particle - Pos: {particleWorldPos}, Dist to target: {dist:F3}, Kill dist: {killDistance}");
             }
             
             // If particle is within kill zone, set its lifetime to 0 (will disappear)
@@ -156,7 +156,7 @@ public class ParticlesToPlane : MonoBehaviour
             
             if (showDebug)
             {
-                Debug.Log($"<color=green>Killed {killedThisFrame} particles this frame. Total killed: {killedCount}</color>");
+                //Debug.Log($"<color=green>Killed {killedThisFrame} particles this frame. Total killed: {killedCount}</color>");
             }
         }
     }
