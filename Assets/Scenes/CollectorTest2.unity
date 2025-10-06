@@ -211,6 +211,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &36917862
 Rigidbody2D:
   serializedVersion: 4
@@ -410,6 +411,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &104877055
 Rigidbody2D:
   serializedVersion: 4
@@ -578,6 +580,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &129860169
 Rigidbody2D:
   serializedVersion: 4
@@ -858,6 +861,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &161528015
 Rigidbody2D:
   serializedVersion: 4
@@ -1007,7 +1011,14 @@ MonoBehaviour:
   tilemap: {fileID: 191178722}
   rules:
   - name: qa
-    prefab: {fileID: 4824673786450654010, guid: 5bacf278435356b4fae64a9ddefc96f1, type: 3}
+    prefab: {fileID: 2855813499921078143, guid: e9b2dd20d6253b44fac6c40f4ed12fa0, type: 3}
+    sprites:
+    - {fileID: 2095759458, guid: ee91b47fd27001e49a6f42586a88f05c, type: 3}
+    - {fileID: 830893582, guid: ee91b47fd27001e49a6f42586a88f05c, type: 3}
+    - {fileID: -1280899567, guid: ee91b47fd27001e49a6f42586a88f05c, type: 3}
+    - {fileID: 1083054383, guid: ee91b47fd27001e49a6f42586a88f05c, type: 3}
+    size: 2
+    angle: 20
     allowTypes: 01000000
     densityPer100: 8
     countOverride: -1
@@ -1118,6 +1129,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &184968976
 Rigidbody2D:
   serializedVersion: 4
@@ -94115,6 +94127,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &250642938
 Rigidbody2D:
   serializedVersion: 4
@@ -94376,6 +94389,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &262735828
 Rigidbody2D:
   serializedVersion: 4
@@ -94606,6 +94620,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &280665854
 Rigidbody2D:
   serializedVersion: 4
@@ -94774,6 +94789,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &285820832
 Rigidbody2D:
   serializedVersion: 4
@@ -95026,6 +95042,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &296146429
 Rigidbody2D:
   serializedVersion: 4
@@ -95194,6 +95211,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &304787081
 Rigidbody2D:
   serializedVersion: 4
@@ -95591,6 +95609,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &363032106
 Rigidbody2D:
   serializedVersion: 4
@@ -95821,6 +95840,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &394713311
 Rigidbody2D:
   serializedVersion: 4
@@ -96332,6 +96352,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &487652300
 Rigidbody2D:
   serializedVersion: 4
@@ -96605,6 +96626,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &518392153
 Rigidbody2D:
   serializedVersion: 4
@@ -96773,6 +96795,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &520250136
 Rigidbody2D:
   serializedVersion: 4
@@ -96991,6 +97014,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &524303114
 Rigidbody2D:
   serializedVersion: 4
@@ -97159,6 +97183,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &543716725
 Rigidbody2D:
   serializedVersion: 4
@@ -97327,6 +97352,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &552764873
 Rigidbody2D:
   serializedVersion: 4
@@ -97603,6 +97629,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &613823936
 Rigidbody2D:
   serializedVersion: 4
@@ -97776,6 +97803,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &643859094
 Rigidbody2D:
   serializedVersion: 4
@@ -98078,6 +98106,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &656484351
 Rigidbody2D:
   serializedVersion: 4
@@ -98308,6 +98337,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &681460217
 Rigidbody2D:
   serializedVersion: 4
@@ -98651,6 +98681,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &696255460
 Rigidbody2D:
   serializedVersion: 4
@@ -99209,6 +99240,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &743918775
 Rigidbody2D:
   serializedVersion: 4
@@ -99377,6 +99409,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &784195742
 Rigidbody2D:
   serializedVersion: 4
@@ -99840,6 +99873,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &834979540
 Rigidbody2D:
   serializedVersion: 4
@@ -100008,6 +100042,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &837958103
 Rigidbody2D:
   serializedVersion: 4
@@ -100176,6 +100211,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &840562800
 Rigidbody2D:
   serializedVersion: 4
@@ -100344,6 +100380,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &843725218
 Rigidbody2D:
   serializedVersion: 4
@@ -100718,6 +100755,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &947263630
 Rigidbody2D:
   serializedVersion: 4
@@ -100991,6 +101029,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &978560092
 Rigidbody2D:
   serializedVersion: 4
@@ -101159,6 +101198,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &988313442
 Rigidbody2D:
   serializedVersion: 4
@@ -101420,6 +101460,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &996765039
 Rigidbody2D:
   serializedVersion: 4
@@ -101809,6 +101850,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1034841971
 Rigidbody2D:
   serializedVersion: 4
@@ -101977,6 +102019,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1041182707
 Rigidbody2D:
   serializedVersion: 4
@@ -102282,6 +102325,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1161752688
 Rigidbody2D:
   serializedVersion: 4
@@ -102450,6 +102494,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1184661078
 Rigidbody2D:
   serializedVersion: 4
@@ -102847,6 +102892,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!1 &1260768880
 GameObject:
   m_ObjectHideFlags: 0
@@ -102938,6 +102984,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1262628597
 Rigidbody2D:
   serializedVersion: 4
@@ -103106,6 +103153,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1293732660
 Rigidbody2D:
   serializedVersion: 4
@@ -103274,6 +103322,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1300503044
 Rigidbody2D:
   serializedVersion: 4
@@ -103504,6 +103553,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1333231532
 Rigidbody2D:
   serializedVersion: 4
@@ -103734,6 +103784,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1339174110
 Rigidbody2D:
   serializedVersion: 4
@@ -103902,6 +103953,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1353440004
 Rigidbody2D:
   serializedVersion: 4
@@ -104132,6 +104184,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1388785999
 Rigidbody2D:
   serializedVersion: 4
@@ -104551,6 +104604,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1438443931
 Rigidbody2D:
   serializedVersion: 4
@@ -104719,6 +104773,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1458405959
 Rigidbody2D:
   serializedVersion: 4
@@ -104887,6 +104942,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1464251359
 Rigidbody2D:
   serializedVersion: 4
@@ -105055,6 +105111,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1479736455
 Rigidbody2D:
   serializedVersion: 4
@@ -105223,6 +105280,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1485846606
 Rigidbody2D:
   serializedVersion: 4
@@ -105391,6 +105449,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1489623917
 Rigidbody2D:
   serializedVersion: 4
@@ -105559,6 +105618,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1493910823
 Rigidbody2D:
   serializedVersion: 4
@@ -105778,6 +105838,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1510816093
 Rigidbody2D:
   serializedVersion: 4
@@ -106039,6 +106100,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1530421265
 Rigidbody2D:
   serializedVersion: 4
@@ -106314,6 +106376,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1541800925
 Rigidbody2D:
   serializedVersion: 4
@@ -106816,6 +106879,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1589625976
 Rigidbody2D:
   serializedVersion: 4
@@ -106966,7 +107030,7 @@ MonoBehaviour:
   - itemName: Triangle
     requiredAmount: 3
     currentAmount: 0
-  timeLimit: 30
+  timeLimit: 100
   timerText: {fileID: 204588930}
   itemCountText: {fileID: 1572946112}
   numSceneText: {fileID: 644466485}
@@ -107042,6 +107106,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1619524433
 Rigidbody2D:
   serializedVersion: 4
@@ -107210,6 +107275,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1633872925
 Rigidbody2D:
   serializedVersion: 4
@@ -107462,6 +107528,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1639082626
 Rigidbody2D:
   serializedVersion: 4
@@ -107630,6 +107697,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1685817960
 Rigidbody2D:
   serializedVersion: 4
@@ -107798,6 +107866,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1710838884
 Rigidbody2D:
   serializedVersion: 4
@@ -107966,6 +108035,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1713410705
 Rigidbody2D:
   serializedVersion: 4
@@ -108134,6 +108204,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1722765930
 Rigidbody2D:
   serializedVersion: 4
@@ -108576,6 +108647,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1768161726
 Rigidbody2D:
   serializedVersion: 4
@@ -108744,6 +108816,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1800311240
 Rigidbody2D:
   serializedVersion: 4
@@ -109079,6 +109152,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1816795124
 Rigidbody2D:
   serializedVersion: 4
@@ -109247,6 +109321,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1831838775
 Rigidbody2D:
   serializedVersion: 4
@@ -109765,6 +109840,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1884794561
 Rigidbody2D:
   serializedVersion: 4
@@ -110067,6 +110143,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1928073957
 Rigidbody2D:
   serializedVersion: 4
@@ -110353,6 +110430,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2008864337
 Rigidbody2D:
   serializedVersion: 4
@@ -110521,6 +110599,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2014868313
 Rigidbody2D:
   serializedVersion: 4
@@ -110689,6 +110768,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2025197402
 Rigidbody2D:
   serializedVersion: 4
@@ -110857,6 +110937,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2038043815
 Rigidbody2D:
   serializedVersion: 4
@@ -111025,6 +111106,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2055261142
 Rigidbody2D:
   serializedVersion: 4
@@ -111193,6 +111275,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2066428595
 Rigidbody2D:
   serializedVersion: 4
@@ -111361,6 +111444,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2091909500
 Rigidbody2D:
   serializedVersion: 4
@@ -111665,6 +111749,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2125485981
 Rigidbody2D:
   serializedVersion: 4
@@ -111833,6 +111918,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2135342602
 Rigidbody2D:
   serializedVersion: 4
@@ -112001,6 +112087,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2136672584
 Rigidbody2D:
   serializedVersion: 4
@@ -112169,6 +112256,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2140403562
 Rigidbody2D:
   serializedVersion: 4
