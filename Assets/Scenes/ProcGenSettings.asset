@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908d7afc90174d54dbf148448b7ed6f8, type: 3}
   m_Name: ProcGenSettings
   m_EditorClassIdentifier: 
-  width: 150
-  height: 150
+  width: 200
+  height: 200
   seed: 123
   targetWeights: {x: 1, y: 1, z: 1, w: 1}
   smallMapBias: 0.4
