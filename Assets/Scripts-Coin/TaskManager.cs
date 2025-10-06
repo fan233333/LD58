@@ -36,6 +36,9 @@ public class TaskManager : MonoBehaviour
     [Header("容器管理")]
     public ContainerManager containerManager;
 
+    public int minYear;
+    public int maxYear;
+
 
     private float currentTime;
     private bool isTaskActive = false;
@@ -177,6 +180,8 @@ public class TaskManager : MonoBehaviour
         }
 
         SeedStatic.numScene++;
+        SeedStatic.lightYear += Random.Range(minYear, maxYear);
+
 
         // 延迟切换到下一个场景
         StartCoroutine(LoadNextSceneAfterDelay(2f));
@@ -188,6 +193,7 @@ public class TaskManager : MonoBehaviour
         Debug.Log("任务失败！");
         SeedStatic.tileSeed = Random.Range(1, 10000);
         SeedStatic.objectSeed = Random.Range(1, 10000);
+        SeedStatic.lightYear += Random.Range(minYear, maxYear);
         Debug.Log(SeedStatic.tileSeed);
         Debug.Log(SeedStatic.objectSeed);
         SceneManager.LoadScene(nextSceneName);
