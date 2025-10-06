@@ -11,6 +11,7 @@ TagManager:
   - Rope
   - Cutting
   - Wall
+  - RepairArea
   layers:
   - Default
   - TransparentFX
