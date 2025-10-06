@@ -11,6 +11,9 @@ public class MenuController : MonoBehaviour
     public GameObject titlePanel;
 
     public GameObject creditsPanel;
+
+    public AudioSource sound;
+    public float soundStartPoint;
     
     [Header("Main Menu")]
     public GameObject mainMenuPanel;
@@ -72,6 +75,8 @@ public class MenuController : MonoBehaviour
 
     private void SwitchToPanel(Panels panel)
     {
+        sound.time = soundStartPoint;
+        sound.Play();
         switch (panel)
         {
             case Panels.Title:
