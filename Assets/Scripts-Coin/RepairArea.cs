@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RepairArea : MonoBehaviour
 {
+    public ProceduralTrayGenerator ptg;
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private float stopThreshold = 0.1f; // Í£Ö¹ÅĞ¶¨ãĞÖµ
-
+    [SerializeField] private float stopThreshold = 0.1f; // åœæ­¢åˆ¤å®šé˜ˆå€¼
     public static bool playerInArea = false;
     private bool readyToGetout = false;
     private Rigidbody2D playerRigidbody;
@@ -43,13 +43,12 @@ public class RepairArea : MonoBehaviour
     {
         if (playerRigidbody == null) return false;
 
-        // ¼ì²éËÙ¶ÈÊÇ·ñ½Ó½üÁã
+        // æ£€æŸ¥é€Ÿåº¦æ˜¯å¦æ¥è¿‘é›¶
         return playerRigidbody.velocity.magnitude < stopThreshold;
     }
 
     private void OnPlayerStoppedInArea()
     {
-
-
+        ptg.GenerateRope();
     }
 }
