@@ -70,24 +70,21 @@ public class TilemapProcGenEditor : Editor
             gen.settings.smallMapBias = EditorGUILayout.Slider("小地图偏置", gen.settings.smallMapBias, 0f, 1f);
 
 
-            EditorGUILayout.Space(10);
-            if (GUILayout.Button("Generate / 生成"))
-            {
-                gen.Generate();
-            }
-
-            if (GUI.changed)
-            {
+EditorGUILayout.Space(10);
+if (GUILayout.Button("Generate / 生成"))
+{
+gen.Generate(SeedStatic.tileSeed);
+}
+if (GUI.changed)
+{
 // 实时预览（编辑器下）
-                if (!Application.isPlaying) gen.Generate();
-            }
-        }
-        else
-        {
-            EditorGUILayout.HelpBox(
-                "请先创建并指定一个 TilemapProcGenSettings (右键 Project → Create → ProcGen → Tilemap Settings)",
-                MessageType.Info);
-        }
+if (!Application.isPlaying) gen.Generate(SeedStatic.tileSeed);
+}
+}
+else
+{
+EditorGUILayout.HelpBox("请先创建并指定一个 TilemapProcGenSettings (右键 Project → Create → ProcGen → Tilemap Settings)", MessageType.Info);
+}
 
 
         serializedObject.ApplyModifiedProperties();

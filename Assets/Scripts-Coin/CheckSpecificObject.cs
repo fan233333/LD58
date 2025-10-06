@@ -14,6 +14,8 @@ public class CheckSpecificObject : MonoBehaviour
     [SerializeField] private float attractSpeed = 2f; // 吸引速度
     public float layerSpacing = 1f; // 层间距
     public float delayBetweenLayers = 0.5f; // 层间延迟
+    public ContainerManager containerManager;
+    public TaskManager taskManager;
 
     public static bool gainEnough = false;
 
@@ -184,6 +186,16 @@ public class CheckSpecificObject : MonoBehaviour
             CollectibleItem collectibleItem = obj.GetComponent<CollectibleItem>();
             if (collectibleItem != null)
             {
+                if (collectibleItem.GetTypeKey() == typeName)
+                {
+                    containerManager.CreateObject(obj.gameObject, typeName);
+                    taskManager.ItemCollected(typeName);
+                }
+                //if (collectibleItem.GetTypeKey() == "Triangle")
+                //{
+                //    containerManager.CreateTriangle(obj.gameObject);
+                //    taskManager.ItemCollected("Circle");
+                //}
                 float mass = collectibleItem.mass;
                 float totalMass = ItemStatistics.Instance.GetTotalMass();
                 ItemStatistics.Instance.SetTotalMass(totalMass - mass);

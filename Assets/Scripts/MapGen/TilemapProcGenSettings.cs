@@ -10,7 +10,8 @@ public class TilemapProcGenSettings : ScriptableObject
 
 
     [Header("随机种子 & 比例控制")]
-    public int seed = 12345;
+    //public int seed = 12345;
+    public int seed = SeedStatic.tileSeed;
     [Tooltip("四种地形出现的目标比例（和会自动归一化）。例如 [1,1,1,1] 表示期望平均。")]
     public Vector4 targetWeights = new Vector4(1,1,1,1);
     [Range(0f, 1f), Tooltip("小地图偏置：在小地图时额外提高区域合并力度，避免碎片。0=关闭，1=最强。")]

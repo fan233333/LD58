@@ -35,7 +35,11 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
 
     void Start()
     {
+        generator.Generate(SeedStatic.tileSeed);
+        seed = SeedStatic.objectSeed;
         if (Application.isPlaying) Spawn();
+        
+        
     }
 
     [ContextMenu("Spawn Now")] // 右键组件标题
@@ -49,7 +53,7 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         // 1) 确保 Tilemap 已经有内容；必要时先生成
         if (autoGenerateIfEmpty && !TilemapHasTiles())
         {
-            generator.Generate();
+            generator.Generate(SeedStatic.tileSeed);
         }
         if (!TilemapHasTiles())
         {

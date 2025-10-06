@@ -22,16 +22,23 @@ public class TilemapProcGen : MonoBehaviour
     // 运行态缓存
     private int[,] _map; // 值域 0..3
 
+    private void Start()
+    {
+        settings.seed = SeedStatic.tileSeed;
+        //Generate();
+    }
+
     // ============ 对外入口 ============
-    public void Generate()
+    public void Generate(int randomSeed)
     {
         if (settings == null || tilemap == null || tiles == null || tiles.Length < 4)
         {
             Debug.LogError("TilemapProcGen: 缺少必要引用/参数。");
             return;
         }
+        
+        Random.InitState(randomSeed);
 
-        Random.InitState(settings.seed);
         _map = new int[settings.width, settings.height];
 
         switch (settings.algorithm)

@@ -55,7 +55,7 @@ public class ProcessBars : MonoBehaviour
 
         while (elapsedTime < maxTime)
         {
-            Debug.Log(StopAreaDetector.playerInArea);
+            //Debug.Log(StopAreaDetector.playerInArea);
             if (!StopAreaDetector.playerInArea)
             {
                 elapsedTime = 0f;
