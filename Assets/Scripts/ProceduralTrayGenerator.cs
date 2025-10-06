@@ -41,17 +41,6 @@ public class ProceduralTrayGenerator : MonoBehaviour
         GenerateRope();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            segmentCount = 47;
-            ropeSag = 1f;
-            ropeLength = 5f;
-            GenerateRope();
-        }
-    }
-
     public void GenerateRope()
     {
         // 清理旧节点
@@ -110,6 +99,7 @@ public class ProceduralTrayGenerator : MonoBehaviour
 
         // 更新 RopeSpriteShape 的节点
         ropeController.ropeNodes = ropeNodes;
+        ropeController.broken = false;
     }
 
     void AddSpringJoint(GameObject node, Rigidbody2D connectedBody)
