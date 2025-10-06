@@ -58,10 +58,10 @@ public class TaskManager : MonoBehaviour
 
     void Update()
     {
-        if (isTaskActive)
+        if (isTaskActive && !ManageScenes.Instance.IsStoryPlaying)
         {
             UpdateTimer();
-            if(SeedStatic.lightYear <= highLightYear)
+            if(SeedStatic.lightYear >= highLightYear)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
