@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class TrayShake : MonoBehaviour
 {
-    public Rigidbody2D player;
+    private Rigidbody2D player;
     public float coef = 1f;
     public float randomness = 0.1f;
 
@@ -15,11 +15,17 @@ public class TrayShake : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         lastVelocity = player.velocity;
     }
 
     void Update()
     {
+        if(player == null)
+        {
+            player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+            lastVelocity = player.velocity;
+        }
         // // 计算加速度 = (当前速度 - 上一帧速度) / deltaTime
         Vector2 currentVelocity = player.velocity;
         Vector2 acceleration = (currentVelocity - lastVelocity) / Time.deltaTime;

@@ -52,6 +52,8 @@ public class CheckFall : MonoBehaviour
                 // 添加随机水平力
                 float randomForcex = Random.Range(minHorizontalForce, maxHorizontalForce);
                 float randomForcey = Random.Range(minHorizontalForce, maxHorizontalForce);
+                angle = PlayerController.playerangle;
+                //Debug.Log(angle);
                 //rb.AddForce(new Vector2(randomForcex, randomForcey), ForceMode2D.Impulse);
                 if (angle == 0)
                 {
@@ -75,11 +77,11 @@ public class CheckFall : MonoBehaviour
                 }
                 else if (angle == -45)
                 {
-                    rb.AddForce(new Vector2(randomForcex, -randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-randomForcex, randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == 135)
                 {
-                    rb.AddForce(new Vector2(-randomForcex, randomForcey), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(randomForcex, -randomForcey), ForceMode2D.Impulse);
                 }
                 else if (angle == -135)
                 {
@@ -101,7 +103,7 @@ public class CheckFall : MonoBehaviour
             // Sorting Layer
             spriteRenderer.sortingLayerName = "Default";
 
-            angle = PlayerController.playerangle;
+            
 
 
             Destroy(collision.gameObject);
