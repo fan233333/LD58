@@ -35,6 +35,8 @@ public class TaskGenerator : MonoBehaviour
 {
     [Header("物品配置（每种一个配置）")]
     public List<ItemConfig> itemConfigs = new List<ItemConfig>();
+    
+    public GameObject containerParent;
 
     [Header("生成控制")]
     public bool useFixedItemKindCount = false;
@@ -84,12 +86,22 @@ public class TaskGenerator : MonoBehaviour
             val = Mathf.Min(val, Mathf.Max(1, cfg.maxNumber));
             if (!allowZeroRequired) val = Mathf.Max(1, val);
 
+            Transform c = null;
+
+            foreach (Transform container in containerParent.transform)
+            {
+                if (container.gameObject.name == cfg.itemContainer)
+                {
+                    c = container;
+                }
+            }
+
             var ti = new TaskItem
             {
                 itemName = cfg.itemName,
                 requiredAmount = val,
                 maxNumber = cfg.maxNumber,
-                Container = null, // 按你的要求：不生成
+                Container = c,
                 currentAmount = 0 // 按你的要求：不生成（HideInInspector）
             };
             result.Add(ti);
