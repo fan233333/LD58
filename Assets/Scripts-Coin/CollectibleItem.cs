@@ -74,8 +74,8 @@ public class CollectibleItem : MonoBehaviour
 
         // 只关心 key 组成 {0,5} 这对
         bool pairMatches =
-            ((int)itemType == 0 && otherKey == 5) ||
-            ((int)itemType == 5 && otherKey == 0);
+            ((int)itemType == 2 && otherKey == 5) ||
+            ((int)itemType == 5 && otherKey == 2);
 
         if (!pairMatches) return;
 

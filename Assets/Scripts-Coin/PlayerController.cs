@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             // 移动角色
             //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
-            rb.AddForce(movement * moveForce * (1 / totalMass));
+            rb.AddForce(movement * moveForce);  //(1 / totalMass)
 
             // 限制最大速度
             if (rb.velocity.magnitude > maxSpeed)

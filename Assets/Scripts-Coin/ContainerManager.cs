@@ -54,7 +54,7 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-    public void CreateObject(GameObject ballPrefab, string typeName)
+    public void CreateObject(string typeName)
     {
         if(typeName == "Circle")
         {

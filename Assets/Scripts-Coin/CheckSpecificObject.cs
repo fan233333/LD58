@@ -188,7 +188,7 @@ public class CheckSpecificObject : MonoBehaviour
             {
                 if (collectibleItem.GetTypeKey() == typeName)
                 {
-                    containerManager.CreateObject(obj.gameObject, typeName);
+                    containerManager.CreateObject(typeName);
                     taskManager.ItemCollected(typeName);
                 }
                 //if (collectibleItem.GetTypeKey() == "Triangle")

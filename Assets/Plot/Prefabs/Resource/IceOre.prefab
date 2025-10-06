@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1609299449, guid: ee91b47fd27001e49a6f42586a88f05c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483f182773cd5664dab41b724fd0cc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Circle
-  itemType: 0
+  itemName: Square
+  itemType: 2
   value: 1
   mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
