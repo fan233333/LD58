@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917858068489352408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.3333328, y: 3.3333328, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4045286645321587171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!60 &3150251118911729513
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -319,6 +319,7 @@ MonoBehaviour:
   dl: {fileID: 1990661293, guid: d9ac7ba1708b2284db5175f0a5c28857, type: 3}
   spriteRenderer: {fileID: 2952278885201135135}
   rotateObject: {fileID: 4120227817520156451}
+  suckEffect: {fileID: 3177672622112787503}
   minMovementThreshold: 0.1
   maxMass: 10
   baseBounceForce: 5
@@ -341,7 +342,7 @@ MonoBehaviour:
   targetPlane: {fileID: 8422564782569875943}
   killZoneShape: 1
   killDistance: 2.96
-  boxSize: {x: 4, y: 2.9, z: 4.2}
+  boxSize: {x: 15.34, y: 2.9, z: 4.2}
   showDebug: 1
 --- !u!1 &8408923941853130717
 GameObject:
@@ -369,14 +370,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8408923941853130717}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.386386, y: 0.59366125, z: -0.59087294, w: 0.38618833}
+  m_LocalRotation: {x: -0.36765075, y: 0.6054404, z: -0.60401404, w: 0.3652971}
   m_LocalPosition: {x: 0, y: 0, z: -0.03}
-  m_LocalScale: {x: 1.7778155, y: 1.450016, z: 3.3332398}
+  m_LocalScale: {x: 0.37842667, y: 1.450016, z: 0.92207783}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8422564782569875943}
   m_Father: {fileID: 4045286645321587171}
-  m_LocalEulerAnglesHint: {x: 23.773, y: 90.216, z: -89.803}
+  m_LocalEulerAnglesHint: {x: 27.567, y: 90.223, z: -90}
 --- !u!198 &733886686875442322
 ParticleSystem:
   m_ObjectHideFlags: 0
