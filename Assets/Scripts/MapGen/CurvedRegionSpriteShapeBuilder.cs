@@ -49,7 +49,7 @@ public class CurvedRegionSpriteShapeBuilder : MonoBehaviour
         int W = generator.Width, H = generator.Height;
         if ((W <= 0 || H <= 0) && autoGenerateIfEmpty)
         {
-            generator.Generate();
+            generator.Generate(SeedStatic.tileSeed);
             W = generator.Width; H = generator.Height;
         }
         if (W <= 0 || H <= 0) { Debug.LogWarning("CurvedRegionSpriteShapeBuilder: 地图尺寸为 0"); return; }

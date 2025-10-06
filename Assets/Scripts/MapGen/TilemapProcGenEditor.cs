@@ -26,7 +26,7 @@ public class TilemapProcGenEditor : Editor
                 (TilemapProcGenSettings.GenerationAlgorithm)EditorGUILayout.EnumPopup("算法", gen.settings.algorithm);
 
 
-// 目标比例
+            // 目标比例
             var w = gen.settings.targetWeights;
             EditorGUILayout.LabelField("四类目标比例 (将归一化)");
             w.x = EditorGUILayout.Slider("Type 0", w.x, 0f, 5f);
@@ -70,24 +70,26 @@ public class TilemapProcGenEditor : Editor
             gen.settings.smallMapBias = EditorGUILayout.Slider("小地图偏置", gen.settings.smallMapBias, 0f, 1f);
 
 
-EditorGUILayout.Space(10);
-if (GUILayout.Button("Generate / 生成"))
-{
-gen.Generate(SeedStatic.tileSeed);
-}
-if (GUI.changed)
-{
-// 实时预览（编辑器下）
-if (!Application.isPlaying) gen.Generate(SeedStatic.tileSeed);
-}
-}
-else
-{
-EditorGUILayout.HelpBox("请先创建并指定一个 TilemapProcGenSettings (右键 Project → Create → ProcGen → Tilemap Settings)", MessageType.Info);
-}
 
+            EditorGUILayout.Space(10);
+            if (GUILayout.Button("Generate / 生成"))
+            {
+                gen.Generate(SeedStatic.tileSeed);
+            }
 
-        serializedObject.ApplyModifiedProperties();
+            if (GUI.changed)
+            {
+                // 实时预览（编辑器下）
+                if (!Application.isPlaying) gen.Generate(SeedStatic.tileSeed);
+            }
+        }
+        else
+        {
+            EditorGUILayout.HelpBox(
+                "请先创建并指定一个 TilemapProcGenSettings (右键 Project → Create → ProcGen → Tilemap Settings)",
+                MessageType.Info);
+        }
+
     }
 }
 #endif
