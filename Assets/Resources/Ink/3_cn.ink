@@ -1,0 +1,11 @@
+“嗳，塔可？” #type:LeftAvatarText #speaker:博士
+“垃圾清运回收机器人塔可时刻为您服务。” #type:RightAvatarText #speaker:塔可
+“你这句话很无趣啊，能不能改一下啊。” #type:LeftAvatarText #speaker:博士
+“疑问，命令不理解。” #type:RightAvatarText #speaker:塔可
+“改成：‘塔可在这里’，怎么样？” #type:LeftAvatarText #speaker:博士
+“肯定，已修改系统唤醒默认应答语。” #type:RightAvatarText #speaker:塔可
+“好嘞。塔可？” #type:LeftAvatarText #speaker:博士
+“塔可在这里。” #type:RightAvatarText #speaker:塔可 
+“稍微缺乏了点感情，但还行。” #type:LeftAvatarText #speaker:博士
+“疑问，命令不理解。” #type:RightAvatarText #speaker:塔可
+“没关系，这句不是命令。” #type:LeftAvatarText #speaker:博士
