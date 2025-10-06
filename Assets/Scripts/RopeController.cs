@@ -11,6 +11,12 @@ public class RopeController : MonoBehaviour
     [Header("平滑程度")]
     public float smoothness = 0.1f;
 
+    public GameObject collectibleParent = null;
+    public int stage1 = 5;
+    public int stage2 = 10;
+    public int stage3 = 15;
+    public int stage4 = 20;
+
     private SpriteShapeController controller;
     private SpriteShapeRenderer renderer;
 
@@ -64,7 +70,51 @@ public class RopeController : MonoBehaviour
 
     void UpdateRopeColor()
     {
-        renderer.color = Color.red;
+        float minDurability = 1f;
+        foreach (var node in ropeNodes)
+        {
+            float durability = node.GetComponent<RopeNodeDurability>().GetDurabilityRatio();
+            if (durability < minDurability)
+                minDurability = durability;
+        }
+
+        int total = 0;
+        if (collectibleParent == null)
+        {
+            renderer.color = Color.red;
+            return;
+        }
+            
+        foreach (Transform child in collectibleParent.transform)
+        {
+            CollectibleItem collectibleltem = child.GetComponent<CollectibleItem>();
+            total += collectibleltem.value;
+        }
+
+        float f = getColor(total);
+
+        if (f == 0f)
+        {
+            ropeNodes[ropeNodes.Count/2].GetComponent<RopeNodeDurability>().Break();
+        }
+        
+        if (!broken)
+            renderer.color = new Color(1, Mathf.Min(minDurability, f), Mathf.Min(minDurability, f));
+        else
+            renderer.color = Color.red;
+
+        
+    }
+
+    float getColor(int total)
+    {
+        if (total < stage1)
+            return 1;
+        if (total < stage2)
+            return 0.67f;
+        if (total < stage3)
+            return 0.33f;
+        return 0f;
     }
 
     // ---------------------------

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class RopeNodeDurability : MonoBehaviour
@@ -9,7 +10,8 @@ public class RopeNodeDurability : MonoBehaviour
     [HideInInspector] public float currentDurability;
     [HideInInspector] public bool broken = false;
 
-    public float damagePerSecond = 30f;
+    public float damagePerSecond = 40f;
+    public float healPerSecond = 10f;
     private Rigidbody2D rb;
     private RopeController ropeController;
 
@@ -28,6 +30,11 @@ public class RopeNodeDurability : MonoBehaviour
                 TakeDamage(damagePerSecond * Time.deltaTime);
     }
 
+    private void LateUpdate()
+    {
+        TakeDamage(-healPerSecond * Time.deltaTime);
+    }
+
     public void TakeDamage(float amount)
     {
         if (broken) return;
@@ -41,7 +48,7 @@ public class RopeNodeDurability : MonoBehaviour
         }
     }
 
-    void Break()
+    public void Break()
     {
         broken = true;
         
