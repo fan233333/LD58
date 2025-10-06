@@ -186,7 +186,7 @@ public class CheckFull: MonoBehaviour
                 {
                     if(collectibleItem.GetTypeKey() == "Circle")
                     {
-                        containerManager.CreateBall(obj.gameObject);
+                        containerManager.CreateBall();
                     }
                     if (collectibleItem.GetTypeKey() == "Triangle")
                     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4120227817520156451}
   - component: {fileID: 3150251118911729513}
   - component: {fileID: 7391378110149835036}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: SectorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abb7ed380a9bf346807842d0ccabd64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  moveForce: 20
+  maxSpeed: 15
+  moveForce: 15
   maxRotationSpeed: 200
   right: {fileID: -760350900, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
   left: {fileID: -417843153, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
@@ -321,7 +321,7 @@ MonoBehaviour:
   rotateObject: {fileID: 4120227817520156451}
   suckEffect: {fileID: 3177672622112787503}
   minMovementThreshold: 0.1
-  maxMass: 10
+  maxMass: 20
   baseBounceForce: 5
   velocityMultiplier: 1.5
   maxBounceForce: 20
@@ -5143,7 +5143,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -62
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

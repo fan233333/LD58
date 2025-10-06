@@ -35,7 +35,7 @@ public class ContainerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            CreateBall(ballPrefab);
+            CreateBall();
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -58,7 +58,7 @@ public class ContainerManager : MonoBehaviour
     {
         if(typeName == "Circle")
         {
-            CreateBall(ballPrefab);
+            CreateBall();
         }
         if(typeName == "Triangle")
         {
@@ -66,7 +66,7 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-    public void CreateBall(GameObject ballPrefab)
+    public void CreateBall()
     {
         GameObject newBall = Instantiate(ballPrefab, ballContainer.position, Quaternion.identity);
         newBall.layer = 0;

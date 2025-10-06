@@ -10,7 +10,6 @@ public class TaskItem
 {
     public string itemName;
     public int requiredAmount;
-    public GameObject Container;
     public int maxNumber;
     [HideInInspector] public int currentAmount;
 }
