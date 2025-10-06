@@ -19,13 +19,19 @@ public class PlayerController : MonoBehaviour
     public Transform rotateObject;
     public float minMovementThreshold = 0.1f; // 最小移动阈值
     public float maxMass = 10f;
+    public float baseBounceForce = 5f;
+    public float velocityMultiplier = 1.5f;
+    public float maxBounceForce = 20f;
 
     public static float playerangle = 0;
 
     private Rigidbody2D rb;
     private Vector2 movement;
     private float totalMass = 0;
-    
+    private Vector2 lastPosition;
+    private float currentSpeed;
+    private bool isColliding = false;
+
     private Quaternion targetRotation;
     private Vector2 lastValidDirection = Vector2.right;
 
@@ -40,11 +46,16 @@ public class PlayerController : MonoBehaviour
         rb.angularDrag = 0.5f;
         targetRotation = rotateObject.rotation;
         totalMass = 0;
-        
+        lastPosition = transform.position;
+
     }
 
     void Update()
-    {
+    { 
+        // 计算当前速度
+        currentSpeed = rb.velocity.magnitude;
+        lastPosition = transform.position;
+
         // 获取输入
         movement.x = Input.GetAxisRaw("Horizontal"); // A/D 或 左右箭头
         movement.y = Input.GetAxisRaw("Vertical");   // W/S 或 上下箭头
@@ -72,22 +83,27 @@ public class PlayerController : MonoBehaviour
         {
             totalMass = maxMass;
         }
-        // 移动角色
-        //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
-        rb.AddForce(movement * moveForce * (1/totalMass));
 
-        // 限制最大速度
-        if (rb.velocity.magnitude > maxSpeed)
+        if (!isColliding)
         {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            // 移动角色
+            //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
+            rb.AddForce(movement * moveForce * (1 / totalMass));
+
+            // 限制最大速度
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
         }
+
 
         if (movement != Vector2.zero)
         {
             // 直接计算看向方向的角度
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             playerangle = angle;
-            Debug.Log(playerangle);
+            //Debug.Log(playerangle);
 
             if(angle == 0)
             {
@@ -137,5 +153,77 @@ public class PlayerController : MonoBehaviour
                 spriteRenderer.sprite = dl;
             }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            isColliding = true;
+
+            // 获取碰撞法线
+            Vector2 collisionNormal = GetCollisionNormal2D(other);
+
+            // 计算基于速度的反弹力
+            float dynamicBounceForce = CalculateDynamicBounceForce();
+
+            // 计算反射方向
+            Vector2 reflectDirection = Vector2.Reflect(rb.velocity.normalized, collisionNormal);
+
+            // 应用基于速度的反弹力
+            rb.velocity = reflectDirection * dynamicBounceForce;
+
+            // 短暂延迟后重置碰撞状态
+            Invoke("ResetCollision", 0.1f);
+
+            Debug.Log($"碰撞速度: {currentSpeed}, 反弹力: {dynamicBounceForce}");
+        }
+    }
+
+    float CalculateDynamicBounceForce()
+    {
+        // 基础反弹力 + 速度乘数 * 当前速度
+        float calculatedForce = baseBounceForce + (velocityMultiplier * currentSpeed);
+
+        // 限制最大反弹力
+        return Mathf.Min(calculatedForce, maxBounceForce);
+    }
+
+    void ResetCollision()
+    {
+        isColliding = false;
+    }
+
+    Vector2 GetCollisionNormal2D(Collider2D wallCollider)
+    {
+        // 使用多个射线获取更精确的法线
+        Vector2[] rayDirections = {
+            Vector2.left, Vector2.right, Vector2.up, Vector2.down,
+            new Vector2(1, 1).normalized, new Vector2(-1, 1).normalized,
+            new Vector2(1, -1).normalized, new Vector2(-1, -1).normalized
+        };
+
+        RaycastHit2D hit;
+        Vector2 averageNormal = Vector2.zero;
+        int hitCount = 0;
+
+        foreach (Vector2 dir in rayDirections)
+        {
+            hit = Physics2D.Raycast(transform.position, dir, 1f);
+            if (hit.collider != null && hit.collider == wallCollider)
+            {
+                averageNormal += hit.normal;
+                hitCount++;
+            }
+        }
+
+        if (hitCount > 0)
+        {
+            return (averageNormal / hitCount).normalized;
+        }
+
+        // 备用法线计算
+        Vector2 closestPoint = wallCollider.ClosestPoint(transform.position);
+        return ((Vector2)transform.position - closestPoint).normalized;
     }
 }

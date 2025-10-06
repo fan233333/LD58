@@ -10,6 +10,7 @@ TagManager:
   - ManufactureArea
   - Rope
   - Cutting
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - UI Collision(ignore same layer)
   - UI Collision
-  - 
+  - NoSectorCollider
   - 
   - 
   - 
