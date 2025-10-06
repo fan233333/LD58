@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
 
 [System.Serializable]
 public class TaskItem
@@ -11,6 +12,7 @@ public class TaskItem
     public string itemName;
     public int requiredAmount;
     public int maxNumber;
+    public Transform Container;
     [HideInInspector] public int currentAmount;
 }
 
@@ -28,6 +30,13 @@ public class TaskManager : MonoBehaviour
     public GameObject failPanel;
     public string nextSceneName;
 
+    [Header("容器生成位置")]
+    public List<Transform> transformList = new List<Transform>();
+
+    [Header("容器管理")]
+    public ContainerManager containerManager;
+
+
     private float currentTime;
     private bool isTaskActive = false;
     private int totalItemsCollected = 0;
@@ -35,6 +44,7 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
+        taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
         StartTask();
         
     }
@@ -51,6 +61,7 @@ public class TaskManager : MonoBehaviour
     {
         // 计算需要的总物品数量
         totalItemsRequired = 0;
+        int index = 0;
         foreach (var item in taskItems)
         {
             totalItemsRequired += item.requiredAmount;
@@ -58,6 +69,8 @@ public class TaskManager : MonoBehaviour
             //float scale = (float)item.requiredAmount / item.maxNumber;
             //Vector3 newScale = new Vector3(scale, scale, 1f);
             //ScaleContainer(item.Container, newScale);
+            item.Container.position = transformList[index].position;
+            index++;
         }
 
         currentTime = timeLimit;
@@ -108,7 +121,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void ItemCollected(string itemType)
+    public void ItemCollected(GameObject obj, string itemType)
     {
         if (!isTaskActive) return;
 
@@ -119,6 +132,10 @@ public class TaskManager : MonoBehaviour
             if (item.itemName == itemType)
             {
                 item.currentAmount++;
+                if(item.currentAmount <= item.requiredAmount)
+                {
+                    containerManager.CreateObject(obj, itemType);
+                }
             }
             if(item.requiredAmount >= item.currentAmount)
             {

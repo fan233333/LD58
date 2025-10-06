@@ -6,15 +6,21 @@ using UnityEngine;
 
 public class ContainerManager : MonoBehaviour
 {
+    [Header("容器位置")]
     public Transform ballContainer;
     public Transform triangleContainer;
+    public Transform IceContainer;
+    public Transform LavaContainer;
+    public Transform BuleContainer;
 
-    public GameObject ballPrefab;
-    public GameObject trianglePrefab;
-
+    [Header("父物体")]
     public Transform ballParent;
     public Transform triangleParent;
+    public Transform LavaParent;
+    public Transform IceParent;
+    public Transform BuleParent;
 
+    [Header("力")]
     public float attractSpeed = 2f;
     public float minHorizontalForce = -2f;
     public float maxHorizontalForce = 2f;
@@ -33,16 +39,6 @@ public class ContainerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            CreateBall();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            CreateTriangle(trianglePrefab);
-        }
-
         if (Input.GetKeyDown(KeyCode.O))
         {
             StartAttractionProcess(ballParent, ballContainer.transform);
@@ -54,21 +50,33 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-    public void CreateObject(string typeName)
+    public void CreateObject(GameObject obj, string typeName)
     {
         if(typeName == "Circle")
         {
-            CreateBall();
+            CreateBall(obj);
         }
         if(typeName == "Triangle")
         {
-            CreateTriangle(trianglePrefab);
+            CreateTriangle(obj);
+        }
+        if (typeName == "Square")
+        {
+            CreateIce(obj);
+        }
+        if(typeName == "Hexagon")
+        {
+            CreateLava(obj);
+        }
+        if(typeName == "Diamond")
+        {
+            CreateBlue(obj);
         }
     }
 
-    public void CreateBall()
+    public void CreateBall(GameObject obj)
     {
-        GameObject newBall = Instantiate(ballPrefab, ballContainer.position, Quaternion.identity);
+        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -85,15 +93,70 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-    public void CreateTriangle(GameObject trianglePrefab)
+    public void CreateTriangle(GameObject obj)
     {
-        GameObject newBall = Instantiate(trianglePrefab, triangleContainer.position, Quaternion.identity);
+        GameObject newBall = Instantiate(obj, triangleContainer.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         newBall.transform.SetParent(triangleParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float scale = taskManager.GetItemScale("Triangle");
+        newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 1f;
+            float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
+            rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
+        }
+    }
+    public void CreateIce(GameObject obj)
+    {
+        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        newBall.layer = 0;
+        newBall.transform.tag = "Untagged";
+        newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.SetParent(IceParent);
+        Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+        float scale = taskManager.GetItemScale("Square");
+        newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 1f;
+            float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
+            rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
+        }
+    }
+    public void CreateLava(GameObject obj)
+    {
+        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        newBall.layer = 0;
+        newBall.transform.tag = "Untagged";
+        newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.SetParent(LavaParent);
+        Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+        float scale = taskManager.GetItemScale("Hexagon");
+        newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 1f;
+            float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
+            rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
+        }
+    }
+
+    public void CreateBlue(GameObject obj)
+    {
+        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        newBall.layer = 0;
+        newBall.transform.tag = "Untagged";
+        newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.SetParent(BuleParent);
+        Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+        float scale = taskManager.GetItemScale("Diamond");
         newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
         if (rb != null)
         {

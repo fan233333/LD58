@@ -169,7 +169,7 @@ MonoBehaviour:
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
-  particlePrefab: {fileID: 0}
+  particlePrefab: {fileID: 8150728642297886144, guid: 81f81cd99c88ab5458fd20f7a4c61ecb, type: 3}
 --- !u!114 &8150473731610444998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,4 +184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minScale: 0.2
   shrinkSpeed: 0
-  disappearEffect: {fileID: 0}
+  disappearEffect: {fileID: 8150728642297886144, guid: 81f81cd99c88ab5458fd20f7a4c61ecb, type: 3}
