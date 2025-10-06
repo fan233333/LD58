@@ -23,6 +23,7 @@ public class tray : MonoBehaviour
         newObject.transform.SetParent(bagParent);
 
         Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
+        rb.drag = 0f;
         rb.gravityScale = 1f;
 
         Collider2D col = rb.GetComponent<Collider2D>();

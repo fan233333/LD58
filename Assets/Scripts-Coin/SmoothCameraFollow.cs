@@ -6,14 +6,14 @@ public class SmoothCameraFollow : MonoBehaviour
     public float smoothTime = 0.3f;
     public Vector3 offset = new Vector3(0, 0, -10);
 
-    private Transform player;
+    public Transform player;
     private Vector3 velocity = Vector3.zero;
     private Camera mainCamera;
 
     void Start()
     {
         mainCamera = Camera.main;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (player != null)
         {

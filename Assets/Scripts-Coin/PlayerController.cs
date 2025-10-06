@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float baseBounceForce = 5f;
     public float velocityMultiplier = 1.5f;
     public float maxBounceForce = 20f;
+    public Transform InitParent;
 
     public static float playerangle = 0;
 
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastPosition;
     private float currentSpeed;
     private bool isColliding = false;
+    private bool isInit = false;
+
 
     private Quaternion targetRotation;
     private Vector2 lastValidDirection = Vector2.right;
@@ -47,11 +50,20 @@ public class PlayerController : MonoBehaviour
         targetRotation = rotateObject.rotation;
         totalMass = 0;
         lastPosition = transform.position;
+        isColliding = false;
+        isInit = false;
 
     }
 
     void Update()
     { 
+        if(!isInit && InitParent.childCount > 0)
+        {
+            int index = Random.Range(0, InitParent.childCount);
+            Vector3 InitPos = InitParent.GetChild(index).position;
+            transform.position = InitPos;
+            isInit = true;
+        }
         // 计算当前速度
         currentSpeed = rb.velocity.magnitude;
         lastPosition = transform.position;

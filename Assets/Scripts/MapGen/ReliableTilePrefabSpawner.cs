@@ -10,6 +10,7 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     [Header("依赖")]
     public TilemapProcGen generator;    // 复用你的生成器
     public Tilemap tilemap;             // 通常与 generator.tilemap 相同
+    public Transform InitParent;
 
     [System.Serializable]
     public class Rule
@@ -17,7 +18,8 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         public string name;
         public GameObject prefab;
         public List<Sprite> sprites;
-        public float size;
+        public float minSize;
+        public float maxSize;
         public float angle;
         [Tooltip("允许出现的地形类型（0..3）。至少勾选一个")] public bool[] allowTypes = new bool[4] { true, true, true, true };
         [Tooltip("密度：每 100 个合格 tile 期望生成多少个实例；若 Count Override>=0 则忽略密度")] [Min(0f)] public float densityPer100 = 5f;
@@ -115,14 +117,22 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
                 else
                 {
                     go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
-                    float size = Random.Range(0.5f, rule.size);
+                    float size = Random.Range(rule.minSize, rule.maxSize);
                     go.transform.localScale = new Vector3(size, size, size);
                     float rotateAngle = Random.Range(-rule.angle, rule.angle);
                     Quaternion targetRotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
                     go.transform.rotation = targetRotation;
                     int spriteNo = Random.Range(0, rule.sprites.Count);
                     SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-                    spriteRenderer.sprite = rule.sprites[spriteNo];
+                    if(spriteRenderer != null )
+                    {
+                        spriteRenderer.sprite = rule.sprites[spriteNo];
+                    }
+                   
+                    if(rule.name == "InitPos")
+                    {
+                        go.transform.SetParent(InitParent);
+                    }
                 }
 #else
                 go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
