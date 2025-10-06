@@ -76,6 +76,16 @@ public class TaskManager : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TaskCompleted();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            currentTime = 0;
+        }
     }
 
     public void StartTask()
