@@ -9,6 +9,7 @@ public class TrayShake : MonoBehaviour
     private Rigidbody2D player;
     public float coef = 1f;
     public float randomness = 0.1f;
+    public Collider2D collider;
 
     private Vector2 lastVelocity;
     private float accelerationMagnitude;
@@ -50,7 +51,7 @@ public class TrayShake : MonoBehaviour
             {
                 rgd = child.GetComponent<Rigidbody2D>();
 
-                if (rgd is not null && !child.CompareTag("Rope"))
+                if (rgd is not null && !child.CompareTag("Rope") && collider.IsTouching(child.GetComponent<Collider2D>()))
                 {
                     rgd.AddForce(
                         acc.magnitude * rgd.mass * coef * (acc.normalized + randomness * Random.insideUnitCircle),
