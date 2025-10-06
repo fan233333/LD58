@@ -96465,6 +96465,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 917858068489352408, guid: 8ff473514c51d6340936251e762e0a47, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3403978382828972275, guid: 8ff473514c51d6340936251e762e0a47, type: 3}
       propertyPath: InitParent
       value: 
@@ -96558,12 +96562,12 @@ MonoBehaviour:
   taskItems:
   - itemName: Circle
     requiredAmount: 3
-    Container: {fileID: 0}
+    Container: {fileID: 1029989861}
     maxNumber: 0
     currentAmount: 0
   - itemName: Triangle
     requiredAmount: 3
-    Container: {fileID: 0}
+    Container: {fileID: 87996379}
     maxNumber: 0
     currentAmount: 0
   timeLimit: 100
@@ -97405,7 +97409,7 @@ MonoBehaviour:
   minHorizontalForce: -2
   maxHorizontalForce: 2
   delayBetweenLayers: 0.05
-  taskManager: {fileID: 0}
+  taskManager: {fileID: 1608593350}
 --- !u!1 &2040058730
 GameObject:
   m_ObjectHideFlags: 0
