@@ -15,12 +15,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoSectorCollider
   - Water
   - UI
   - UI Collision(ignore same layer)
   - UI Collision
-  - NoSectorCollider
+  - Map
   - 
   - 
   - 
