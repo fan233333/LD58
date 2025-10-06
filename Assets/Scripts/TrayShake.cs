@@ -60,7 +60,7 @@ public class TrayShake : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log(e);
+                //Debug.Log(e);
             }
             
 

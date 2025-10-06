@@ -20,6 +20,8 @@ public class ContainerManager : MonoBehaviour
     public float maxHorizontalForce = 2f;
     public float delayBetweenLayers = 0.5f; // ≤„º‰—”≥Ÿ
 
+    public TaskManager taskManager;
+
     private List<GameObject> childrenToAttract = new List<GameObject>();
     private bool isAttracting = false;
     // Start is called before the first frame update
@@ -72,6 +74,8 @@ public class ContainerManager : MonoBehaviour
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         newBall.transform.SetParent(ballParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+        float scale = taskManager.GetItemScale("Circle");
+        newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
         if (rb != null)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -89,6 +93,8 @@ public class ContainerManager : MonoBehaviour
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         newBall.transform.SetParent(triangleParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+        float scale = taskManager.GetItemScale("Triangle");
+        newBall.transform.localScale = new Vector3(0.3f * scale, 0.3f * scale, 0.3f * scale);
         if (rb != null)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;

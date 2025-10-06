@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Sprite dl;
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
+    public Transform suckEffect;
     public float minMovementThreshold = 0.1f; // 最小移动阈值
     public float maxMass = 10f;
     public float baseBounceForce = 5f;
@@ -117,52 +118,72 @@ public class PlayerController : MonoBehaviour
             playerangle = angle;
             //Debug.Log(playerangle);
 
-            if(angle == 0)
-            {
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
-                rotateObject.rotation = targetRotation;
-            }else if(angle == 180)
-            {
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
-                rotateObject.rotation = targetRotation;
-            }
-            else
-            {
-                // 创建目标旋转
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //if(angle == 0)
+            //{
+            //    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
+            //    rotateObject.rotation = targetRotation;
+            //}else if(angle == 180)
+            //{
+            //    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.up);
+            //    rotateObject.rotation = targetRotation;
+            //}
+            //else
+            //{
+            //    // 创建目标旋转
+            //    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-                // 平滑旋转
-                rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
-            }
+            //    // 平滑旋转
+            //    rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
+            //}
 
             //Debug.Log(z);
             if(angle == 0)
             {
                 spriteRenderer.sprite = right;
-            }else if(angle == 180)
+                suckEffect.rotation = Quaternion.Euler(27f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, -30f);
+            }
+            else if(angle == 180)
             {
                 spriteRenderer.sprite = left;
-            }else if(angle == 90)
+                suckEffect.rotation = Quaternion.Euler(143f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, -146f);
+            }
+            else if(angle == 90)
             {
                 spriteRenderer.sprite = up;
-            }else if(angle == -90)
+                suckEffect.rotation = Quaternion.Euler(-90f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+            else if(angle == -90)
             {
                 spriteRenderer.sprite = down;
-            }else if(angle == 45)
+                suckEffect.rotation = Quaternion.Euler(90f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
+            else if(angle == 45)
             {
                 spriteRenderer.sprite = ur;
+                suckEffect.rotation = Quaternion.Euler(-45f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, 45f);
             }
             else if(angle == -45)
             {
                 spriteRenderer.sprite = dr;
+                suckEffect.rotation = Quaternion.Euler(45f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, -45f);
             }
             else if(angle == 135)
             {
                 spriteRenderer.sprite = ul;
+                suckEffect.rotation = Quaternion.Euler(-135f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, 135f);
             }
             else if(angle == -135)
             {
                 spriteRenderer.sprite = dl;
+                suckEffect.rotation = Quaternion.Euler(135f, 90f, -90f);
+                rotateObject.rotation = Quaternion.Euler(0f, 0f, -135f);
             }
         }
     }

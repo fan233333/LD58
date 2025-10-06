@@ -10,6 +10,8 @@ public class TaskItem
 {
     public string itemName;
     public int requiredAmount;
+    public GameObject Container;
+    public int maxNumber;
     [HideInInspector] public int currentAmount;
 }
 
@@ -54,6 +56,9 @@ public class TaskManager : MonoBehaviour
         {
             totalItemsRequired += item.requiredAmount;
             item.currentAmount = 0; // 重置当前数量
+            //float scale = (float)item.requiredAmount / item.maxNumber;
+            //Vector3 newScale = new Vector3(scale, scale, 1f);
+            //ScaleContainer(item.Container, newScale);
         }
 
         currentTime = timeLimit;
@@ -218,4 +223,43 @@ public class TaskManager : MonoBehaviour
         }
         return "0/0";
     }
+
+    public float GetItemScale(string itemName)
+    {
+        foreach(var item in taskItems)
+        {
+            if(item.itemName == itemName)
+            {
+                return Mathf.Sqrt((float)item.maxNumber / item.requiredAmount);
+            }
+        }
+        return 1f;
+    }
+
+    //public void ScaleWithFixedBottom(GameObject obj, int n, int maxNumber)
+    //{
+    //    Debug.Log($"Scale:{n}");
+    //    Debug.Log($"Scale:{maxNumber}");
+    //    float scale = 1.0f * n / maxNumber;
+    //    Debug.Log($"Scale:{scale}");
+    //    // 应用缩放
+    //    obj.transform.localScale = new Vector3(scale, scale, 1f);
+
+    //}
+
+    //public void ScaleContainer(GameObject obj, Vector3 newScale)
+    //{
+    //    // 记录缩放前的世界位置
+    //    Vector3 originalWorldPosition = obj.transform.position;
+    //    Debug.Log(originalWorldPosition);
+
+    //    // 应用新缩放
+    //    obj.transform.localScale = newScale;
+    //    Debug.Log(obj.transform.localScale);
+
+    //    // 恢复世界位置
+    //    obj.transform.position = originalWorldPosition;
+    //    Debug.Log(obj.transform.position);
+    //}
+
 }

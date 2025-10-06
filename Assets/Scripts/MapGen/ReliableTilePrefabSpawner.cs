@@ -25,6 +25,12 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         [Tooltip("密度：每 100 个合格 tile 期望生成多少个实例；若 Count Override>=0 则忽略密度")] [Min(0f)] public float densityPer100 = 5f;
         [Tooltip("固定生成数量；设为 -1 使用密度")] public int countOverride = -1;
         [Tooltip("在格子内部的随机抖动（0=居中）")] [Range(0f, 0.5f)] public float cellJitter = 0.25f;
+
+        [Header("占用区域设置")]
+        [Tooltip("物品占用的格子范围（半径）。0=只占1格，1=3x3区域，2=5x5区域等")]
+        public int occupyRadius = 0;
+        [Tooltip("自定义占用区域（相对于中心格子的偏移）。如果设置，将忽略occupyRadius")]
+        public List<Vector2Int> customOccupyArea = new List<Vector2Int>();
     }
 
     [Header("规则列表")]
@@ -36,7 +42,12 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     [Tooltip("若 Tilemap 没有内容，则自动调用 generator.Generate() 先生成地图")] public bool autoGenerateIfEmpty = true;
     public Transform container; // 生成物父节点；为空则挂在当前物体
 
+    [Header("重叠控制")]
+    [Tooltip("完全避免不同规则间的重叠（使用全局格子记录）")] public bool preventOverlapBetweenRules = true;
+    [Tooltip("显示占用的格子区域（调试用）")] public bool visualizeOccupiedCells = false;
+
     System.Random _rng;
+    private HashSet<Vector3Int> _globallyUsedCells; // 改为字段以便在多个方法中访问
 
     void Start()
     {
@@ -77,6 +88,7 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         }
 
         _rng = new System.Random(seed);
+        _globallyUsedCells = new HashSet<Vector3Int>();
 
         foreach (var rule in rules)
         {
@@ -85,6 +97,17 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
             // 2) 收集允许类型的所有格子（优先从 generator 获取；若不可用则回退扫描 Tilemap 的 tiles）
             var cells = CollectAllowedCells(rule);
             if (cells.Count == 0) continue;
+
+            // 过滤掉已被占用的格子
+            if (preventOverlapBetweenRules)
+            {
+                cells = FilterOutOccupiedCells(cells, rule);
+                if (cells.Count == 0)
+                {
+                    Debug.LogWarning($"规则 '{rule.name}' 没有可用的空闲格子，跳过生成");
+                    continue;
+                }
+            }
 
             // 3) 计算数量（密度模式至少放 1 个，只要密度>0 且存在候选）
             int targetCount = rule.countOverride >= 0 ? rule.countOverride : Mathf.FloorToInt(rule.densityPer100 * cells.Count / 100f);
@@ -99,6 +122,8 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
             for (int i = 0; i < cells.Count && spawned < targetCount; i++)
             {
                 var cell = cells[i];
+                if (preventOverlapBetweenRules && !IsAreaAvailable(cell, rule))
+                    continue;
                 Vector3 world = tilemap.GetCellCenterWorld(cell);
                 if (rule.cellJitter > 0f)
                 {
@@ -137,10 +162,84 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
 #else
                 go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
 #endif
+                if (preventOverlapBetweenRules && !IsAreaAvailable(cell, rule))
+                    continue;
                 spawned++;
+
+                // 调试信息
+                if (preventOverlapBetweenRules && visualizeOccupiedCells)
+                {
+                    //Debug.Log($"在格子 {cell} 生成 {rule.name}，占用 {GetOccupiedCells(cell, rule).Count} 个格子");
+                }
             }
+            //Debug.Log($"规则 '{rule.name}' 生成了 {spawned}/{targetCount} 个实例（可用格子: {cells.Count}）");
+        }
+        if (preventOverlapBetweenRules)
+        {
+            //Debug.Log($"总共占用格子数: {_globallyUsedCells.Count}");
         }
     }
+
+    // 新增：获取规则占用的所有格子
+    List<Vector3Int> GetOccupiedCells(Vector3Int centerCell, Rule rule)
+    {
+        var occupied = new List<Vector3Int>();
+
+        // 使用自定义占用区域
+        if (rule.customOccupyArea != null && rule.customOccupyArea.Count > 0)
+        {
+            foreach (var offset in rule.customOccupyArea)
+            {
+                occupied.Add(centerCell + new Vector3Int(offset.x, offset.y, 0));
+            }
+            return occupied;
+        }
+
+        // 使用半径占用区域
+        for (int x = -rule.occupyRadius; x <= rule.occupyRadius; x++)
+        {
+            for (int y = -rule.occupyRadius; y <= rule.occupyRadius; y++)
+            {
+                occupied.Add(centerCell + new Vector3Int(x, y, 0));
+            }
+        }
+        return occupied;
+    }
+
+    // 新增：检查区域是否可用
+    bool IsAreaAvailable(Vector3Int centerCell, Rule rule)
+    {
+        var occupiedCells = GetOccupiedCells(centerCell, rule);
+        foreach (var cell in occupiedCells)
+        {
+            if (_globallyUsedCells.Contains(cell))
+                return false;
+        }
+        return true;
+    }
+
+    // 新增：标记占用区域
+    void MarkOccupiedArea(Vector3Int centerCell, Rule rule)
+    {
+        var occupiedCells = GetOccupiedCells(centerCell, rule);
+        foreach (var cell in occupiedCells)
+        {
+            _globallyUsedCells.Add(cell);
+        }
+    }
+
+    // 新增：过滤已占用的格子
+    List<Vector3Int> FilterOutOccupiedCells(List<Vector3Int> candidates, Rule rule)
+    {
+        var available = new List<Vector3Int>();
+        foreach (var cell in candidates)
+        {
+            if (IsAreaAvailable(cell, rule))
+                available.Add(cell);
+        }
+        return available;
+    }
+
 
     // —— 帮助方法 ——
     bool TilemapHasTiles()
@@ -197,6 +296,19 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         {
             int j = _rng.Next(i + 1);
             (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+    // 新增：在编辑器中可视化占用的格子（调试用）
+    void OnDrawGizmosSelected()
+    {
+        if (!visualizeOccupiedCells || _globallyUsedCells == null) return;
+
+        Gizmos.color = Color.red;
+        foreach (var cell in _globallyUsedCells)
+        {
+            Vector3 worldPos = tilemap.GetCellCenterWorld(cell);
+            Gizmos.DrawWireCube(worldPos, tilemap.cellSize * 0.8f);
         }
     }
 }
