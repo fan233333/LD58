@@ -183,5 +183,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minScale: 0.2
-  shrinkSpeed: 0
+  shrinkSpeed: 0.05
   disappearEffect: {fileID: 8150728642297886144, guid: 81f81cd99c88ab5458fd20f7a4c61ecb, type: 3}
