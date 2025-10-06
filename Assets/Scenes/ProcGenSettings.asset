@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 96
   height: 96
-  seed: 12345
+  seed: 1385
   targetWeights: {x: 1, y: 1, z: 1, w: 1}
   smallMapBias: 0.4
   algorithm: 0

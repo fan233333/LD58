@@ -1,9 +1,4 @@
 
-
-// ===============================
-// File: TilemapProcGen.cs
-// MonoBehaviour：将结果画到 Unity Tilemap
-// ===============================
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,11 +11,91 @@ public class TilemapProcGen : MonoBehaviour
     [Tooltip("四种 Tile 的顺序需与生成索引一致 (0..3)")]
     public TileBase[] tiles = new TileBase[4];
 
-    [Header("参数")]
-    public TilemapProcGenSettings settings;
+    [Header("按类型分图层（用于不同 Collider）")]
+    [Tooltip("勾选后将按类型把 Tile 分别画到 4 个 Tilemap 上，便于为每类设置不同的 TilemapCollider2D/CompositeCollider2D。")]
+    public bool splitByType = false;
+    [Tooltip("按 0..3 顺序指定 4 个 Tilemap；若留空则回退到上面的 tilemap（单图层）")]
+    public Tilemap[] typeTilemaps = new Tilemap[4];
 
+    [Header("参数")] 
+    public TilemapProcGenSettings settings;
+    
     // 运行态缓存
-    private int[,] _map; // 值域 0..3
+    private int[, ] _map; // 值域 0..3
+
+    // ======= Public API for other systems (e.g., prefab spawner) =======
+    public int Width => settings != null ? settings.width : 0;
+    public int Height => settings != null ? settings.height : 0;
+    public Vector3Int TilemapOrigin => new Vector3Int(-(settings!=null?settings.width:0)/2, -(settings!=null?settings.height:0)/2, 0);
+
+    public bool TryGetLabelAt(int x, int y, out int label)
+    {
+        label = -1;
+        if (x < 0 || y < 0 || x >= Width || y >= Height) return false;
+
+        if (_map != null)
+        {
+            label = _map[x, y];
+            return true;
+        }
+        return false;
+    }
+    public IEnumerable<Vector3Int> GetCellsOfType(int type)
+    {
+        int W = Width, H = Height;
+        var origin = TilemapOrigin;
+        if (W <= 0 || H <= 0) yield break;
+
+        if (_map != null)
+        {
+            for (int x = 0; x < W; x++)
+            for (int y = 0; y < H; y++)
+            {
+                if (_map[x, y] == type) yield return origin + new Vector3Int(x, y, 0);
+            }
+            yield break;
+        }
+    }
+
+    // --- 新增：可随时读取的变量与便捷查询 ---
+    public int[,] MapRef => _map; // 直接引用；只读访问，勿修改
+    public bool HasInMemoryMap => _map != null;
+
+    public int GetLabel(int x, int y)
+    {
+        return TryGetLabelAt(x, y, out var lab) ? lab : -1;
+    }
+
+    public bool TryGetLabelAtCell(Vector3Int cell, out int label)
+    {
+        var idx = cell - TilemapOrigin;
+        return TryGetLabelAt(idx.x, idx.y, out label);
+    }
+
+    public bool TryGetLabelAtWorld(Vector3 worldPos, out int label)
+    {
+        var cell = tilemap.WorldToCell(worldPos);
+        return TryGetLabelAtCell(cell, out label);
+    }
+
+    public Vector2Int WorldToIndex(Vector3 worldPos)
+    {
+        var cell = tilemap.WorldToCell(worldPos) - TilemapOrigin;
+        return new Vector2Int(cell.x, cell.y);
+    }
+
+    public int[,] CopyMap()
+    {
+        if (_map == null) return null;
+        int W = _map.GetLength(0), H = _map.GetLength(1);
+        var dst = new int[W, H];
+        for (int x = 0; x < W; x++)
+            for (int y = 0; y < H; y++)
+                dst[x, y] = _map[x, y];
+        return dst;
+    }
+
+    public event System.Action<TilemapProcGen> OnMapGenerated;
 
     // ============ 对外入口 ============
     public void Generate()
@@ -48,6 +123,7 @@ public class TilemapProcGen : MonoBehaviour
         }
 
         PostProcess();
+        OnMapGenerated?.Invoke(this);
         PaintToTilemap();
     }
 
@@ -342,8 +418,6 @@ public class TilemapProcGen : MonoBehaviour
             float ay = (i&2)==0?0.25f:0.75f;
             float az = (i%3==0)?0.3f:0.7f;
             var t = new Vector3(ax, ay, az) + new Vector3(Random.value, Random.value, Random.value) * 0.1f;
-
-// 分别对三个维度进行插值
             cents[i] = new Vector3(
                 Mathf.LerpUnclamped(mn.x, mx.x, t.x),
                 Mathf.LerpUnclamped(mn.y, mx.y, t.y),
@@ -353,52 +427,62 @@ public class TilemapProcGen : MonoBehaviour
         return cents;
     }
 
+
+    public void SaveLabelMapJson(string fileName = null)
+    {
+        if (_map == null) { Debug.LogWarning("SaveLabelMapJson: 当前没有内存地图可保存（请先 Generate）"); return; }
+        var data = new SerializableMap { width = Width, height = Height, labels = Flatten(_map) };
+        string json = JsonUtility.ToJson(data);
+        string fname = fileName ?? $"LabelMap_{settings.algorithm}_{settings.seed}.json";
+        string path = System.IO.Path.Combine(Application.persistentDataPath, fname);
+        System.IO.File.WriteAllText(path, json);
+        Debug.Log($"LabelMap JSON 已写入: {path}");
+    }
+    
+
+    [System.Serializable]
+    public struct SerializableMap { public int width, height; public int[] labels; }
+    static int[] Flatten(int[,] map)
+    {
+        int W = map.GetLength(0), H = map.GetLength(1);
+        var arr = new int[W * H];
+        for (int x = 0; x < W; x++)
+        for (int y = 0; y < H; y++)
+            arr[x + y * W] = map[x, y];
+        return arr;
+    }
+
     // ============ 绘制 ============
     void PaintToTilemap()
     {
-        tilemap.ClearAllTiles();
         int W = settings.width, H = settings.height;
         var origin = new Vector3Int(-W/2, -H/2, 0);
-        for (int x = 0; x < W; x++)
-        for (int y = 0; y < H; y++)
+
+        if (splitByType && typeTilemaps != null && typeTilemaps.Length >= 4 && typeTilemaps[0] && typeTilemaps[1] && typeTilemaps[2] && typeTilemaps[3])
         {
-            int idx = Mathf.Clamp(_map[x,y], 0, tiles.Length-1);
-            tilemap.SetTile(origin + new Vector3Int(x, y, 0), tiles[idx]);
-        }
-    }
-    // ======= Public API for other systems (e.g., prefab spawner) =======
-    public int Width => settings != null ? settings.width : 0;
-    public int Height => settings != null ? settings.height : 0;
-    public Vector3Int TilemapOrigin => new Vector3Int(-(settings!=null?settings.width:0)/2, -(settings!=null?settings.height:0)/2, 0);
-
-    public bool TryGetLabelAt(int x, int y, out int label)
-    {
-        label = -1;
-
-        if (_map != null)
-        {
-            if (x >= 0 && y >= 0 && x < _map.GetLength(0) && y < _map.GetLength(1))
-            { label = _map[x, y]; return true; }
-        }
-        return false;
-    }
-
-
-    public IEnumerable<Vector3Int> GetCellsOfType(int type)
-    {
-        int W = Width, H = Height;
-        var origin = TilemapOrigin;
-        if (W <= 0 || H <= 0) yield break;
-
-        // 内存优先
-        if (_map != null)
-        {
+            // 1) 多图层：每类清空并单独绘制
+            for (int i = 0; i < 4; i++) typeTilemaps[i].ClearAllTiles();
             for (int x = 0; x < W; x++)
             for (int y = 0; y < H; y++)
-                if (_map[x, y] == type) yield return origin + new Vector3Int(x, y, 0);
-            yield break;
+            {
+                int idx = Mathf.Clamp(_map[x,y], 0, tiles.Length-1);
+                var tm = typeTilemaps[idx];
+                if (tm) tm.SetTile(origin + new Vector3Int(x, y, 0), tiles[idx]);
+                
+                if (tilemap) tilemap.SetTile(origin + new Vector3Int(x, y, 0), tiles[idx]);
+            }
+        }
+        else
+        {
+            // 2) 单图层：原始行为
+            if (tilemap) tilemap.ClearAllTiles();
+            for (int x = 0; x < W; x++)
+            for (int y = 0; y < H; y++)
+            {
+                int idx = Mathf.Clamp(_map[x,y], 0, tiles.Length-1);
+                if (tilemap) tilemap.SetTile(origin + new Vector3Int(x, y, 0), tiles[idx]);
+            }
         }
     }
-
 }
 
