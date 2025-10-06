@@ -102,7 +102,7 @@ public class TilemapProcGenEditor : Editor
             {
                 // 实时预览（编辑器下）
 
-                if (!Application.isPlaying) gen.Generate(SeedStatic.tileSeed);
+                if (!Application.isPlaying) gen.Generate(gen.settings.seed);
             }
         }
         else
