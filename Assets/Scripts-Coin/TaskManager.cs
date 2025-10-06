@@ -224,6 +224,11 @@ public class TaskManager : MonoBehaviour
         return "0/0";
     }
 
+    public float GetRemainTime()
+    {
+        return currentTime;
+    }
+
     public float GetItemScale(string itemName)
     {
         foreach(var item in taskItems)
