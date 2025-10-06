@@ -52,6 +52,18 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
+    public void CreateObject(GameObject ballPrefab, string typeName)
+    {
+        if(typeName == "Circle")
+        {
+            CreateBall(ballPrefab);
+        }
+        if(typeName == "Triangle")
+        {
+            CreateTriangle(trianglePrefab);
+        }
+    }
+
     public void CreateBall(GameObject ballPrefab)
     {
         GameObject newBall = Instantiate(ballPrefab, ballContainer.position, Quaternion.identity);
@@ -62,6 +74,7 @@ public class ContainerManager : MonoBehaviour
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
+            rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 1f;
             float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
             rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
@@ -78,6 +91,7 @@ public class ContainerManager : MonoBehaviour
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
+            rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 1f;
             float randomForce = Random.Range(minHorizontalForce, maxHorizontalForce);
             rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);

@@ -362,7 +362,7 @@ public class SectorAbsorb : MonoBehaviour
         }
 
         Bag.SpawnPrefab(item.gameObject);
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
 
         // Ïú»ÙÎïÆ·
         Destroy(item.gameObject);

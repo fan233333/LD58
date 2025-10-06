@@ -16,6 +16,9 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     {
         public string name;
         public GameObject prefab;
+        public List<Sprite> sprites;
+        public float size;
+        public float angle;
         [Tooltip("允许出现的地形类型（0..3）。至少勾选一个")] public bool[] allowTypes = new bool[4] { true, true, true, true };
         [Tooltip("密度：每 100 个合格 tile 期望生成多少个实例；若 Count Override>=0 则忽略密度")] [Min(0f)] public float densityPer100 = 5f;
         [Tooltip("固定生成数量；设为 -1 使用密度")] public int countOverride = -1;
@@ -35,7 +38,11 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
 
     void Start()
     {
+        generator.Generate(SeedStatic.tileSeed);
+        seed = SeedStatic.objectSeed;
         if (Application.isPlaying) Spawn();
+        
+        
     }
 
     [ContextMenu("Spawn Now")] // 右键组件标题
@@ -49,7 +56,7 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         // 1) 确保 Tilemap 已经有内容；必要时先生成
         if (autoGenerateIfEmpty && !TilemapHasTiles())
         {
-            generator.Generate();
+            generator.Generate(SeedStatic.tileSeed);
         }
         if (!TilemapHasTiles())
         {
@@ -108,6 +115,14 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
                 else
                 {
                     go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
+                    float size = Random.Range(0.5f, rule.size);
+                    go.transform.localScale = new Vector3(size, size, size);
+                    float rotateAngle = Random.Range(-rule.angle, rule.angle);
+                    Quaternion targetRotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
+                    go.transform.rotation = targetRotation;
+                    int spriteNo = Random.Range(0, rule.sprites.Count);
+                    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
+                    spriteRenderer.sprite = rule.sprites[spriteNo];
                 }
 #else
                 go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
