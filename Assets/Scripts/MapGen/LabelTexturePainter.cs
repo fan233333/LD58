@@ -108,10 +108,20 @@ public class LabelTexturePainter : MonoBehaviour
             for (int y = 0; y < H; y++)
             {
                 int label;
-                if (!generator.TryGetLabelAt(x, y, out label)) label = 0; // 回退：若实现不可用则默认 0
-                if (label < 0 || label >= palette.Length) label = 0;
-                Color32 c = palette[label];
+                if (!generator.TryGetLabelAt(x, y, out label))
+                {
+                    Debug.Log("why");
+                    label = 0; // 回退：若实现不可用则默认 0
+                }
 
+                if (label < 0 || label >= palette.Length)
+                {
+                    Debug.Log("how");
+                    label = 0;
+                }
+
+                Color32 c = palette[label];
+                Debug.Log("x:"+x+" y:"+y+" label:"+label);
                 int py0 = y * pixelsPerTile;
                 for (int dy = 0; dy < pixelsPerTile; dy++)
                 {

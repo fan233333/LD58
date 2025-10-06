@@ -18,6 +18,12 @@ public class TilemapProcGen : MonoBehaviour
 
     [Header("参数")]
     public TilemapProcGenSettings settings;
+    
+    [Header("序列化输出")]
+    [Tooltip("若指定，将在生成后把标签地图写入该 ScriptableObject 资产（Editor 下优先 .asset，运行时会导出 JSON）")]
+    public TileLabelMapAsset mapAsset;
+    [Tooltip("生成后自动保存到资产或 JSON")]
+    public bool autoSaveAsset = true;
 
     // 运行态缓存
     private int[,] _map; // 值域 0..3
@@ -48,6 +54,7 @@ public class TilemapProcGen : MonoBehaviour
         }
 
         PostProcess();
+        MaybeAutoSave();
         PaintToTilemap();
     }
 
@@ -374,23 +381,104 @@ public class TilemapProcGen : MonoBehaviour
     public bool TryGetLabelAt(int x, int y, out int label)
     {
         label = -1;
-        if (_map == null) return false;
-        if (x < 0 || y < 0 || x >= Width || y >= Height) return false;
-        label = _map[x, y];
-        return true;
+        // 先读资产：资产存在时不依赖 settings 尺寸，避免尺寸不一致导致取不到
+        if (mapAsset != null && mapAsset.TryGet(x, y, out label)) return true;
+
+        // 回退内存地图
+        if (_map != null)
+        {
+            if (x >= 0 && y >= 0 && x < _map.GetLength(0) && y < _map.GetLength(1))
+            { label = _map[x, y]; return true; }
+        }
+        return false;
     }
 
-    public System.Collections.Generic.IEnumerable<Vector3Int> GetCellsOfType(int type)
+
+    public IEnumerable<Vector3Int> GetCellsOfType(int type)
     {
-        if (_map == null) yield break;
         int W = Width, H = Height;
         var origin = TilemapOrigin;
-        for (int x = 0; x < W; x++)
-        for (int y = 0; y < H; y++)
+        if (W <= 0 || H <= 0) yield break;
+
+        // 内存优先
+        if (_map != null)
         {
-            if (_map[x, y] == type) yield return origin + new Vector3Int(x, y, 0);
+            for (int x = 0; x < W; x++)
+            for (int y = 0; y < H; y++)
+                if (_map[x, y] == type) yield return origin + new Vector3Int(x, y, 0);
+            yield break;
+        }
+        // 资产回退（不依赖 settings 尺寸，只依据资产自身尺寸）
+        if (mapAsset != null)
+        {
+            foreach (var p in mapAsset.AllOfType(type))
+                yield return origin + new Vector3Int(p.x, p.y, 0);
         }
     }
+
+    // ============ 序列化保存 ============
+    public void SaveLabelMapToAsset()
+    {
+        if (_map == null) { Debug.LogWarning("SaveLabelMapToAsset: 当前没有内存地图可保存（请先 Generate）"); return; }
+    #if UNITY_EDITOR
+        if (mapAsset == null)
+        {
+            mapAsset = ScriptableObject.CreateInstance<TileLabelMapAsset>();
+            mapAsset.Set(_map);
+            string dir = "Assets/ProcGen";
+            if (!System.IO.Directory.Exists(dir)) System.IO.Directory.CreateDirectory(dir);
+            string safeName = $"TileLabelMap_{settings.algorithm}_{settings.seed}";
+            string path = UnityEditor.AssetDatabase.GenerateUniqueAssetPath($"{dir}/{safeName}.asset");
+            UnityEditor.AssetDatabase.CreateAsset(mapAsset, path);
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.AssetDatabase.Refresh();
+            Debug.Log($"TileLabelMap 已保存到: {path}");
+        }
+        else
+        {
+            mapAsset.Set(_map);
+            UnityEditor.EditorUtility.SetDirty(mapAsset);
+            UnityEditor.AssetDatabase.SaveAssets();
+            Debug.Log("TileLabelMap 覆盖保存到现有 ScriptableObject 资产。");
+        }
+    #else
+        SaveLabelMapJson(null);
+    #endif
+    }
+
+    public void SaveLabelMapJson(string fileName = null)
+    {
+        if (_map == null) { Debug.LogWarning("SaveLabelMapJson: 当前没有内存地图可保存（请先 Generate）"); return; }
+        var data = new SerializableMap { width = Width, height = Height, labels = Flatten(_map) };
+        string json = JsonUtility.ToJson(data);
+        string fname = fileName ?? $"LabelMap_{settings.algorithm}_{settings.seed}.json";
+        string path = System.IO.Path.Combine(Application.persistentDataPath, fname);
+        System.IO.File.WriteAllText(path, json);
+        Debug.Log($"LabelMap JSON 已写入: {path}");
+    }
+
+    void MaybeAutoSave()
+    {
+        if (!autoSaveAsset) return;
+    #if UNITY_EDITOR
+        SaveLabelMapToAsset();
+    #else
+        SaveLabelMapJson(null);
+    #endif
+    }
+
+    [System.Serializable]
+    public struct SerializableMap { public int width, height; public int[] labels; }
+    static int[] Flatten(int[,] map)
+    {
+        int W = map.GetLength(0), H = map.GetLength(1);
+        var arr = new int[W * H];
+        for (int x = 0; x < W; x++)
+        for (int y = 0; y < H; y++)
+            arr[x + y * W] = map[x, y];
+        return arr;
+    }
+
 
 }
 
