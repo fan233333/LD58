@@ -44,6 +44,7 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
+        taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
         StartTask();
         
     }
