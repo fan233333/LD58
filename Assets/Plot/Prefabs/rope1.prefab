@@ -113,8 +113,8 @@ MonoBehaviour:
   maxDurability: 100
   currentDurability: 0
   broken: 0
-  damagePerSecond: 30
-  healPerSecond: 10
+  damagePerSecond: 5
+  healPerSecond: 1
   particles: {fileID: 8625924503277449835}
   upwardSpeed: 0.5
   keepWorldUp: 1

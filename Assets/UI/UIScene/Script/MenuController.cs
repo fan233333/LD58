@@ -30,8 +30,6 @@ public class MenuController : MonoBehaviour
     public GameObject introPanel;
     public GameObject intro1;
     public GameObject intro2;
-    public GameObject intro3;
-    public GameObject intro4;
     
     // TODO: Animation?
     public Animator introAnimator;
@@ -49,8 +47,6 @@ public class MenuController : MonoBehaviour
         SwitchToPanel(Panels.Title);
         intro1.SetActive(false);
         intro2.SetActive(false);
-        intro3.SetActive(false);
-        intro4.SetActive(false);
         gameStartButton.onClick.AddListener(Intro);
         // optionsButton.onClick.AddListener(Options);
         creditsButton.onClick.AddListener(Credits);
@@ -138,18 +134,6 @@ public class MenuController : MonoBehaviour
             _State = Panels.C2;
         }
         else if (_State == Panels.C2)
-        {
-            intro2.SetActive(false);
-            intro3.SetActive(true);
-            _State = Panels.C3;
-        }
-        else if (_State == Panels.C3)
-        {
-            intro3.SetActive(false);
-            intro4.SetActive(true);
-            _State = Panels.C4;
-        }
-        else if (_State == Panels.C4)
         {
             StartCoroutine(LoadGameScene());
         }
