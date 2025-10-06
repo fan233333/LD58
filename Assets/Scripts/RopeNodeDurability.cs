@@ -23,11 +23,9 @@ public class RopeNodeDurability : MonoBehaviour
     void OnCollisionStay2D(Collision2D other)
     {
         if (broken) return;
-        if (other.gameObject.CompareTag("Cutting"))
-        {
-            TakeDamage(damagePerSecond * Time.deltaTime);
-
-        }
+        if (other.gameObject.TryGetComponent<CollectibleItem>(out var obj))
+            if ((int)obj.itemType == 5)
+                TakeDamage(damagePerSecond * Time.deltaTime);
     }
 
     public void TakeDamage(float amount)

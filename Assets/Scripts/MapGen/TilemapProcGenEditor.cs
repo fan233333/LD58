@@ -75,16 +75,6 @@ public class TilemapProcGenEditor : Editor
             {
                 gen.Generate();
             }
-            
-            EditorGUILayout.Space(8);
-            EditorGUILayout.LabelField("序列化输出", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("mapAsset"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("autoSaveAsset"));
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("保存到 .asset")) { gen.SaveLabelMapToAsset(); }
-            if (GUILayout.Button("导出 JSON")) { gen.SaveLabelMapJson(); }
-            EditorGUILayout.EndHorizontal();
-
 
             if (GUI.changed)
             {
