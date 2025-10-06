@@ -136,7 +136,7 @@ MonoBehaviour:
   itemName: Diamond
   itemType: 3
   value: 1
-  mass: 1
+  mass: 2
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
