@@ -172,9 +172,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &36917862
 Rigidbody2D:
   serializedVersion: 4
@@ -456,9 +458,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &104877055
 Rigidbody2D:
   serializedVersion: 4
@@ -623,9 +627,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &129860169
 Rigidbody2D:
   serializedVersion: 4
@@ -903,9 +909,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &161528015
 Rigidbody2D:
   serializedVersion: 4
@@ -1070,9 +1078,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &184968976
 Rigidbody2D:
   serializedVersion: 4
@@ -1520,9 +1530,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &250642938
 Rigidbody2D:
   serializedVersion: 4
@@ -1749,9 +1761,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &262735828
 Rigidbody2D:
   serializedVersion: 4
@@ -1943,6 +1957,7 @@ GameObject:
   - component: {fileID: 278021539}
   - component: {fileID: 278021538}
   - component: {fileID: 278021537}
+  - component: {fileID: 278021541}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -2026,8 +2041,10 @@ MonoBehaviour:
   nodePrefab: {fileID: 0}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
+  jointType: 0
   springFrequency: 15
   springDamping: 0.9
+  hingeDistance: 0.5
 --- !u!114 &278021538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,6 +2173,21 @@ SpriteShapeRenderer:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.0000001, y: 1.0000001, z: 0}
   m_SpriteSortPoint: 0
+--- !u!114 &278021541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278021533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022a7d53ea2644d580b2d9c48c1f2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ropeNodes: []
+  smoothness: 0.1
+  broken: 0
 --- !u!1 &280665851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,9 +2238,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &280665854
 Rigidbody2D:
   serializedVersion: 4
@@ -2373,9 +2407,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &285820832
 Rigidbody2D:
   serializedVersion: 4
@@ -2540,9 +2576,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &296146429
 Rigidbody2D:
   serializedVersion: 4
@@ -2707,9 +2745,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &304787081
 Rigidbody2D:
   serializedVersion: 4
@@ -2998,9 +3038,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &363032106
 Rigidbody2D:
   serializedVersion: 4
@@ -3227,9 +3269,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &394713311
 Rigidbody2D:
   serializedVersion: 4
@@ -3812,9 +3856,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &487652300
 Rigidbody2D:
   serializedVersion: 4
@@ -3979,9 +4025,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &518392153
 Rigidbody2D:
   serializedVersion: 4
@@ -4146,9 +4194,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &520250136
 Rigidbody2D:
   serializedVersion: 4
@@ -4313,9 +4363,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &524303114
 Rigidbody2D:
   serializedVersion: 4
@@ -4480,9 +4532,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &543716725
 Rigidbody2D:
   serializedVersion: 4
@@ -4647,9 +4701,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &552764873
 Rigidbody2D:
   serializedVersion: 4
@@ -4876,9 +4932,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &613823936
 Rigidbody2D:
   serializedVersion: 4
@@ -5043,9 +5101,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &643859094
 Rigidbody2D:
   serializedVersion: 4
@@ -5210,9 +5270,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &656484351
 Rigidbody2D:
   serializedVersion: 4
@@ -5439,9 +5501,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &681460217
 Rigidbody2D:
   serializedVersion: 4
@@ -5730,6 +5794,7 @@ MonoBehaviour:
   playerTag: Player
   stopThreshold: 0.1
   checkFull: {fileID: 0}
+  checkSpecificObject: {fileID: 0}
 --- !u!1 &696255457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,9 +5845,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &696255460
 Rigidbody2D:
   serializedVersion: 4
@@ -6031,9 +6098,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &743918775
 Rigidbody2D:
   serializedVersion: 4
@@ -6198,9 +6267,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &784195742
 Rigidbody2D:
   serializedVersion: 4
@@ -6482,9 +6553,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &834979540
 Rigidbody2D:
   serializedVersion: 4
@@ -6649,9 +6722,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &837958103
 Rigidbody2D:
   serializedVersion: 4
@@ -6816,9 +6891,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &840562800
 Rigidbody2D:
   serializedVersion: 4
@@ -6983,9 +7060,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &843725218
 Rigidbody2D:
   serializedVersion: 4
@@ -7472,9 +7551,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &947263630
 Rigidbody2D:
   serializedVersion: 4
@@ -7639,9 +7720,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &978560092
 Rigidbody2D:
   serializedVersion: 4
@@ -7806,9 +7889,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &988313442
 Rigidbody2D:
   serializedVersion: 4
@@ -8035,9 +8120,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &996765039
 Rigidbody2D:
   serializedVersion: 4
@@ -8286,9 +8373,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1034841971
 Rigidbody2D:
   serializedVersion: 4
@@ -8453,9 +8542,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1041182707
 Rigidbody2D:
   serializedVersion: 4
@@ -8695,9 +8786,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1161752688
 Rigidbody2D:
   serializedVersion: 4
@@ -8862,9 +8955,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1184661078
 Rigidbody2D:
   serializedVersion: 4
@@ -9151,9 +9246,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1262628597
 Rigidbody2D:
   serializedVersion: 4
@@ -9318,9 +9415,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1293732660
 Rigidbody2D:
   serializedVersion: 4
@@ -9485,9 +9584,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1300503044
 Rigidbody2D:
   serializedVersion: 4
@@ -9831,9 +9932,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1333231532
 Rigidbody2D:
   serializedVersion: 4
@@ -10060,9 +10163,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1339174110
 Rigidbody2D:
   serializedVersion: 4
@@ -10227,9 +10332,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1353440004
 Rigidbody2D:
   serializedVersion: 4
@@ -10690,9 +10797,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1388785999
 Rigidbody2D:
   serializedVersion: 4
@@ -11072,9 +11181,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1438443931
 Rigidbody2D:
   serializedVersion: 4
@@ -11239,9 +11350,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1458405959
 Rigidbody2D:
   serializedVersion: 4
@@ -11406,9 +11519,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1464251359
 Rigidbody2D:
   serializedVersion: 4
@@ -11573,9 +11688,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1479736455
 Rigidbody2D:
   serializedVersion: 4
@@ -11740,9 +11857,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1485846606
 Rigidbody2D:
   serializedVersion: 4
@@ -11907,9 +12026,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1489623917
 Rigidbody2D:
   serializedVersion: 4
@@ -12074,9 +12195,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1493910823
 Rigidbody2D:
   serializedVersion: 4
@@ -12409,9 +12532,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1510816093
 Rigidbody2D:
   serializedVersion: 4
@@ -12571,7 +12696,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e613a608c45aae94fbaf76030d149715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  minHorizontalForce: 10
+  maxHorizontalForce: 20
+  friction: 5
 --- !u!61 &1527101467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12667,9 +12794,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1530421265
 Rigidbody2D:
   serializedVersion: 4
@@ -12896,9 +13025,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1541800925
 Rigidbody2D:
   serializedVersion: 4
@@ -13235,9 +13366,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1589625976
 Rigidbody2D:
   serializedVersion: 4
@@ -13519,9 +13652,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1619524433
 Rigidbody2D:
   serializedVersion: 4
@@ -13686,9 +13821,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1633872925
 Rigidbody2D:
   serializedVersion: 4
@@ -13853,9 +13990,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1639082626
 Rigidbody2D:
   serializedVersion: 4
@@ -14020,9 +14159,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1685817960
 Rigidbody2D:
   serializedVersion: 4
@@ -14187,9 +14328,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1710838884
 Rigidbody2D:
   serializedVersion: 4
@@ -14354,9 +14497,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1713410705
 Rigidbody2D:
   serializedVersion: 4
@@ -14521,9 +14666,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1722765930
 Rigidbody2D:
   serializedVersion: 4
@@ -14878,9 +15025,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1768161726
 Rigidbody2D:
   serializedVersion: 4
@@ -15279,9 +15428,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1800311240
 Rigidbody2D:
   serializedVersion: 4
@@ -15508,9 +15659,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1816795124
 Rigidbody2D:
   serializedVersion: 4
@@ -15675,9 +15828,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1831838775
 Rigidbody2D:
   serializedVersion: 4
@@ -15841,6 +15996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  moveForce: 10
   maxRotationSpeed: 200
   right: {fileID: -760350900, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
   left: {fileID: -417843153, guid: b786f2861b8cc5a4e90d15adb631ff61, type: 3}
@@ -15853,6 +16009,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1874416751}
   rotateObject: {fileID: 862985201}
   minMovementThreshold: 0.1
+  maxMass: 10
+  baseBounceForce: 5
+  velocityMultiplier: 1.5
+  maxBounceForce: 20
 --- !u!61 &1874416749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16348,9 +16508,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1884794561
 Rigidbody2D:
   serializedVersion: 4
@@ -16649,9 +16811,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &1928073957
 Rigidbody2D:
   serializedVersion: 4
@@ -17112,9 +17276,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2008864337
 Rigidbody2D:
   serializedVersion: 4
@@ -17279,9 +17445,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2014868313
 Rigidbody2D:
   serializedVersion: 4
@@ -17446,9 +17614,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2025197402
 Rigidbody2D:
   serializedVersion: 4
@@ -17613,9 +17783,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2038043815
 Rigidbody2D:
   serializedVersion: 4
@@ -17780,9 +17952,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2055261142
 Rigidbody2D:
   serializedVersion: 4
@@ -17947,9 +18121,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2066428595
 Rigidbody2D:
   serializedVersion: 4
@@ -18114,9 +18290,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2091909500
 Rigidbody2D:
   serializedVersion: 4
@@ -18281,9 +18459,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2125485981
 Rigidbody2D:
   serializedVersion: 4
@@ -18448,9 +18628,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2135342602
 Rigidbody2D:
   serializedVersion: 4
@@ -18615,9 +18797,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2136672584
 Rigidbody2D:
   serializedVersion: 4
@@ -18782,9 +18966,11 @@ MonoBehaviour:
   itemName: Circle
   itemType: 0
   value: 1
+  mass: 1
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+  particlePrefab: {fileID: 0}
 --- !u!50 &2140403562
 Rigidbody2D:
   serializedVersion: 4
