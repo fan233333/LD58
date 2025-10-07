@@ -101,8 +101,13 @@ public class AudioManager : MonoBehaviour
         remainTime = taskManager.GetRemainTime();
         if (remainTime < 30 && !hasSwitched && isActive)
         {
-            StartCoroutine(SwitchWithFade());
+            StartCoroutine(SwitchWithFade(targetMusic));
             hasSwitched = true;
+        }
+        if(remainTime > 30 && hasSwitched && isActive)
+        {
+            StartCoroutine(SwitchWithFade(backgroundMusic));
+            hasSwitched = false;
         }
     }
 
@@ -112,7 +117,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// «–ªªµΩ÷∏∂®“Ù¿÷
     /// </summary>
-    IEnumerator SwitchWithFade()
+    IEnumerator SwitchWithFade(AudioClip target)
     {
         hasSwitched = true;
 
@@ -125,7 +130,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // «–ªª“Ù¿÷
-        audioSource.clip = targetMusic;
+        audioSource.clip = target;
         audioSource.Play();
 
         // µ≠»Î–¬“Ù¿÷

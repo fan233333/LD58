@@ -151,7 +151,7 @@ public class ContainerManager : MonoBehaviour
     public void CreateBlue(GameObject obj)
     {
         Debug.Log("CreateBlue");
-        GameObject newBall = Instantiate(obj, BuleParent.position, Quaternion.identity);
+        GameObject newBall = Instantiate(obj, BuleContainer.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
