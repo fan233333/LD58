@@ -39,9 +39,9 @@ public class TaskManager : MonoBehaviour
     public int minYear;
     public int maxYear;
 
-    public GameObject img1;
-    public GameObject img2;
-    public float transitionDuration = 10f;
+    public Image img1;
+    public Image img2;
+    private float transitionDuration = 3f;
     public int highLightYear = 100;
 
 
@@ -50,6 +50,7 @@ public class TaskManager : MonoBehaviour
     private int totalItemsCollected = 0;
     private int totalItemsRequired = 0;
     private bool isImg2 = false;
+    private Coroutine currentTransition;
 
     void Start()
     {
@@ -72,12 +73,16 @@ public class TaskManager : MonoBehaviour
         {
             if (SeedStatic.lightYear >= highLightYear)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && !isImg2)
                 {
-                    SetObjectAlpha(img1, 1f);
-                    SetObjectAlpha(img2, 0f);
-                    img2.SetActive(true);
-                    StartCoroutine(TransitionCoroutine());
+                    SetImageAlpha(img1, 1f);
+                    SetImageAlpha(img2, 1f);
+                    img2.gameObject.SetActive(true);
+                    if (currentTransition != null)
+                        StopCoroutine(currentTransition);
+
+                    currentTransition = StartCoroutine(FadeTransition());
+
                 }
                 if (isImg2)
                 {
@@ -99,7 +104,7 @@ public class TaskManager : MonoBehaviour
             currentTime = 0;
         }
     }
-    IEnumerator TransitionCoroutine()
+    IEnumerator FadeTransition()
     {
         float elapsedTime = 0f;
 
@@ -108,51 +113,30 @@ public class TaskManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / transitionDuration;
 
-            // 淡出A，淡入B
-            SetObjectAlpha(img1, 1f - t);
-            SetObjectAlpha(img2, t);
+            // 计算透明度
+            float alphaA = 1f - t;
+            //float alphaB = t;
+
+            // 应用透明度
+            SetImageAlpha(img1, alphaA);
+            //SetImageAlpha(img2, alphaB);
 
             yield return null;
         }
 
         // 确保最终状态正确
-        SetObjectAlpha(img1, 0f);
-        SetObjectAlpha(img2, 1f);
+        SetImageAlpha(img1, 0f);
+        SetImageAlpha(img2, 1f);
         isImg2 = true;
     }
 
-    void SetObjectAlpha(GameObject obj, float alpha)
+    void SetImageAlpha(Image image, float alpha)
     {
-        // 获取所有Renderer组件并设置透明度
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
-        foreach (Renderer renderer in renderers)
+        if (image != null)
         {
-            Material material = renderer.material;
-            Color color = material.color;
+            Color color = image.color;
             color.a = alpha;
-            material.color = color;
-
-            // 根据透明度设置渲染模式
-            if (alpha < 1f)
-            {
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.SetInt("_ZWrite", 0);
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.EnableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = 3000;
-            }
-            else
-            {
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-                material.SetInt("_ZWrite", 1);
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.DisableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = -1;
-            }
+            image.color = color;
         }
     }
 
@@ -282,7 +266,7 @@ public class TaskManager : MonoBehaviour
 
 
         // 延迟切换到下一个场景
-        StartCoroutine(LoadNextSceneAfterDelay(2f));
+        StartCoroutine(LoadNextSceneAfterDelay(1f));
     }
 
     void TaskFailed()
@@ -305,7 +289,8 @@ public class TaskManager : MonoBehaviour
         }
         else
         {
-            img1.SetActive(true);
+            SetImageAlpha(img1, 1f);
+            img1.gameObject.SetActive(true);
         }
 
     }
