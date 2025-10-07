@@ -167,5 +167,5 @@ MonoBehaviour:
   mass: 0.2
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   collectEffect: {fileID: 0}
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: ddf59b941a37a6547ab4a00c653292eb, type: 3}
   particlePrefab: {fileID: 0}
