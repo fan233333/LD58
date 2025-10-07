@@ -13,11 +13,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip targetMusic;
 
     public TaskManager taskManager;
+    public static bool isActive;
     public float fadeDuration = 0.5f;
     private bool hasSwitched = false;
 
     private AudioSource audioSource;
     private float remainTime;
+    private string menuSceneName = "MainMenu";
+
 
     void Awake()
     {
@@ -46,8 +49,32 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 场景加载完成后播放音乐
-        PlayBackgroundMusic();
+        // 检查是否是菜单场景
+        if (scene.name == menuSceneName)
+        {
+            // 如果是菜单场景，销毁自己
+            DestroyAudioManager();
+        }
+        else
+        {
+            // 其他场景播放背景音乐
+            PlayBackgroundMusic();
+        }
+    }
+
+    void DestroyAudioManager()
+    {
+        // 取消订阅事件
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // 销毁单例实例
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+
+        // 销毁游戏对象
+        Destroy(gameObject);
     }
 
     void PlayBackgroundMusic()
@@ -67,13 +94,20 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        if(taskManager == null)
+        {
+            taskManager = GameObject.Find("TaskManager").GetComponent<TaskManager>();
+        }
         remainTime = taskManager.GetRemainTime();
-        if (remainTime < 30 && !hasSwitched)
+        if (remainTime < 30 && !hasSwitched && isActive)
         {
             StartCoroutine(SwitchWithFade());
             hasSwitched = true;
         }
     }
+
+
+
 
     /// <summary>
     /// 切换到指定音乐

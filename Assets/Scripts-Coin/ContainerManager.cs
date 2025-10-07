@@ -113,7 +113,7 @@ public class ContainerManager : MonoBehaviour
     }
     public void CreateIce(GameObject obj)
     {
-        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        GameObject newBall = Instantiate(obj, IceContainer.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -131,7 +131,7 @@ public class ContainerManager : MonoBehaviour
     }
     public void CreateLava(GameObject obj)
     {
-        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        GameObject newBall = Instantiate(obj, LavaContainer.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -150,7 +150,8 @@ public class ContainerManager : MonoBehaviour
 
     public void CreateBlue(GameObject obj)
     {
-        GameObject newBall = Instantiate(obj, ballContainer.position, Quaternion.identity);
+        Debug.Log("CreateBlue");
+        GameObject newBall = Instantiate(obj, BuleParent.position, Quaternion.identity);
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);

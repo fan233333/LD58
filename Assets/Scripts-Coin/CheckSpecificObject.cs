@@ -188,6 +188,7 @@ public class CheckSpecificObject : MonoBehaviour
             {
                 if (collectibleItem.GetTypeKey() == typeName)
                 {
+                    Debug.Log($"ItemCollected{typeName}");
                     //containerManager.CreateObject(obj.gameObject, typeName);
                     taskManager.ItemCollected(obj.gameObject, typeName);
                 }

@@ -46,7 +46,7 @@ public class IceOre : MonoBehaviour
     public void OnTriggerStay2D(Collider2D other)
     {
         var otherName = other.gameObject.name;
-        Debug.Log(otherName);
+        //Debug.Log(otherName);
         if (CompareTag("Collectible"))
             if (otherName == "IceMap")
             {

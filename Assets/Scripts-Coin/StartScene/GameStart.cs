@@ -25,11 +25,13 @@ public class GameStart : MonoBehaviour
 
     public void Retry()
     {
+        SeedStatic.lightYear = 1;
         SceneManager.LoadScene(1);
     }
 
     public void Back()
     {
+        SeedStatic.lightYear = 1;
         SceneManager.LoadScene(0);
     }
 }
