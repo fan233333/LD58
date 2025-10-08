@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class ContainerManager : MonoBehaviour
 {
+    [Header("Çò")]
+    public GameObject ball;
+    public GameObject triangle;
+    public GameObject ice;
+    public GameObject lava;
+    public GameObject blue;
+
     [Header("ÈÝÆ÷Î»ÖÃ")]
     public Transform ballContainer;
     public Transform triangleContainer;
@@ -40,6 +47,26 @@ public class ContainerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Z)){
+            CreateBall(ball);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            CreateBall(triangle);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CreateBall(ice);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            CreateBall(lava);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            CreateBall(blue);
+        }
         //if (Input.GetKeyDown(KeyCode.O))
         //{
         //    StartAttractionProcess(ballParent, ballContainer.transform);
