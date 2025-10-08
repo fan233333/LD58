@@ -18,11 +18,11 @@ public class TaskItem
 
 public class TaskManager : MonoBehaviour
 {
-    [Header("ÈÎÎñÉèÖÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public List<TaskItem> taskItems = new List<TaskItem>();
-    public float timeLimit = 60f; // ÈÎÎñÊ±¼äÏÞÖÆ£¨Ãë£©
+    public float timeLimit = 60f; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ë£©
 
-    [Header("UIÒýÓÃ")]
+    [Header("UIï¿½ï¿½ï¿½ï¿½")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI itemCountText;
     public TextMeshProUGUI numSceneText;
@@ -30,10 +30,10 @@ public class TaskManager : MonoBehaviour
     public GameObject failPanel;
     public string nextSceneName;
 
-    [Header("ÈÝÆ÷Éú³ÉÎ»ÖÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½")]
     public List<Transform> transformList = new List<Transform>();
 
-    [Header("ÈÝÆ÷¹ÜÀí")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public ContainerManager containerManager;
 
     public int minYear;
@@ -54,7 +54,7 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
-        taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
+        // taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
         StartTask();
         
     }
@@ -113,18 +113,18 @@ public class TaskManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / transitionDuration;
 
-            // ¼ÆËãÍ¸Ã÷¶È
+            // ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½
             float alphaA = 1f - t;
             //float alphaB = t;
 
-            // Ó¦ÓÃÍ¸Ã÷¶È
+            // Ó¦ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½
             SetImageAlpha(img1, alphaA);
             //SetImageAlpha(img2, alphaB);
 
             yield return null;
         }
 
-        // È·±£×îÖÕ×´Ì¬ÕýÈ·
+        // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½È·
         SetImageAlpha(img1, 0f);
         SetImageAlpha(img2, 1f);
         isImg2 = true;
@@ -142,13 +142,13 @@ public class TaskManager : MonoBehaviour
 
     public void StartTask()
     {
-        // ¼ÆËãÐèÒªµÄ×ÜÎïÆ·ÊýÁ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
         totalItemsRequired = 0;
         int index = 0;
         foreach (var item in taskItems)
         {
             totalItemsRequired += item.requiredAmount;
-            item.currentAmount = 0; // ÖØÖÃµ±Ç°ÊýÁ¿
+            item.currentAmount = 0; // ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½ï¿½ï¿½
             //float scale = (float)item.requiredAmount / item.maxNumber;
             //Vector3 newScale = new Vector3(scale, scale, 1f);
             //ScaleContainer(item.Container, newScale);
@@ -163,7 +163,7 @@ public class TaskManager : MonoBehaviour
         UpdateUI();
         numSceneText.text = $"{SeedStatic.numScene}";
 
-        // Òþ²Ø½á¹ûÃæ°å
+        // ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (successPanel) successPanel.SetActive(false);
         if (failPanel) failPanel.SetActive(false);
     }
@@ -183,21 +183,21 @@ public class TaskManager : MonoBehaviour
 
     void UpdateUI()
     {
-        // ¸üÐÂ¼ÆÊ±Æ÷ÏÔÊ¾
+        // ï¿½ï¿½ï¿½Â¼ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¾
         if (timerText)
         {
             int minutes = Mathf.FloorToInt(currentTime / 60f);
             int seconds = Mathf.FloorToInt(currentTime % 60f);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-            // Ê±¼ä½ôÕÅÊ±±äºìÉ«
+            // Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½É«
             if (currentTime < 30f)
             {
                 timerText.color = Color.red;
             }
         }
 
-        // ¸üÐÂÎïÆ·¼ÆÊýÏÔÊ¾
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
         if (itemCountText)
         {
             itemCountText.text = $"{totalItemsCollected}/{totalItemsRequired}";
@@ -228,7 +228,7 @@ public class TaskManager : MonoBehaviour
         if (!isTaskActive) return;
 
         totalItemsCollected = 0;
-        // ¸üÐÂÌØ¶¨ÎïÆ·µÄÊÕ¼¯¼ÆÊý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (var item in taskItems)
         {
             if (item.itemName == itemType)
@@ -254,7 +254,7 @@ public class TaskManager : MonoBehaviour
 
         UpdateUI();
 
-        // ¼ì²éÈÎÎñÊÇ·ñÍê³É
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
         bool completed = true;
         foreach (var item in taskItems)
         {
@@ -273,7 +273,7 @@ public class TaskManager : MonoBehaviour
     void TaskCompleted()
     {
         isTaskActive = false;
-        Debug.Log("ÈÎÎñÍê³É£¡");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½");
 
         if (successPanel)
         {
@@ -285,14 +285,14 @@ public class TaskManager : MonoBehaviour
 
         containerManager.AttrackAll();
 
-        // ÑÓ³ÙÇÐ»»µ½ÏÂÒ»¸ö³¡¾°
+        // ï¿½Ó³ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(LoadNextSceneAfterDelay(2f));
     }
 
     void TaskFailed()
     {
         isTaskActive = false;
-        Debug.Log("ÈÎÎñÊ§°Ü£¡");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
         //SeedStatic.tileSeed = Random.Range(1, 10000);
         //SeedStatic.objectSeed = Random.Range(1, 10000);
         //SeedStatic.lightYear += Random.Range(minYear, maxYear);
@@ -327,13 +327,13 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    // ÊÖ¶¯ÖØÐÂ¿ªÊ¼ÈÎÎñ£¨ÓÃÓÚUI°´Å¥£©
+    // ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Â¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½Å¥ï¿½ï¿½
     public void RestartTask()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // ¼ì²éÊÇ·ñËùÓÐÎïÆ·¶¼ÊÕ¼¯Íê³É
+    // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½
     public bool IsAllItemsCollected()
     {
         foreach (var item in taskItems)
@@ -344,7 +344,7 @@ public class TaskManager : MonoBehaviour
         return true;
     }
 
-    // »ñÈ¡ÌØ¶¨ÎïÆ·µÄÊÕ¼¯½ø¶È
+    // ï¿½ï¿½È¡ï¿½Ø¶ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
     public string GetItemProgress(string itemName)
     {
         foreach (var item in taskItems)
@@ -380,22 +380,22 @@ public class TaskManager : MonoBehaviour
     //    Debug.Log($"Scale:{maxNumber}");
     //    float scale = 1.0f * n / maxNumber;
     //    Debug.Log($"Scale:{scale}");
-    //    // Ó¦ÓÃËõ·Å
+    //    // Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //    obj.transform.localScale = new Vector3(scale, scale, 1f);
 
     //}
 
     //public void ScaleContainer(GameObject obj, Vector3 newScale)
     //{
-    //    // ¼ÇÂ¼Ëõ·ÅÇ°µÄÊÀ½çÎ»ÖÃ
+    //    // ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     //    Vector3 originalWorldPosition = obj.transform.position;
     //    Debug.Log(originalWorldPosition);
 
-    //    // Ó¦ÓÃÐÂËõ·Å
+    //    // Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //    obj.transform.localScale = newScale;
     //    Debug.Log(obj.transform.localScale);
 
-    //    // »Ö¸´ÊÀ½çÎ»ÖÃ
+    //    // ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     //    obj.transform.position = originalWorldPosition;
     //    Debug.Log(obj.transform.position);
     //}

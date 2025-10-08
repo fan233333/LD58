@@ -6,32 +6,32 @@ using UnityEngine;
 
 public class ContainerManager : MonoBehaviour
 {
-    [Header("Çò")]
+    [Header("ï¿½ï¿½")]
     public GameObject ball;
     public GameObject triangle;
     public GameObject ice;
     public GameObject lava;
     public GameObject blue;
 
-    [Header("ÈİÆ÷Î»ÖÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½")]
     public Transform ballContainer;
     public Transform triangleContainer;
     public Transform IceContainer;
     public Transform LavaContainer;
     public Transform BuleContainer;
 
-    [Header("¸¸ÎïÌå")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public Transform ballParent;
     public Transform triangleParent;
     public Transform LavaParent;
     public Transform IceParent;
     public Transform BuleParent;
 
-    [Header("Á¦")]
+    [Header("ï¿½ï¿½")]
     public float attractSpeed = 2f;
     public float minHorizontalForce = -2f;
     public float maxHorizontalForce = 2f;
-    public float delayBetweenLayers = 0.5f; // ²ã¼äÑÓ³Ù
+    public float delayBetweenLayers = 0.5f; // ï¿½ï¿½ï¿½ï¿½Ó³ï¿½
 
     public TaskManager taskManager;
 
@@ -45,38 +45,38 @@ public class ContainerManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
 
-        if (Input.GetKeyDown(KeyCode.Z)){
-            CreateBall(ball);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            CreateBall(triangle);
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CreateBall(ice);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            CreateBall(lava);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            CreateBall(blue);
-        }
-        //if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    StartAttractionProcess(ballParent, ballContainer.transform);
-        //}
+    //     if (Input.GetKeyDown(KeyCode.Z)){
+    //         CreateBall(ball);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.X))
+    //     {
+    //         CreateTriangle(triangle);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         CreateIce(ice);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         CreateLava(lava);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.B))
+    //     {
+    //         CreateBlue(blue);
+    //     }
+    //     //if (Input.GetKeyDown(KeyCode.O))
+    //     //{
+    //     //    StartAttractionProcess(ballParent, ballContainer.transform);
+    //     //}
 
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    StartAttractionProcess(triangleParent, triangleContainer.transform);
-        //}
-    }
+    //     //if (Input.GetKeyDown(KeyCode.L))
+    //     //{
+    //     //    StartAttractionProcess(triangleParent, triangleContainer.transform);
+    //     //}
+    // }
 
     public void CreateObject(GameObject obj, string typeName)
     {
@@ -212,7 +212,7 @@ public class ContainerManager : MonoBehaviour
     public void StartAttractionProcess(Transform parent, Transform target)
     {
 
-        // »ñÈ¡ËùÓĞ×ÓÎïÌå
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (Transform child in parent)
         {
             childrenToAttract.Add(child.gameObject);
@@ -227,22 +227,22 @@ public class ContainerManager : MonoBehaviour
 
     }
 
-    // ÎüÒı²¢Ïú»Ù×ÓÎïÌåµÄĞ­³Ì
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ­ï¿½ï¿½
     private IEnumerator AttractAndDestroyChildren(Transform target)
     {
 
-        Debug.Log($"¿ªÊ¼ÎüÒı {childrenToAttract.Count} ¸ö×ÓÎïÌå");
+        Debug.Log($"ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ {childrenToAttract.Count} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
         childrenToAttract = childrenToAttract.Where(obj => obj != null).ToList();
         childrenToAttract.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
 
         isAttracting = true;
 
-        // ¼ÆËã·Ö²ã
+        // ï¿½ï¿½ï¿½ï¿½Ö²ï¿½
         var layers = GroupObjectsIntoLayers();
         Debug.Log(layers.Count);
 
-        // °´²ãÒÀ´ÎÎüÊÕ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < layers.Count; i++)
         {
             yield return StartCoroutine(AbsorbLayer(layers[i], target));
@@ -250,10 +250,10 @@ public class ContainerManager : MonoBehaviour
         }
 
         isAttracting = false;
-        Debug.Log("ËùÓĞ×ÓÎïÌåÒÑ±»ÎüÒı²¢É¾³ı");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½");
 
 
-        // ¿ÉÑ¡£ºÕâÀï¿ÉÒÔÌí¼ÓÉ¾³ı¸¸ÎïÌåµÄ´úÂë
+        // ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
         // Destroy(GameObject.Find(parentName));
     }
 
@@ -263,8 +263,8 @@ public class ContainerManager : MonoBehaviour
 
         if (childrenToAttract.Count == 0) return layers;
 
-        // Ê¹ÓÃãĞÖµ½øĞĞ·Ö²ã
-        //float heightThreshold = 0.15f; // ¸ß¶ÈãĞÖµ£¬¿É¸ù¾İĞèÒªµ÷Õû
+        // Ê¹ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ğ·Ö²ï¿½
+        //float heightThreshold = 0.15f; // ï¿½ß¶ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 
         List<Transform> currentLayer = new List<Transform>();
         float lastHeight = childrenToAttract[0].transform.position.y;
@@ -274,7 +274,7 @@ public class ContainerManager : MonoBehaviour
             float heightThreshold = Random.Range(0.05f, 0.3f);
             if (Mathf.Abs(obj.transform.position.y - lastHeight) > heightThreshold)
             {
-                // ¿ªÊ¼ĞÂµÄÒ»²ã
+                // ï¿½ï¿½Ê¼ï¿½Âµï¿½Ò»ï¿½ï¿½
                 if (currentLayer.Count > 0)
                 {
                     layers.Add(new List<Transform>(currentLayer));
@@ -286,7 +286,7 @@ public class ContainerManager : MonoBehaviour
             lastHeight = obj.transform.position.y;
         }
 
-        // Ìí¼Ó×îºóÒ»²ã
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
         if (currentLayer.Count > 0)
         {
             layers.Add(currentLayer);
@@ -299,11 +299,11 @@ public class ContainerManager : MonoBehaviour
     {
         List<Coroutine> coroutines = new List<Coroutine>();
 
-        // ¼ÆËã¸Ã²ãµÄÄ¿±ê¸ß¶È
+        // ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½Ä¿ï¿½ï¿½ß¶ï¿½
         float targetY = targetPos.position.y;
         float targetX = targetPos.position.x;
 
-        // Îª¸Ã²ãËùÓĞÎïÌåÆô¶¯ÎüÊÕĞ­³Ì
+        // Îªï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ­ï¿½ï¿½
         foreach (var obj in layerObjects)
         {
             if (obj == null) continue;
@@ -313,7 +313,7 @@ public class ContainerManager : MonoBehaviour
 
         }
 
-        // µÈ´ı¸Ã²ãËùÓĞÎïÌåÎüÊÕÍê³É
+        // ï¿½È´ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (var coroutine in coroutines)
         {
             yield return coroutine;
@@ -325,21 +325,21 @@ public class ContainerManager : MonoBehaviour
     {
         foreach (var obj in layerObjects)
         {
-            // Ïú»ÙÓÎÏ·¶ÔÏó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
             if (obj != null)
             {
                 Destroy(obj.gameObject);
             }
 
 
-            // Èç¹ûĞèÒª£¬¿ÉÒÔÔÚÕâÀïÌí¼ÓÏú»ÙÌØĞ§¡¢ÉùÒôµÈ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             // PlayDestroyEffect(obj.position);
         }
 
         layerObjects.Clear();
     }
 
-    // ÒÆ¶¯ÎïÌåµ½Ö¸¶¨¸ß¶È
+    // ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½åµ½Ö¸ï¿½ï¿½ï¿½ß¶ï¿½
     IEnumerator MoveObjectToHeight(Transform obj, float targetHeight, float targetX)
     {
         if (obj == null) yield break;
@@ -359,5 +359,50 @@ public class ContainerManager : MonoBehaviour
         {
             obj.position = targetPos;
         }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            CreateItemManually("Circle", ball);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            CreateItemManually("Triangle", triangle);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CreateItemManually("Square", ice);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            CreateItemManually("Hexagon", lava);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            CreateItemManually("Diamond", blue);
+        }
+    }
+
+    /// <summary>
+    /// æ‰‹åŠ¨åˆ›å»ºç‰©å“å¹¶æ›´æ–°ä»»åŠ¡è¿›åº¦
+    /// </summary>
+    /// <param name="itemType">ç‰©å“ç±»å‹</param>
+    /// <param name="prefab">é¢„åˆ¶ä½“</param>
+    public void CreateItemManually(string itemType, GameObject prefab)
+    {
+        // æ£€æŸ¥ä»»åŠ¡æ˜¯å¦å·²å®Œæˆ
+        if (taskManager.CheckItemFull(itemType))
+        {
+            Debug.Log($"{itemType} ä»»åŠ¡å·²å®Œæˆï¼Œæ— æ³•ç»§ç»­æ·»åŠ ");
+            return;
+        }
+        
+        // åˆ›å»ºç‰©ä½“
+        // CreateObject(prefab, itemType);
+        
+        // æ›´æ–°ä»»åŠ¡è¿›åº¦
+        taskManager.ItemCollected(prefab, itemType);
     }
 }

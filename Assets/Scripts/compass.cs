@@ -14,6 +14,8 @@ public class compass : MonoBehaviour
 
     private RectTransform compassRect;
 
+
+
     void Awake()
     {
         compassRect = GetComponent<RectTransform>();

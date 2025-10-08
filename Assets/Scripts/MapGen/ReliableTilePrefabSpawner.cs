@@ -51,9 +51,12 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     public Collider2D[] excludeAreas = new Collider2D[0];
     [Tooltip("可视化排除区域（调试用）")] 
     public bool visualizeExcludeAreas = false;
+    [Tooltip("地图生成完成后是否删除排除区域的Collider组件")] 
+    public bool removeExcludeCollidersAfterGeneration = true;
 
     System.Random _rng;
-    private HashSet<Vector3Int> _globallyUsedCells; // 改为字段以便在多个方法中访问
+    private HashSet<Vector3Int> _globallyUsedCells;
+    private bool _mapGenerationCompleted = false;
 
     void Start()
     {
@@ -61,10 +64,15 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         seed = SeedStatic.objectSeed;
         if (Application.isPlaying) Spawn();
         
-        
+        // 标记地图生成完成并删除排除区域Collider
+        _mapGenerationCompleted = true;
+        if (removeExcludeCollidersAfterGeneration)
+        {
+            RemoveExcludeAreaColliders();
+        }
     }
 
-    [ContextMenu("Spawn Now")] // 右键组件标题
+    [ContextMenu("Spawn Now")]
     public void Spawn()
     {
         if (generator == null || tilemap == null)
@@ -76,6 +84,13 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         if (autoGenerateIfEmpty && !TilemapHasTiles())
         {
             generator.Generate(SeedStatic.tileSeed);
+            _mapGenerationCompleted = true;
+            
+            // 如果在这里生成了地图，也删除排除区域Collider
+            if (removeExcludeCollidersAfterGeneration)
+            {
+                RemoveExcludeAreaColliders();
+            }
         }
         if (!TilemapHasTiles())
         {
@@ -379,5 +394,56 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         {
             go.transform.SetParent(InitParent);
         }
+    }
+
+    /// <summary>
+    /// 删除排除区域的Collider组件
+    /// </summary>
+    [ContextMenu("Remove Exclude Area Colliders")]
+    public void RemoveExcludeAreaColliders()
+    {
+        if (excludeAreas == null || excludeAreas.Length == 0) return;
+
+        int removedCount = 0;
+        foreach (var collider in excludeAreas)
+        {
+            if (collider != null)
+            {
+                string objectName = collider.gameObject.name;
+                
+                if (Application.isPlaying)
+                {
+                    Destroy(collider);
+                }
+                else
+                {
+#if UNITY_EDITOR
+                    DestroyImmediate(collider);
+#endif
+                }
+                
+                removedCount++;
+                Debug.Log($"已删除排除区域Collider: {objectName}");
+            }
+        }
+        
+        // 清空数组引用
+        excludeAreas = new Collider2D[0];
+        
+        Debug.Log($"排除区域清理完成，共删除 {removedCount} 个Collider组件");
+    }
+
+    /// <summary>
+    /// 检查是否还有有效的排除区域
+    /// </summary>
+    public bool HasActiveExcludeAreas()
+    {
+        if (excludeAreas == null || excludeAreas.Length == 0) return false;
+        
+        foreach (var area in excludeAreas)
+        {
+            if (area != null) return true;
+        }
+        return false;
     }
 }

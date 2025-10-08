@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Transform rotateObject;
     public Transform suckEffect;
-    public float minMovementThreshold = 0.1f; // ×îÐ¡ÒÆ¶¯ãÐÖµ
+    public float minMovementThreshold = 0.1f; // ï¿½ï¿½Ð¡ï¿½Æ¶ï¿½ï¿½ï¿½Öµ
     public float maxMass = 10f;
     public float baseBounceForce = 5f;
     public float velocityMultiplier = 1.5f;
@@ -43,10 +43,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        // ÉèÖÃÏßÐÔ×èÄá - Ä£Äâ¿ÕÆø/Á÷Ìå×èÁ¦
-        rb.drag = 1f; // ÖµÔ½´ó£¬Í£Ö¹Ô½¿ì
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - Ä£ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        rb.drag = 1f; // ÖµÔ½ï¿½ï¿½Í£Ö¹Ô½ï¿½ï¿½
 
-        // ÉèÖÃ½ÇËÙ¶È×èÄá
+        // ï¿½ï¿½ï¿½Ã½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½
         rb.angularDrag = 0.5f;
         targetRotation = rotateObject.rotation;
         totalMass = 0;
@@ -65,13 +65,13 @@ public class PlayerController : MonoBehaviour
             transform.position = InitPos;
             isInit = true;
         }
-        // ¼ÆËãµ±Ç°ËÙ¶È
+        // ï¿½ï¿½ï¿½ãµ±Ç°ï¿½Ù¶ï¿½
         currentSpeed = rb.velocity.magnitude;
         lastPosition = transform.position;
 
-        // »ñÈ¡ÊäÈë
-        movement.x = Input.GetAxisRaw("Horizontal"); // A/D »ò ×óÓÒ¼ýÍ·
-        movement.y = Input.GetAxisRaw("Vertical");   // W/S »ò ÉÏÏÂ¼ýÍ·
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+        movement.x = Input.GetAxisRaw("Horizontal"); // A/D ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¼ï¿½Í·
+        movement.y = Input.GetAxisRaw("Vertical");   // W/S ï¿½ï¿½ ï¿½ï¿½ï¿½Â¼ï¿½Í·
 
         //if (movement != Vector2.zero)
         //{
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         //    targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //}
 
-        // Ê¹ÓÃ¹Ì¶¨Ðý×ªËÙ¶ÈÖð²½×ªÏòÄ¿±ê·½Ïò
+        // Ê¹ï¿½Ã¹Ì¶ï¿½ï¿½ï¿½×ªï¿½Ù¶ï¿½ï¿½ï¿½×ªï¿½ï¿½Ä¿ï¿½ê·½ï¿½ï¿½
         //rotateObject.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationSpeed * Time.deltaTime);
 
         //rotateObject.localRotation = targetRotation;
@@ -99,11 +99,11 @@ public class PlayerController : MonoBehaviour
 
         if (!isColliding)
         {
-            // ÒÆ¶¯½ÇÉ«
+            // ï¿½Æ¶ï¿½ï¿½ï¿½É«
             //rb.MovePosition(rb.position + movement * maxSpeed * Time.fixedDeltaTime);
             rb.AddForce(movement * moveForce);  //(1 / totalMass)
 
-            // ÏÞÖÆ×î´óËÙ¶È
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
             if (rb.velocity.magnitude > maxSpeed)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector2.zero)
         {
-            // Ö±½Ó¼ÆËã¿´Ïò·½ÏòµÄ½Ç¶È
+            // Ö±ï¿½Ó¼ï¿½ï¿½ã¿´ï¿½ï¿½ï¿½ï¿½Ä½Ç¶ï¿½
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             playerangle = angle;
             //Debug.Log(playerangle);
@@ -129,10 +129,10 @@ public class PlayerController : MonoBehaviour
             //}
             //else
             //{
-            //    // ´´½¨Ä¿±êÐý×ª
+            //    // ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½×ª
             //    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            //    // Æ½»¬Ðý×ª
+            //    // Æ½ï¿½ï¿½ï¿½ï¿½×ª
             //    rotateObject.rotation = targetRotation;//Quaternion.RotateTowards(rotateObject.rotation, targetRotation, maxRotationSpeed * Time.deltaTime); ;
             //}
 
@@ -194,31 +194,31 @@ public class PlayerController : MonoBehaviour
         {
             isColliding = true;
 
-            // »ñÈ¡Åö×²·¨Ïß
+            // ï¿½ï¿½È¡ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½
             Vector2 collisionNormal = GetCollisionNormal2D(other);
 
-            // ¼ÆËã»ùÓÚËÙ¶ÈµÄ·´µ¯Á¦
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ÈµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½
             float dynamicBounceForce = CalculateDynamicBounceForce();
 
-            // ¼ÆËã·´Éä·½Ïò
+            // ï¿½ï¿½ï¿½ã·´ï¿½ä·½ï¿½ï¿½
             Vector2 reflectDirection = Vector2.Reflect(rb.velocity.normalized, collisionNormal);
 
-            // Ó¦ÓÃ»ùÓÚËÙ¶ÈµÄ·´µ¯Á¦
+            // Ó¦ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ù¶ÈµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½
             rb.velocity = reflectDirection * dynamicBounceForce;
 
-            // ¶ÌÔÝÑÓ³ÙºóÖØÖÃÅö×²×´Ì¬
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ó³Ùºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²×´Ì¬
             Invoke("ResetCollision", 0.1f);
 
-            Debug.Log($"Åö×²ËÙ¶È: {currentSpeed}, ·´µ¯Á¦: {dynamicBounceForce}");
+            Debug.Log($"ï¿½ï¿½×²ï¿½Ù¶ï¿½: {currentSpeed}, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: {dynamicBounceForce}");
         }
     }
 
     float CalculateDynamicBounceForce()
     {
-        // »ù´¡·´µ¯Á¦ + ËÙ¶È³ËÊý * µ±Ç°ËÙ¶È
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ + ï¿½Ù¶È³ï¿½ï¿½ï¿½ * ï¿½ï¿½Ç°ï¿½Ù¶ï¿½
         float calculatedForce = baseBounceForce + (velocityMultiplier * currentSpeed);
 
-        // ÏÞÖÆ×î´ó·´µ¯Á¦
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó·´µï¿½ï¿½ï¿½
         return Mathf.Min(calculatedForce, maxBounceForce);
     }
 
@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 GetCollisionNormal2D(Collider2D wallCollider)
     {
-        // Ê¹ÓÃ¶à¸öÉäÏß»ñÈ¡¸ü¾«È·µÄ·¨Ïß
+        // Ê¹ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½È¡ï¿½ï¿½ï¿½ï¿½È·ï¿½Ä·ï¿½ï¿½ï¿½
         Vector2[] rayDirections = {
             Vector2.left, Vector2.right, Vector2.up, Vector2.down,
             new Vector2(1, 1).normalized, new Vector2(-1, 1).normalized,
@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
             return (averageNormal / hitCount).normalized;
         }
 
-        // ±¸ÓÃ·¨Ïß¼ÆËã
+        // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ß¼ï¿½ï¿½ï¿½
         Vector2 closestPoint = wallCollider.ClosestPoint(transform.position);
         return ((Vector2)transform.position - closestPoint).normalized;
     }
