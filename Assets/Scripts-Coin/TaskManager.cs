@@ -264,9 +264,10 @@ public class TaskManager : MonoBehaviour
         SeedStatic.numScene++;
         SeedStatic.lightYear += Random.Range(minYear, maxYear);
 
+        containerManager.AttrackAll();
 
         // 延迟切换到下一个场景
-        StartCoroutine(LoadNextSceneAfterDelay(1f));
+        StartCoroutine(LoadNextSceneAfterDelay(2f));
     }
 
     void TaskFailed()

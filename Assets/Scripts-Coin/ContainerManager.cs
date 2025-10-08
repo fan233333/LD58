@@ -28,6 +28,7 @@ public class ContainerManager : MonoBehaviour
 
     public TaskManager taskManager;
 
+
     private List<GameObject> childrenToAttract = new List<GameObject>();
     private bool isAttracting = false;
     // Start is called before the first frame update
@@ -167,6 +168,19 @@ public class ContainerManager : MonoBehaviour
             rb.AddForce(new Vector2(randomForce, 0), ForceMode2D.Impulse);
         }
     }
+
+
+    public void AttrackAll()
+    {
+
+        StartAttractionProcess(ballParent, ballContainer.transform);
+        StartAttractionProcess(triangleParent, triangleContainer.transform);
+        StartAttractionProcess(IceParent, IceContainer.transform);
+        StartAttractionProcess(LavaParent, LavaContainer.transform);
+        StartAttractionProcess(BuleParent, BuleContainer.transform);
+
+    }
+
 
     public void StartAttractionProcess(Transform parent, Transform target)
     {
