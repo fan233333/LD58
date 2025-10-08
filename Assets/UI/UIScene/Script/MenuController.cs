@@ -30,6 +30,7 @@ public class MenuController : MonoBehaviour
     public GameObject introPanel;
     public GameObject intro1;
     public GameObject intro2;
+    public GameObject language;
     
     // TODO: Animation?
     public Animator introAnimator;
@@ -135,6 +136,12 @@ public class MenuController : MonoBehaviour
         }
         else if (_State == Panels.C2)
         {
+            intro2.SetActive(false);
+            language.SetActive(true);
+            //_State = Panels.C3;
+        }
+        else if( _State == Panels.C3)
+        {
             StartCoroutine(LoadGameScene());
         }
     }
@@ -182,5 +189,19 @@ public class MenuController : MonoBehaviour
         Debug.Log("Loading complete");
         // yield return new WaitUntil(() => !introAnimator.GetCurrentAnimatorStateInfo(0).IsName("IntroAnimation"));
 
+    }
+
+    public void ChooseEng()
+    {
+        SeedStatic.isEng = true;
+        _State = Panels.C3;
+        nextIntro();
+    }
+
+    public void ChooseChi()
+    {
+        SeedStatic.isEng = false;
+        _State = Panels.C3;
+        nextIntro();
     }
 }

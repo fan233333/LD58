@@ -9,4 +9,6 @@ public static class SeedStatic
 
     public static int numScene = 1;
     public static int lightYear = 1;
+
+    public static bool isEng = true;
 }

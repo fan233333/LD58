@@ -62,7 +62,7 @@ public class CheckSpecificObject : MonoBehaviour
             }
         }
 
-        if (childrenToAttract.Count > 0)
+        if (childrenToAttract.Count > 0 && !taskManager.CheckItemFull(typeName))
         {
             isAbsorbing = true;
             

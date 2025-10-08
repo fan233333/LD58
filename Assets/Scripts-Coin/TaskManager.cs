@@ -204,6 +204,25 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    public bool CheckItemFull(string itemType)
+    {
+        foreach(var item in taskItems)
+        {
+            if(item.itemName == itemType)
+            {
+                if(item.currentAmount >= item.requiredAmount)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
     public void ItemCollected(GameObject obj, string itemType)
     {
         if (!isTaskActive) return;

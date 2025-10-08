@@ -32,9 +32,21 @@ public class ManageScenes : MonoBehaviour
     public class StoryThreshold
     {
         public float lightYearThreshold;
-        public TextAsset story;
+        //public TextAsset story;
+        [Tooltip("中文故事")]
+        public TextAsset storyCN;
+        [Tooltip("英文故事")]
+        public TextAsset storyEN;
         public bool hasBeenPlayed = false;
-        public string storyName => story != null ? story.name : "Empty";
+        //public string storyName => story != null ? story.name : "Empty";
+        // 根据语言设置返回对应的故事
+        public TextAsset CurrentStory => SeedStatic.isEng ? storyEN : storyCN;
+
+        // 故事名称（用于显示和记录）
+        public string storyName => CurrentStory != null ? CurrentStory.name : "Empty";
+
+        // 检查是否有可用的故事
+        public bool HasValidStory => CurrentStory != null;
     }
 
     [Header("Multiple Story Thresholds")]
@@ -147,8 +159,7 @@ public class ManageScenes : MonoBehaviour
 
         // 策略1：播放阈值最高的满足条件的故事（最新进度）
         StoryThreshold highestStory = availableStories.Last();
-        Debug.Log($"Selected highest story: {highestStory.storyName} (Threshold: {highestStory.lightYearThreshold})");
-
+        Debug.Log($"Selected highest story: {highestStory.storyName} (Threshold: {highestStory.lightYearThreshold}, Language: {(SeedStatic.isEng ? "EN" : "CN")})");
         return highestStory;
 
         // 策略2：播放阈值最低的满足条件的故事（按顺序）
@@ -157,13 +168,21 @@ public class ManageScenes : MonoBehaviour
 
     private void PlayStory(StoryThreshold storyThreshold)
     {
-        if (storyThreshold.story != null && _inkReader != null)
+        //if (storyThreshold.story != null && _inkReader != null)
+        //{
+        //    _inkReader.SetAndInitializeStory(storyThreshold.story);
+        //    storyThreshold.hasBeenPlayed = true;
+        //    _lastPlayedStory = storyThreshold.storyName;
+
+        //    Debug.Log($"Playing story: {storyThreshold.storyName} (LightYear: {SeedStatic.lightYear}, Threshold: {storyThreshold.lightYearThreshold})");
+        //}
+        if (storyThreshold.HasValidStory && _inkReader != null)
         {
-            _inkReader.SetAndInitializeStory(storyThreshold.story);
+            _inkReader.SetAndInitializeStory(storyThreshold.CurrentStory);
             storyThreshold.hasBeenPlayed = true;
             _lastPlayedStory = storyThreshold.storyName;
 
-            Debug.Log($"Playing story: {storyThreshold.storyName} (LightYear: {SeedStatic.lightYear}, Threshold: {storyThreshold.lightYearThreshold})");
+            Debug.Log($"Playing story: {storyThreshold.storyName} (LightYear: {SeedStatic.lightYear}, Threshold: {storyThreshold.lightYearThreshold}, Language: {(SeedStatic.isEng ? "EN" : "CN")})");
         }
     }
     #endregion
@@ -225,7 +244,7 @@ public class ManageScenes : MonoBehaviour
     }
 
     // 添加新的故事阈值
-    public void AddStoryThreshold(float threshold, TextAsset storyAsset)
+    public void AddStoryThreshold(float threshold, TextAsset storyAssetCN, TextAsset storyAssetEN)
     {
         if (storyThresholds.Any(s => Mathf.Approximately(s.lightYearThreshold, threshold)))
         {
@@ -236,7 +255,8 @@ public class ManageScenes : MonoBehaviour
         storyThresholds.Add(new StoryThreshold
         {
             lightYearThreshold = threshold,
-            story = storyAsset
+            storyCN = storyAssetCN,
+            storyEN = storyAssetEN
         });
 
         // 重新排序
@@ -273,12 +293,14 @@ public class ManageScenes : MonoBehaviour
     private void DebugStoryStatus()
     {
         Debug.Log($"Current LightYear: {SeedStatic.lightYear}");
+        Debug.Log($"Current Language: {(SeedStatic.isEng ? "EN" : "CN")}");
         Debug.Log($"Last Played Story: {_lastPlayedStory}");
 
         foreach (var story in storyThresholds)
         {
             string status = story.hasBeenPlayed ? "PLAYED" : "NOT PLAYED";
-            Debug.Log($"Story: {story.storyName} | Threshold: {story.lightYearThreshold} | Status: {status}");
+            string available = story.HasValidStory ? "AVAILABLE" : "MISSING";
+            Debug.Log($"Story: {story.storyName} | Threshold: {story.lightYearThreshold} | Status: {status} | {available}");
         }
 
         StoryThreshold nextStory = GetStoryForCurrentLightYear();
