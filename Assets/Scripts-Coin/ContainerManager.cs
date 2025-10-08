@@ -34,6 +34,7 @@ public class ContainerManager : MonoBehaviour
     public float delayBetweenLayers = 0.5f; // ����ӳ�
 
     public TaskManager taskManager;
+    public static bool isAllAttracted = false;
 
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
@@ -204,7 +205,7 @@ public class ContainerManager : MonoBehaviour
     }
 
 
-        public void AttrackAll()
+    public void AttrackAll()
     {
         // 并行启动所有吸引过程
         StartCoroutine(StartAllAttractionProcesses());
@@ -212,6 +213,7 @@ public class ContainerManager : MonoBehaviour
 
     private IEnumerator StartAllAttractionProcesses()
     {
+        isAllAttracted = false;
         // 创建所有吸引过程的协程列表
         List<Coroutine> attractionCoroutines = new List<Coroutine>();
 
@@ -227,6 +229,7 @@ public class ContainerManager : MonoBehaviour
         {
             yield return coroutine;
         }
+        isAllAttracted = true;
 
         Debug.Log("所有吸引过程已完成");
     }

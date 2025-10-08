@@ -94,9 +94,11 @@ public class TaskManager : MonoBehaviour
             }
         }
 
+
+
         if (Input.GetKeyDown(KeyCode.K))
         {
-            TaskCompleted();
+            StartCoroutine(TaskCompleted());
         }
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -266,11 +268,11 @@ public class TaskManager : MonoBehaviour
 
         if (completed)
         {
-            TaskCompleted();
+            StartCoroutine(TaskCompleted());
         }
     }
 
-    void TaskCompleted()
+    IEnumerator TaskCompleted()
     {
         isTaskActive = false;
         Debug.Log("������ɣ�");
@@ -286,6 +288,8 @@ public class TaskManager : MonoBehaviour
         containerManager.AttrackAll();
 
         // �ӳ��л�����һ������
+        yield return new WaitUntil(() => ContainerManager.isAllAttracted);
+
         StartCoroutine(LoadNextSceneAfterDelay(5f));
     }
 
