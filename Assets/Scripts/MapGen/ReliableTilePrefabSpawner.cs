@@ -46,6 +46,12 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     [Tooltip("完全避免不同规则间的重叠（使用全局格子记录）")] public bool preventOverlapBetweenRules = true;
     [Tooltip("显示占用的格子区域（调试用）")] public bool visualizeOccupiedCells = false;
 
+    [Header("排除区域")]
+    [Tooltip("在这些Collider2D区域内不生成物品")] 
+    public Collider2D[] excludeAreas = new Collider2D[0];
+    [Tooltip("可视化排除区域（调试用）")] 
+    public bool visualizeExcludeAreas = false;
+
     System.Random _rng;
     private HashSet<Vector3Int> _globallyUsedCells; // 改为字段以便在多个方法中访问
 
@@ -124,6 +130,7 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
                 var cell = cells[i];
                 if (preventOverlapBetweenRules && !IsAreaAvailable(cell, rule))
                     continue;
+                
                 Vector3 world = tilemap.GetCellCenterWorld(cell);
                 if (rule.cellJitter > 0f)
                 {
@@ -133,44 +140,32 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
                 }
 
                 GameObject go;
+    
+                // 统一的实例化逻辑
 #if UNITY_EDITOR
-                if (!Application.isPlaying)
-                {
-                    go = (GameObject)PrefabUtility.InstantiatePrefab(rule.prefab, parent);
-                    go.transform.position = world;
-                }
-                else
-                {
-                    go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
-                    float size = Random.Range(rule.minSize, rule.maxSize);
-                    go.transform.localScale = new Vector3(size, size, size);
-                    float rotateAngle = Random.Range(-rule.angle, rule.angle);
-                    Quaternion targetRotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
-                    go.transform.rotation = targetRotation;
-                    int spriteNo = Random.Range(0, rule.sprites.Count);
-                    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-                    if(spriteRenderer != null )
-                    {
-                        spriteRenderer.sprite = rule.sprites[spriteNo];
-                    }
-                   
-                    if(rule.name == "InitPos")
-                    {
-                        go.transform.SetParent(InitParent);
-                    }
-                }
+    if (!Application.isPlaying)
+    {
+        go = (GameObject)PrefabUtility.InstantiatePrefab(rule.prefab, parent);
+        go.transform.position = world;
+    }
+    else
+    {
+        go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
+    }
 #else
-                go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
+    go = Instantiate(rule.prefab, world, Quaternion.identity, parent);
 #endif
-                if (preventOverlapBetweenRules && !IsAreaAvailable(cell, rule))
-                    continue;
-                spawned++;
 
-                // 调试信息
-                if (preventOverlapBetweenRules && visualizeOccupiedCells)
+                // 统一应用随机化（编辑器和打包版本都执行）
+                ApplyRandomization(go, rule);
+
+                // 关键修复：生成成功后标记占用区域
+                if (preventOverlapBetweenRules)
                 {
-                    //Debug.Log($"在格子 {cell} 生成 {rule.name}，占用 {GetOccupiedCells(cell, rule).Count} 个格子");
+                    MarkOccupiedArea(cell, rule);
                 }
+                
+                spawned++;
             }
             //Debug.Log($"规则 '{rule.name}' 生成了 {spawned}/{targetCount} 个实例（可用格子: {cells.Count}）");
         }
@@ -252,6 +247,19 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
         return false;
     }
 
+    // 新增：检查位置是否在排除区域内
+    bool IsInExcludeArea(Vector3 worldPosition)
+    {
+        if (excludeAreas == null || excludeAreas.Length == 0) return false;
+        
+        foreach (var area in excludeAreas)
+        {
+            if (area != null && area.OverlapPoint(worldPosition))
+                return true;
+        }
+        return false;
+    }
+
     List<Vector3Int> CollectAllowedCells(Rule rule)
     {
         var cells = new List<Vector3Int>();
@@ -263,7 +271,16 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
             for (int t = 0; t < 4; t++)
             {
                 if (!rule.allowTypes[t]) continue;
-                foreach (var c in generator.GetCellsOfType(t)) { cells.Add(c); usedGenerator = true; }
+                foreach (var c in generator.GetCellsOfType(t)) 
+                { 
+                    // 检查是否在排除区域内
+                    Vector3 worldPos = tilemap.GetCellCenterWorld(c);
+                    if (!IsInExcludeArea(worldPos))
+                    {
+                        cells.Add(c); 
+                        usedGenerator = true; 
+                    }
+                }
             }
         }
         catch { /* ignore */ }
@@ -278,6 +295,11 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
                 var p = new Vector3Int(x, y, 0);
                 var t = tilemap.GetTile(p);
                 if (t == null) continue;
+                
+                // 检查是否在排除区域内
+                Vector3 worldPos = tilemap.GetCellCenterWorld(p);
+                if (IsInExcludeArea(worldPos)) continue;
+                
                 // 与 generator.tiles[类型] 比对
                 for (int type = 0; type < 4; type++)
                 {
@@ -302,13 +324,60 @@ public class ReliableTilePrefabSpawner : MonoBehaviour
     // 新增：在编辑器中可视化占用的格子（调试用）
     void OnDrawGizmosSelected()
     {
-        if (!visualizeOccupiedCells || _globallyUsedCells == null) return;
-
-        Gizmos.color = Color.red;
-        foreach (var cell in _globallyUsedCells)
+        // 可视化占用的格子
+        if (visualizeOccupiedCells && _globallyUsedCells != null)
         {
-            Vector3 worldPos = tilemap.GetCellCenterWorld(cell);
-            Gizmos.DrawWireCube(worldPos, tilemap.cellSize * 0.8f);
+            Gizmos.color = Color.red;
+            foreach (var cell in _globallyUsedCells)
+            {
+                Vector3 worldPos = tilemap.GetCellCenterWorld(cell);
+                Gizmos.DrawWireCube(worldPos, tilemap.cellSize * 0.8f);
+            }
+        }
+        
+        // 可视化排除区域
+        if (visualizeExcludeAreas && excludeAreas != null)
+        {
+            Gizmos.color = Color.yellow;
+            foreach (var area in excludeAreas)
+            {
+                if (area != null)
+                    Gizmos.DrawWireCube(area.bounds.center, area.bounds.size);
+            }
+        }
+    }
+
+    // 新增：统一的随机化应用方法
+    void ApplyRandomization(GameObject go, Rule rule)
+    {
+        // 使用 _rng 确保随机数一致性，而不是Unity的Random
+        if (rule.minSize != rule.maxSize)
+        {
+            float size = Mathf.Lerp(rule.minSize, rule.maxSize, (float)_rng.NextDouble());
+            go.transform.localScale = new Vector3(size, size, size);
+        }
+        
+        if (rule.angle > 0f)
+        {
+            float rotateAngle = ((float)_rng.NextDouble() * 2f - 1f) * rule.angle;
+            Quaternion targetRotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
+            go.transform.rotation = targetRotation;
+        }
+        
+        if (rule.sprites != null && rule.sprites.Count > 0)
+        {
+            int spriteNo = _rng.Next(rule.sprites.Count);
+            SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sprite = rule.sprites[spriteNo];
+            }
+        }
+        
+        // 特殊处理
+        if (rule.name == "InitPos" && InitParent != null)
+        {
+            go.transform.SetParent(InitParent);
         }
     }
 }
