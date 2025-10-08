@@ -33,19 +33,19 @@ public class ManageScenes : MonoBehaviour
     {
         public float lightYearThreshold;
         //public TextAsset story;
-        [Tooltip("ÖĞÎÄ¹ÊÊÂ")]
+        [Tooltip("ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½")]
         public TextAsset storyCN;
-        [Tooltip("Ó¢ÎÄ¹ÊÊÂ")]
+        [Tooltip("Ó¢ï¿½Ä¹ï¿½ï¿½ï¿½")]
         public TextAsset storyEN;
         public bool hasBeenPlayed = false;
         //public string storyName => story != null ? story.name : "Empty";
-        // ¸ù¾İÓïÑÔÉèÖÃ·µ»Ø¶ÔÓ¦µÄ¹ÊÊÂ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½Ø¶ï¿½Ó¦ï¿½Ä¹ï¿½ï¿½ï¿½
         public TextAsset CurrentStory => SeedStatic.isEng ? storyEN : storyCN;
 
-        // ¹ÊÊÂÃû³Æ£¨ÓÃÓÚÏÔÊ¾ºÍ¼ÇÂ¼£©
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Í¼ï¿½Â¼ï¿½ï¿½
         public string storyName => CurrentStory != null ? CurrentStory.name : "Empty";
 
-        // ¼ì²éÊÇ·ñÓĞ¿ÉÓÃµÄ¹ÊÊÂ
+        // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ğ¿ï¿½ï¿½ÃµÄ¹ï¿½ï¿½ï¿½
         public bool HasValidStory => CurrentStory != null;
     }
 
@@ -56,7 +56,7 @@ public class ManageScenes : MonoBehaviour
     private bool _isInitialized = false;
     private string _lastPlayedStory = "";
 
-    // ¹«¹²ÊôĞÔ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public InkReader CurrentInkReader => _inkReader;
     public bool IsStoryPlaying => _inkReader != null && _inkReader.IsStoryPlaying;
     public string LastPlayedStory => _lastPlayedStory;
@@ -98,7 +98,7 @@ public class ManageScenes : MonoBehaviour
         FindAndSetupInkReader();
         _isInitialized = true;
 
-        // °´ãĞÖµÅÅĞò£¬È·±£´ÓĞ¡µ½´ó
+        // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½
         storyThresholds = storyThresholds.OrderBy(s => s.lightYearThreshold).ToList();
     }
 
@@ -122,6 +122,12 @@ public class ManageScenes : MonoBehaviour
     {
         Debug.Log($"Scene loaded: {scene.name}");
 
+        // æ£€æŸ¥æ˜¯å¦æ˜¯ä¸»èœå•åœºæ™¯ï¼Œå¦‚æœæ˜¯åˆ™æ¸…é›¶å…‰å¹´
+        if (IsMainMenuScene(scene.name))
+        {
+            ResetLightYearProgress();
+        }
+
         FindAndSetupInkReader();
         CheckAndPlayStoryByCondition();
     }
@@ -132,7 +138,7 @@ public class ManageScenes : MonoBehaviour
     {
         if (_inkReader == null) return;
 
-        // »ñÈ¡µ±Ç°Ó¦¸Ã²¥·ÅµÄ¹ÊÊÂ
+        // ï¿½ï¿½È¡ï¿½ï¿½Ç°Ó¦ï¿½Ã²ï¿½ï¿½ÅµÄ¹ï¿½ï¿½ï¿½
         StoryThreshold storyToPlay = GetStoryForCurrentLightYear();
 
         if (storyToPlay != null && !storyToPlay.hasBeenPlayed)
@@ -145,7 +151,7 @@ public class ManageScenes : MonoBehaviour
     {
         float currentLightYear = SeedStatic.lightYear;
 
-        // ÕÒ³öËùÓĞÂú×ããĞÖµÇÒÎ´²¥·ÅµÄ¹ÊÊÂ
+        // ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î´ï¿½ï¿½ï¿½ÅµÄ¹ï¿½ï¿½ï¿½
         var availableStories = storyThresholds
             .Where(s => currentLightYear >= s.lightYearThreshold && !s.hasBeenPlayed)
             .OrderBy(s => s.lightYearThreshold)
@@ -157,12 +163,12 @@ public class ManageScenes : MonoBehaviour
             return null;
         }
 
-        // ²ßÂÔ1£º²¥·ÅãĞÖµ×î¸ßµÄÂú×ãÌõ¼şµÄ¹ÊÊÂ£¨×îĞÂ½ø¶È£©
+        // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½È£ï¿½
         StoryThreshold highestStory = availableStories.Last();
         Debug.Log($"Selected highest story: {highestStory.storyName} (Threshold: {highestStory.lightYearThreshold}, Language: {(SeedStatic.isEng ? "EN" : "CN")})");
         return highestStory;
 
-        // ²ßÂÔ2£º²¥·ÅãĞÖµ×îµÍµÄÂú×ãÌõ¼şµÄ¹ÊÊÂ£¨°´Ë³Ğò£©
+        // ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½Â£ï¿½ï¿½ï¿½Ë³ï¿½ï¿½
         // return availableStories.First();
     }
 
@@ -205,7 +211,7 @@ public class ManageScenes : MonoBehaviour
         }
     }
 
-    // ÊÖ¶¯¼ì²é²¢²¥·Å·ûºÏÌõ¼şµÄ×î¸ßãĞÖµ¹ÊÊÂ
+    // ï¿½Ö¶ï¿½ï¿½ï¿½é²¢ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
     public void CheckAndPlayHighestStory()
     {
         StoryThreshold storyToPlay = GetStoryForCurrentLightYear();
@@ -215,13 +221,13 @@ public class ManageScenes : MonoBehaviour
         }
     }
 
-    // »ñÈ¡µ±Ç°Ó¦¸Ã²¥·ÅµÄ¹ÊÊÂ£¨²»Êµ¼Ê²¥·Å£©
+    // ï¿½ï¿½È¡ï¿½ï¿½Ç°Ó¦ï¿½Ã²ï¿½ï¿½ÅµÄ¹ï¿½ï¿½Â£ï¿½ï¿½ï¿½Êµï¿½Ê²ï¿½ï¿½Å£ï¿½
     public StoryThreshold GetCurrentStoryToPlay()
     {
         return GetStoryForCurrentLightYear();
     }
 
-    // ÖØÖÃËùÓĞ¹ÊÊÂµÄ²¥·Å×´Ì¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¹ï¿½ï¿½ÂµÄ²ï¿½ï¿½ï¿½×´Ì¬
     public void ResetAllStoryProgress()
     {
         foreach (var story in storyThresholds)
@@ -232,7 +238,7 @@ public class ManageScenes : MonoBehaviour
         Debug.Log("All story progress reset");
     }
 
-    // ÖØÖÃÌØ¶¨ãĞÖµ¹ÊÊÂµÄ²¥·Å×´Ì¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ÂµÄ²ï¿½ï¿½ï¿½×´Ì¬
     public void ResetStoryProgress(float threshold)
     {
         var story = storyThresholds.FirstOrDefault(s => Mathf.Approximately(s.lightYearThreshold, threshold));
@@ -243,7 +249,7 @@ public class ManageScenes : MonoBehaviour
         }
     }
 
-    // Ìí¼ÓĞÂµÄ¹ÊÊÂãĞÖµ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
     public void AddStoryThreshold(float threshold, TextAsset storyAssetCN, TextAsset storyAssetEN)
     {
         if (storyThresholds.Any(s => Mathf.Approximately(s.lightYearThreshold, threshold)))
@@ -259,18 +265,18 @@ public class ManageScenes : MonoBehaviour
             storyEN = storyAssetEN
         });
 
-        // ÖØĞÂÅÅĞò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         storyThresholds = storyThresholds.OrderBy(s => s.lightYearThreshold).ToList();
     }
 
-    // »ñÈ¡¹ÊÊÂ²¥·Å×´Ì¬
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½×´Ì¬
     public bool HasStoryBeenPlayed(float threshold)
     {
         var story = storyThresholds.FirstOrDefault(s => Mathf.Approximately(s.lightYearThreshold, threshold));
         return story?.hasBeenPlayed ?? false;
     }
 
-    // »ñÈ¡ÏÂÒ»¸öÒª²¥·ÅµÄ¹ÊÊÂãĞÖµ
+    // ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½ÅµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
     public float GetNextStoryThreshold()
     {
         var nextStory = storyThresholds
@@ -281,7 +287,7 @@ public class ManageScenes : MonoBehaviour
         return nextStory != null ? nextStory.lightYearThreshold : -1f;
     }
 
-    // »ñÈ¡ËùÓĞ¹ÊÊÂ×´Ì¬£¨ÓÃÓÚUIÏÔÊ¾£©
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ğ¹ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½Ê¾ï¿½ï¿½
     public List<StoryThreshold> GetAllStoryStatus()
     {
         return new List<StoryThreshold>(storyThresholds);
@@ -326,5 +332,30 @@ public class ManageScenes : MonoBehaviour
         ResetAllStoryProgress();
     }
     #endregion
+
+
+// æ£€æŸ¥æ˜¯å¦æ˜¯ä¸»èœå•åœºæ™¯çš„æ–¹æ³•
+private bool IsMainMenuScene(string sceneName)
+{
+    // å¯ä»¥æ·»åŠ å¤šä¸ªä¸»èœå•åœºæ™¯åç§°
+    string[] mainMenuSceneNames = { "MainMenu", "StartMenu", "Menu", "Main" };
+    return mainMenuSceneNames.Any(name => 
+        string.Equals(sceneName, name, System.StringComparison.OrdinalIgnoreCase));
+}
+
+// é‡ç½®å…‰å¹´è¿›åº¦çš„æ–¹æ³•
+private void ResetLightYearProgress()
+{
+    float oldLightYear = SeedStatic.lightYear;
+    SeedStatic.lightYear = 0;
+    
+    Debug.Log($"Light year reset from {oldLightYear} to 0 when returning to main menu");
+    
+    // å¯é€‰ï¼šåŒæ—¶é‡ç½®å…¶ä»–ç›¸å…³æ•°æ®
+    // SeedStatic.numScene = 0;
+    
+    // å¯é€‰ï¼šé‡ç½®æ•…äº‹æ’­æ”¾çŠ¶æ€
+    ResetAllStoryProgress();
+}
 
 }

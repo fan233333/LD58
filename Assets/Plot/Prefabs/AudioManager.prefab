@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3686866769964887342}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 107.5, y: 64.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 397ebd6acc3571c419095e8697716c3f, type: 3}
-  targetMusic: {fileID: 8300000, guid: 6af5499bb23ada648a4c4c930852cc1b, type: 3}
+  targetMusic1: {fileID: 8300000, guid: 491007b755bbd7b44b932c83c206b9b5, type: 3}
+  targetMusic2: {fileID: 8300000, guid: 0f24b41ccaa6c514fae3ab55fe498b2b, type: 3}
   taskManager: {fileID: 0}
   fadeDuration: 1

@@ -36,11 +36,12 @@ public class ContainerManager : MonoBehaviour
     public TaskManager taskManager;
     public static bool isAllAttracted = false;
 
+    public float size = 0.5f;
 
     private List<GameObject> childrenToAttract = new List<GameObject>();
     private bool isAttracting = false;
 
-    public float globalSizeMultiplier = 1f;
+    public float globalSizeMultiplier = 0.3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +112,7 @@ public class ContainerManager : MonoBehaviour
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         // newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.localScale = obj.transform.localScale / size;
         newBall.transform.SetParent(ballParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float dynamicScale = taskManager.GetItemScale("Circle");
@@ -131,6 +133,7 @@ public class ContainerManager : MonoBehaviour
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         // newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.localScale = obj.transform.localScale / size;
         newBall.transform.SetParent(triangleParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float dynamicScale = taskManager.GetItemScale("Triangle");
@@ -150,6 +153,7 @@ public class ContainerManager : MonoBehaviour
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         // newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.localScale = obj.transform.localScale / size;
         newBall.transform.SetParent(IceParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float dynamicScale = taskManager.GetItemScale("Square");
@@ -169,6 +173,7 @@ public class ContainerManager : MonoBehaviour
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         // newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.localScale = obj.transform.localScale / size;
         newBall.transform.SetParent(LavaParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float dynamicScale = taskManager.GetItemScale("Hexagon");
@@ -190,6 +195,7 @@ public class ContainerManager : MonoBehaviour
         newBall.layer = 0;
         newBall.transform.tag = "Untagged";
         // newBall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        newBall.transform.localScale = obj.transform.localScale / size;
         newBall.transform.SetParent(BuleParent);
         Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
         float dynamicScale = taskManager.GetItemScale("Diamond");

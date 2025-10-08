@@ -6,11 +6,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("±³¾°ÒôÀÖ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public AudioClip backgroundMusic;
 
-    [Header("ÇĞ»»Ä¿±êÒôÀÖ")]
-    public AudioClip targetMusic;
+    [Header("ï¿½Ğ»ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public AudioClip targetMusic1;
+    public AudioClip targetMusic2;
 
     public TaskManager taskManager;
     public static bool isActive;
@@ -24,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        // µ¥ÀıÄ£Ê½£¬È·±£Ö»ÓĞÒ»¸öÒôÆµ¹ÜÀíÆ÷
+        // ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½È·ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Instance == null)
         {
             Instance = this;
@@ -40,40 +41,40 @@ public class AudioManager : MonoBehaviour
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.loop = true; // Ñ­»·²¥·Å
+            audioSource.loop = true; // Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
-        // ¶©ÔÄ³¡¾°¼ÓÔØÊÂ¼ş
+        // ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ¼ì²éÊÇ·ñÊÇ²Ëµ¥³¡¾°
+        // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ç²Ëµï¿½ï¿½ï¿½ï¿½ï¿½
         if (scene.name == menuSceneName)
         {
-            // Èç¹ûÊÇ²Ëµ¥³¡¾°£¬Ïú»Ù×Ô¼º
+            // ï¿½ï¿½ï¿½ï¿½Ç²Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
             DestroyAudioManager();
         }
         else
         {
-            // ÆäËû³¡¾°²¥·Å±³¾°ÒôÀÖ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             PlayBackgroundMusic();
         }
     }
 
     void DestroyAudioManager()
     {
-        // È¡Ïû¶©ÔÄÊÂ¼ş
+        // È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        // Ïú»Ùµ¥ÀıÊµÀı
+        // ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½Êµï¿½ï¿½
         if (Instance == this)
         {
             Instance = null;
         }
 
-        // Ïú»ÙÓÎÏ·¶ÔÏó
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
         Destroy(gameObject);
     }
 
@@ -88,40 +89,60 @@ public class AudioManager : MonoBehaviour
 
     void OnDestroy()
     {
-        // È¡Ïû¶©ÔÄÊÂ¼ş£¬·ÀÖ¹ÄÚ´æĞ¹Â©
+        // È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½Ú´ï¿½Ğ¹Â©
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void Update()
+private void Update()
+{
+    if (taskManager == null)
     {
-        if(taskManager == null)
-        {
-            taskManager = GameObject.Find("TaskManager").GetComponent<TaskManager>();
-        }
-        remainTime = taskManager.GetRemainTime();
-        if (remainTime < 30 && !hasSwitched && isActive)
-        {
-            StartCoroutine(SwitchWithFade(targetMusic));
-            hasSwitched = true;
-        }
-        if(remainTime > 30 && hasSwitched && isActive)
-        {
-            StartCoroutine(SwitchWithFade(backgroundMusic));
-            hasSwitched = false;
-        }
+        taskManager = GameObject.Find("TaskManager").GetComponent<TaskManager>();
+        return;
     }
+    
+    if (!isActive) return;
+    
+    remainTime = taskManager.GetRemainTime();
+    
+    // ä½¿ç”¨å½“å‰æ’­æ”¾çš„éŸ³ä¹æ¥åˆ¤æ–­æ˜¯å¦éœ€è¦åˆ‡æ¢
+    AudioClip currentClip = audioSource.clip;
+    AudioClip targetClip = null;
+    
+    if (remainTime < 30)
+    {
+        targetClip = targetMusic2;  // é«˜åº¦ç´§å¼ éŸ³ä¹
+    }
+    else if (remainTime < 90)
+    {
+        targetClip = targetMusic1;  // ä¸­ç­‰ç´§å¼ éŸ³ä¹
+    }
+    else
+    {
+        targetClip = backgroundMusic; // æ­£å¸¸èƒŒæ™¯éŸ³ä¹
+    }
+
+        // åªæœ‰å½“ç›®æ ‡éŸ³ä¹ä¸å½“å‰éŸ³ä¹ä¸åŒæ—¶æ‰åˆ‡æ¢
+        if (targetClip != null && currentClip != targetClip)
+        {
+            StartCoroutine(SwitchWithFade(targetClip));
+            Debug.Log($"åˆ‡æ¢éŸ³ä¹ï¼Œå‰©ä½™æ—¶é—´: {remainTime}ç§’");
+            Debug.Log($"å½“å‰éŸ³ä¹: {currentClip?.name}, ç›®æ ‡éŸ³ä¹: {targetClip.name}");
+            Debug.Log(audioSource.volume);
+    }
+}
 
 
 
 
     /// <summary>
-    /// ÇĞ»»µ½Ö¸¶¨ÒôÀÖ
+    /// ï¿½Ğ»ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     IEnumerator SwitchWithFade(AudioClip target)
     {
         hasSwitched = true;
 
-        // µ­³öµ±Ç°ÒôÀÖ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
         float startVolume = audioSource.volume;
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
@@ -129,17 +150,17 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        // ÇĞ»»ÒôÀÖ
+        // ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½
         audioSource.clip = target;
         audioSource.Play();
 
-        // µ­ÈëĞÂÒôÀÖ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(0, startVolume, t / fadeDuration);
             yield return null;
         }
 
-        audioSource.volume = startVolume;
+        audioSource.volume = 0.8f;
     }
 }

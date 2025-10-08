@@ -120,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.05454175}
+  m_Offset: {x: 0, y: 0.025522709}
   serializedVersion: 2
-  m_Radius: 0.5545417
+  m_Radius: 0.6384021
 --- !u!50 &223151329658846123
 Rigidbody2D:
   serializedVersion: 4
@@ -183,5 +183,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minScale: 0.2
-  shrinkSpeed: 0.05
+  shrinkSpeed: 0.03
   disappearEffect: {fileID: 8150728642297886144, guid: 81f81cd99c88ab5458fd20f7a4c61ecb, type: 3}

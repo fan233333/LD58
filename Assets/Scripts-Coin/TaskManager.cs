@@ -22,6 +22,13 @@ public class TaskManager : MonoBehaviour
     public List<TaskItem> taskItems = new List<TaskItem>();
     public float timeLimit = 60f; // ����ʱ�����ƣ��룩
 
+    [Header("其他根据任务状态调整的物体")]
+    public GameObject[] Bottles;
+    [Header("图标设置")]
+    public List<GameObject> defaultIcons;      // 未完成时的图标
+    public List<GameObject> completedIcons;    // 完成时的图标
+
+
     [Header("UI����")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI itemCountText;
@@ -54,8 +61,14 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
-        // taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
+        
+        foreach(var bottle in Bottles)
+        {
+            bottle.SetActive(false);
+        }
+        taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
         StartTask();
+        
         
     }
 
@@ -106,6 +119,37 @@ public class TaskManager : MonoBehaviour
             currentTime = 0;
         }
     }
+
+        /// <summary>
+    /// 获取任务是否完成
+    /// </summary>
+    /// <returns>任务完成状态</returns>
+    public bool IsTaskCompleted()
+    {
+        if (!isTaskActive && IsAllItemsCollected())
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// 获取任务是否失败
+    /// </summary>
+    /// <returns>任务失败状态</returns>
+    public bool IsTaskFailed()
+    {
+        return !isTaskActive && !IsAllItemsCollected();
+    }
+    
+    /// <summary>
+    /// 获取任务是否激活
+    /// </summary>
+    /// <returns>任务激活状态</returns>
+    public bool IsTaskActive()
+    {
+        return isTaskActive;
+    }
     IEnumerator FadeTransition()
     {
         float elapsedTime = 0f;
@@ -155,8 +199,15 @@ public class TaskManager : MonoBehaviour
             //Vector3 newScale = new Vector3(scale, scale, 1f);
             //ScaleContainer(item.Container, newScale);
             item.Container.position = transformList[index].position;
+            Bottles[index].SetActive(true);
+            Debug.Log(Bottles[index].name + " active");
+            Debug.Log($"{item.Container.name},{item.itemName}");
+            defaultIcons.Add(item.Container.GetChild(1).GetChild(0).gameObject);
+            completedIcons.Add(item.Container.GetChild(1).GetChild(1).gameObject);
             index++;
+
         }
+
 
         currentTime = timeLimit;
         isTaskActive = true;
@@ -228,7 +279,6 @@ public class TaskManager : MonoBehaviour
     public void ItemCollected(GameObject obj, string itemType)
     {
         if (!isTaskActive) return;
-
         totalItemsCollected = 0;
         // �����ض���Ʒ���ռ�����
         foreach (var item in taskItems)
@@ -237,19 +287,34 @@ public class TaskManager : MonoBehaviour
             {
                 item.currentAmount++;
                 Debug.Log($"itemType:{itemType},{item.currentAmount},{item.requiredAmount}");
-                if(item.currentAmount <= item.requiredAmount)
+                if (item.currentAmount <= item.requiredAmount)
                 {
                     Debug.Log($"container Create{itemType}");
                     containerManager.CreateObject(obj, itemType);
                 }
             }
-            if(item.requiredAmount >= item.currentAmount)
+            if (item.requiredAmount >= item.currentAmount)
             {
                 totalItemsCollected += item.currentAmount;
             }
             else
             {
                 totalItemsCollected += item.requiredAmount;
+            }
+            
+            if(item.currentAmount == item.requiredAmount)
+            {
+                // 禁用默认图标
+
+                defaultIcons[taskItems.IndexOf(item)].SetActive(false);
+
+                
+                // 启用完成图标
+
+                completedIcons[taskItems.IndexOf(item)].SetActive(true);
+
+                
+                Debug.Log($"任务项 {item.itemName} 完成，图标已更换");
             }
                 
         }
