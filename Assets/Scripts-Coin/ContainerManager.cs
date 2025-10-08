@@ -196,85 +196,97 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-
     public void AttrackAll()
     {
-
-        StartAttractionProcess(ballParent, ballContainer.transform);
-        StartAttractionProcess(triangleParent, triangleContainer.transform);
-        StartAttractionProcess(IceParent, IceContainer.transform);
-        StartAttractionProcess(LavaParent, LavaContainer.transform);
-        StartAttractionProcess(BuleParent, BuleContainer.transform);
-
+        // 并行启动所有吸引过程
+        StartCoroutine(StartAllAttractionProcesses());
     }
 
-
-    public void StartAttractionProcess(Transform parent, Transform target)
+    private IEnumerator StartAllAttractionProcesses()
     {
+        // 创建所有吸引过程的协程列表
+        List<Coroutine> attractionCoroutines = new List<Coroutine>();
 
-        // ��ȡ����������
+        // 并行启动所有吸引过程
+        attractionCoroutines.Add(StartCoroutine(StartAttractionProcessAsync(ballParent, ballContainer.transform)));
+        attractionCoroutines.Add(StartCoroutine(StartAttractionProcessAsync(triangleParent, triangleContainer.transform)));
+        attractionCoroutines.Add(StartCoroutine(StartAttractionProcessAsync(IceParent, IceContainer.transform)));
+        attractionCoroutines.Add(StartCoroutine(StartAttractionProcessAsync(LavaParent, LavaContainer.transform)));
+        attractionCoroutines.Add(StartCoroutine(StartAttractionProcessAsync(BuleParent, BuleContainer.transform)));
+
+        // 等待所有吸引过程完成
+        foreach (var coroutine in attractionCoroutines)
+        {
+            yield return coroutine;
+        }
+
+        Debug.Log("所有吸引过程已完成");
+    }
+
+    // 异步版本的吸引过程
+    public IEnumerator StartAttractionProcessAsync(Transform parent, Transform target)
+    {
+        // 每个过程有自己的对象列表，不共享全局列表
+        List<GameObject> childrenToAttract = new List<GameObject>();
+
+        // 获取父对象的所有子对象
         foreach (Transform child in parent)
         {
             childrenToAttract.Add(child.gameObject);
-
         }
 
         if (childrenToAttract.Count > 0)
         {
-            isAttracting = true;
-            StartCoroutine(AttractAndDestroyChildren(target));
+            yield return StartCoroutine(AttractAndDestroyChildrenAsync(childrenToAttract, target));
         }
-
     }
 
-    // �����������������Э��
-    private IEnumerator AttractAndDestroyChildren(Transform target)
+    // 异步版本的吸引和销毁协程
+    private IEnumerator AttractAndDestroyChildrenAsync(List<GameObject> childrenToAttract, Transform target)
     {
+        Debug.Log($"开始吸引 {childrenToAttract.Count} 个物体到 {target.name}");
 
-        Debug.Log($"��ʼ���� {childrenToAttract.Count} ��������");
-
+        // 过滤空对象并按高度排序
         childrenToAttract = childrenToAttract.Where(obj => obj != null).ToList();
         childrenToAttract.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
 
-        isAttracting = true;
+        // 分层处理
+        var layers = GroupObjectsIntoLayers(childrenToAttract);
+        Debug.Log($"生成 {layers.Count} 层");
 
-        // ����ֲ�
-        var layers = GroupObjectsIntoLayers();
-        Debug.Log(layers.Count);
-
-        // ������������
+        // 逐层处理
         for (int i = 0; i < layers.Count; i++)
         {
-            yield return StartCoroutine(AbsorbLayer(layers[i], target));
+            yield return StartCoroutine(AbsorbLayerAsync(layers[i], target));
             yield return new WaitForSeconds(delayBetweenLayers);
         }
 
-        isAttracting = false;
-        Debug.Log("�����������ѱ�������ɾ��");
-
-
-        // ��ѡ�������������ɾ��������Ĵ���
-        // Destroy(GameObject.Find(parentName));
+        Debug.Log($"吸引过程完成，目标: {target.name}");
     }
 
-    List<List<Transform>> GroupObjectsIntoLayers()
+    // 修改分层方法，接收参数
+    List<List<Transform>> GroupObjectsIntoLayers(List<GameObject> childrenToAttract)
     {
         List<List<Transform>> layers = new List<List<Transform>>();
 
         if (childrenToAttract.Count == 0) return layers;
 
-        // ʹ����ֵ���зֲ�
-        //float heightThreshold = 0.15f; // �߶���ֵ���ɸ�����Ҫ����
+        // 转换为Transform列表并按高度排序
+        List<Transform> transforms = childrenToAttract
+            .Where(obj => obj != null)
+            .Select(obj => obj.transform)
+            .OrderByDescending(t => t.position.y)
+            .ToList();
 
         List<Transform> currentLayer = new List<Transform>();
-        float lastHeight = childrenToAttract[0].transform.position.y;
+        float lastHeight = transforms[0].position.y;
 
-        foreach (var obj in childrenToAttract)
+        foreach (var transform in transforms)
         {
             float heightThreshold = Random.Range(0.05f, 0.3f);
-            if (Mathf.Abs(obj.transform.position.y - lastHeight) > heightThreshold)
+            if (Mathf.Abs(transform.position.y - lastHeight) > heightThreshold)
             {
-                // ��ʼ�µ�һ��
+                // 开始新的一层
                 if (currentLayer.Count > 0)
                 {
                     layers.Add(new List<Transform>(currentLayer));
@@ -282,11 +294,11 @@ public class ContainerManager : MonoBehaviour
                 }
             }
 
-            currentLayer.Add(obj.transform);
-            lastHeight = obj.transform.position.y;
+            currentLayer.Add(transform);
+            lastHeight = transform.position.y;
         }
 
-        // �������һ��
+        // 添加最后一层
         if (currentLayer.Count > 0)
         {
             layers.Add(currentLayer);
@@ -295,52 +307,37 @@ public class ContainerManager : MonoBehaviour
         return layers;
     }
 
-    IEnumerator AbsorbLayer(List<Transform> layerObjects, Transform targetPos)
+    // 异步版本的吸收层
+    IEnumerator AbsorbLayerAsync(List<Transform> layerObjects, Transform targetPos)
     {
         List<Coroutine> coroutines = new List<Coroutine>();
 
-        // ����ò��Ŀ��߶�
         float targetY = targetPos.position.y;
         float targetX = targetPos.position.x;
 
-        // Ϊ�ò�����������������Э��
+        Debug.Log($"吸引层物体到位置: X={targetX}, Y={targetY}, 目标: {targetPos.name}");
+
+        // 为层中所有物体启动移动协程
         foreach (var obj in layerObjects)
         {
             if (obj == null) continue;
 
-            Coroutine coroutine = StartCoroutine(MoveObjectToHeight(obj, targetY, targetX));
+            Coroutine coroutine = StartCoroutine(MoveObjectToHeightAsync(obj, targetY, targetX));
             coroutines.Add(coroutine);
-
         }
 
-        // �ȴ��ò����������������
+        // 等待该层所有物体移动完成
         foreach (var coroutine in coroutines)
         {
             yield return coroutine;
         }
+
+        // 销毁该层物体
         DestroyLayerObjects(layerObjects);
     }
 
-    void DestroyLayerObjects(List<Transform> layerObjects)
-    {
-        foreach (var obj in layerObjects)
-        {
-            // ������Ϸ����
-            if (obj != null)
-            {
-                Destroy(obj.gameObject);
-            }
-
-
-            // �����Ҫ����������������������Ч��������
-            // PlayDestroyEffect(obj.position);
-        }
-
-        layerObjects.Clear();
-    }
-
-    // �ƶ����嵽ָ���߶�
-    IEnumerator MoveObjectToHeight(Transform obj, float targetHeight, float targetX)
+    // 异步版本的移动物体
+    IEnumerator MoveObjectToHeightAsync(Transform obj, float targetHeight, float targetX)
     {
         if (obj == null) yield break;
 
@@ -359,6 +356,19 @@ public class ContainerManager : MonoBehaviour
         {
             obj.position = targetPos;
         }
+    }
+
+    // 销毁层物体方法保持不变
+    void DestroyLayerObjects(List<Transform> layerObjects)
+    {
+        foreach (var obj in layerObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj.gameObject);
+            }
+        }
+        layerObjects.Clear();
     }
 
     void Update()

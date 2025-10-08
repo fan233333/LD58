@@ -286,7 +286,7 @@ public class TaskManager : MonoBehaviour
         containerManager.AttrackAll();
 
         // �ӳ��л�����һ������
-        StartCoroutine(LoadNextSceneAfterDelay(2f));
+        StartCoroutine(LoadNextSceneAfterDelay(5f));
     }
 
     void TaskFailed()
