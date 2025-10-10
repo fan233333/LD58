@@ -388,29 +388,29 @@ public class ContainerManager : MonoBehaviour
         layerObjects.Clear();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            CreateItemManually("Circle", ball);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            CreateItemManually("Triangle", triangle);
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CreateItemManually("Square", ice);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            CreateItemManually("Hexagon", lava);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            CreateItemManually("Diamond", blue);
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Z))
+    //     {
+    //         CreateItemManually("Circle", ball);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.X))
+    //     {
+    //         CreateItemManually("Triangle", triangle);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         CreateItemManually("Square", ice);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         CreateItemManually("Hexagon", lava);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.B))
+    //     {
+    //         CreateItemManually("Diamond", blue);
+    //     }
+    // }
 
     /// <summary>
     /// 手动创建物品并更新任务进度

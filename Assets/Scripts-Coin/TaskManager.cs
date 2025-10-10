@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Phosphorescence.Narration;
 
 [System.Serializable]
 public class TaskItem
@@ -33,6 +34,7 @@ public class TaskManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI itemCountText;
     public TextMeshProUGUI numSceneText;
+    public TextMeshProUGUI instructionText;  // 收集资源指令文本
     public GameObject successPanel;
     public GameObject failPanel;
     public string nextSceneName;
@@ -51,6 +53,15 @@ public class TaskManager : MonoBehaviour
     private float transitionDuration = 3f;
     public int highLightYear = 100;
 
+    [Header("结束对话设置")]
+    [Tooltip("中文结束对话")]
+    public TextAsset endStoryChineseCN;
+    [Tooltip("英文结束对话")]
+    public TextAsset endStoryChineseEN;
+    
+    // 当前对话资源
+    public TextAsset CurrentEndStory => SeedStatic.isEng ? endStoryChineseEN : endStoryChineseCN;
+
 
     private float currentTime;
     private bool isTaskActive = false;
@@ -58,6 +69,11 @@ public class TaskManager : MonoBehaviour
     private int totalItemsRequired = 0;
     private bool isImg2 = false;
     private Coroutine currentTransition;
+    
+    // 对话相关状态
+    private bool isEndStoryPlaying = false;
+    private bool hasEndStoryPlayed = false;
+    private InkReader _inkReader;
 
     void Start()
     {
@@ -69,13 +85,15 @@ public class TaskManager : MonoBehaviour
         taskItems = GetComponent<TaskGenerator>().GenerateAndAssign();
         StartTask();
         
+        // 初始化InkReader
+        FindAndSetupInkReader();
         
     }
 
     void Update()
     {
         AudioManager.isActive = isTaskActive;
-        if (isTaskActive && !ManageScenes.Instance.IsStoryPlaying)
+        if (isTaskActive && !ManageScenes.Instance.IsStoryPlaying && !IsEndStoryPlaying)
         {
             UpdateTimer();
             //Debug.Log(SeedStatic.lightYear);
@@ -86,22 +104,22 @@ public class TaskManager : MonoBehaviour
         {
             if (SeedStatic.lightYear >= highLightYear)
             {
+                // 持续检查对话是否结束
+                CheckStoryCompletion();
+                
                 if (Input.GetMouseButtonDown(0) && !isImg2)
                 {
-                    SetImageAlpha(img1, 1f);
-                    SetImageAlpha(img2, 1f);
-                    img2.gameObject.SetActive(true);
-                    if (currentTransition != null)
-                        StopCoroutine(currentTransition);
-
-                    currentTransition = StartCoroutine(FadeTransition());
-
+                    // 播放结束对话（图片会在对话中被隐藏）
+                    PlayEndStory();
                 }
                 if (isImg2)
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    // 只有当对话不在播放时才允许点击返回主菜单
+                    if (Input.GetMouseButtonDown(0) && !IsEndStoryPlaying)
                     {
-                        SceneManager.LoadScene(0);
+                        // 使用加载界面返回主菜单
+                        LoadingData.SetLoadingData("MainMenu", 0, 0, false, false, highLightYear);
+                        SceneManager.LoadScene("LoadingScene");
                     }
                 }
             }
@@ -255,6 +273,12 @@ public class TaskManager : MonoBehaviour
         {
             itemCountText.text = $"{totalItemsCollected}/{totalItemsRequired}";
         }
+
+        // 收集资源指令文本
+        if (instructionText)
+        {
+            instructionText.text = SeedStatic.isEng ? "Collect resources to fly to the next planet" : "收集资源以飞往下一个星球";
+        }
     }
 
     public bool CheckItemFull(string itemType)
@@ -378,6 +402,7 @@ public class TaskManager : MonoBehaviour
         }
         else
         {
+            // 到达结局时显示第一张图，等待用户点击
             SetImageAlpha(img1, 1f);
             img1.gameObject.SetActive(true);
         }
@@ -392,14 +417,19 @@ public class TaskManager : MonoBehaviour
         {
             SeedStatic.tileSeed = Random.Range(1, 10000);
             SeedStatic.objectSeed = Random.Range(1, 10000);
-            SceneManager.LoadScene(nextSceneName);
+            
+            // 设置加载数据并使用加载界面
+            LoadingData.SetLoadingData(nextSceneName, SeedStatic.lightYear, SeedStatic.numScene, true, false, highLightYear);
+            SceneManager.LoadScene("LoadingScene");
         }
     }
 
     // �ֶ����¿�ʼ��������UI��ť��
     public void RestartTask()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // 使用加载界面重新加载当前场景
+        LoadingData.SetLoadingData(SceneManager.GetActiveScene().name, SeedStatic.lightYear, SeedStatic.numScene, false, true, highLightYear);
+        SceneManager.LoadScene("LoadingScene");
     }
 
     // ����Ƿ�������Ʒ���ռ����
@@ -468,5 +498,83 @@ public class TaskManager : MonoBehaviour
     //    obj.transform.position = originalWorldPosition;
     //    Debug.Log(obj.transform.position);
     //}
+
+    #region Dialog System
+    private void FindAndSetupInkReader()
+    {
+        _inkReader = FindObjectOfType<InkReader>();
+
+        if (_inkReader == null)
+        {
+            Debug.LogWarning("No InkReader found in the current scene for TaskManager.");
+        }
+        else
+        {
+            Debug.Log($"TaskManager found InkReader: {_inkReader.gameObject.name}");
+        }
+    }
+
+    public bool IsEndStoryPlaying => _inkReader != null && _inkReader.IsStoryPlaying && isEndStoryPlaying;
+
+    public void PlayEndStory()
+    {
+        if (CurrentEndStory != null && _inkReader != null && !hasEndStoryPlayed)
+        {
+            // 在播放对话前隐藏图片，防止图层遮挡
+            if (img1 != null) img1.gameObject.SetActive(false);
+            if (img2 != null) img2.gameObject.SetActive(false);
+            
+            _inkReader.SetAndInitializeStory(CurrentEndStory);
+            isEndStoryPlaying = true;
+            hasEndStoryPlayed = true;
+        }
+    }
+
+    public void StopEndStory()
+    {
+        if (_inkReader != null)
+        {
+            _inkReader.StopStory();
+            isEndStoryPlaying = false;
+        }
+    }
+
+    // 检查对话是否结束
+    private void CheckStoryCompletion()
+    {
+        if (isEndStoryPlaying && _inkReader != null && !_inkReader.IsStoryPlaying)
+        {
+            isEndStoryPlaying = false;
+            ShowEndingImages();
+        }
+    }
+
+    // 显示结局图片并开始切换
+    private void ShowEndingImages()
+    {
+        if (img1 != null && img2 != null)
+        {
+            // 重新激活图片
+            img1.gameObject.SetActive(true);
+            img2.gameObject.SetActive(true);
+            
+            // 设置透明度
+            SetImageAlpha(img1, 1f);
+            SetImageAlpha(img2, 1f);
+            
+            // 开始图片切换动画
+            if (currentTransition != null)
+                StopCoroutine(currentTransition);
+            currentTransition = StartCoroutine(FadeTransition());
+        }
+    }
+
+    [ContextMenu("Reset End Story Progress")]
+    private void ResetEndStoryProgress()
+    {
+        hasEndStoryPlayed = false;
+        isEndStoryPlaying = false;
+    }
+    #endregion
 
 }

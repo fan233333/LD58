@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,9 +93,85 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI1_16
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 13
+        width: 1243
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728fa7ea46f5c1d499f9ae67eafb8eed
+      internalID: 1369819564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI1_17
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 958
+        width: 412
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099765b8c1c5ca0429fe32eacdb89094
+      internalID: 564762922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI1_0
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1216
+        width: 1136
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64f272d9fbd13741b6bb77e94cb3dd9
+      internalID: 1459085380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +182,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI1_0: 1459085380
+      UI1_1: -539966876
+      UI1_10: -999871140
+      UI1_11: 68563272
+      UI1_12: -1763520733
+      UI1_13: 61680144
+      UI1_14: -1738708773
+      UI1_15: -1033187377
+      UI1_16: 1369819564
+      UI1_17: 564762922
+      UI1_2: -1508622639
+      UI1_3: -607698904
+      UI1_4: 316844343
+      UI1_5: -1003753613
+      UI1_6: 965530964
+      UI1_7: 359778820
+      UI1_8: -144771426
+      UI1_9: -1241312970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -24,8 +24,14 @@ public class CarmeraManager : MonoBehaviour
     public Transform taskCompletionTarget; // 任务完成时的摄像机目标
     public Transform taskFailedTarget; // 任务失败时的摄像机目标
     
+    [Header("相机缩放设置")]
+    public float taskCompletionCameraSize = 8f; // 任务完成时的相机范围大小
+    public float normalCameraSize = 5f; // 正常相机范围大小
+    public float zoomTransitionSpeed = 2f; // 缩放过渡速度
+    
     private bool hasTaskCompleted = false;
     private bool hasTaskFailed = false;
+    private float originalCameraSize; // 原始相机大小
 
     void Start()
     {
@@ -33,6 +39,13 @@ public class CarmeraManager : MonoBehaviour
         if (virtualCamera == null)
         {
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        }
+        
+        // 记录原始相机大小
+        if (virtualCamera != null)
+        {
+            originalCameraSize = virtualCamera.m_Lens.OrthographicSize;
+            normalCameraSize = originalCameraSize; // 设置正常大小为当前大小
         }
         
         // 设置默认目标
@@ -55,6 +68,10 @@ public class CarmeraManager : MonoBehaviour
                     SetFollowTarget(taskCompletionTarget);
                     Debug.Log("任务完成，切换到完成视角");
                 }
+                
+                // 调整相机范围大小
+                SetCameraSize(taskCompletionCameraSize);
+                Debug.Log($"任务完成，相机范围调整到: {taskCompletionCameraSize}");
             }
             
             // 任务失败时切换摄像机
@@ -66,6 +83,9 @@ public class CarmeraManager : MonoBehaviour
                     SetFollowTarget(taskFailedTarget);
                     Debug.Log("任务失败，切换到失败视角");
                 }
+                
+                // 可选：任务失败时也可以调整相机大小
+                // SetCameraSize(normalCameraSize);
             }
         }
         
@@ -269,5 +289,98 @@ public class CarmeraManager : MonoBehaviour
         {
             virtualCamera.LookAt = null;
         }
+    }
+
+    /// <summary>
+    /// 设置相机范围大小
+    /// </summary>
+    /// <param name="size">目标大小</param>
+    public void SetCameraSize(float size)
+    {
+        if (virtualCamera != null)
+        {
+            StartCoroutine(SmoothZoomTo(size));
+        }
+    }
+
+    /// <summary>
+    /// 立即设置相机范围大小（无过渡）
+    /// </summary>
+    /// <param name="size">目标大小</param>
+    public void SetCameraSizeImmediate(float size)
+    {
+        if (virtualCamera != null)
+        {
+            virtualCamera.m_Lens.OrthographicSize = size;
+        }
+    }
+
+    /// <summary>
+    /// 重置相机到正常大小
+    /// </summary>
+    public void ResetCameraSize()
+    {
+        SetCameraSize(normalCameraSize);
+    }
+
+    /// <summary>
+    /// 平滑缩放到目标大小的协程
+    /// </summary>
+    private IEnumerator SmoothZoomTo(float targetSize)
+    {
+        if (virtualCamera == null) yield break;
+
+        float startSize = virtualCamera.m_Lens.OrthographicSize;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < transitionTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / transitionTime;
+            
+            // 使用平滑曲线
+            t = Mathf.SmoothStep(0f, 1f, t);
+            
+            float currentSize = Mathf.Lerp(startSize, targetSize, t);
+            virtualCamera.m_Lens.OrthographicSize = currentSize;
+            
+            yield return null;
+        }
+
+        // 确保最终设置为目标大小
+        virtualCamera.m_Lens.OrthographicSize = targetSize;
+    }
+
+    /// <summary>
+    /// 调试方法：测试任务完成相机效果
+    /// </summary>
+    [ContextMenu("Test Task Completion Camera")]
+    public void TestTaskCompletionCamera()
+    {
+        if (taskCompletionTarget != null)
+        {
+            SetFollowTarget(taskCompletionTarget);
+        }
+        SetCameraSize(taskCompletionCameraSize);
+        Debug.Log("测试任务完成相机效果");
+    }
+
+    /// <summary>
+    /// 调试方法：重置相机到默认状态
+    /// </summary>
+    [ContextMenu("Reset Camera to Default")]
+    public void ResetCameraToDefault()
+    {
+        ResetToDefaultTarget();
+        ResetCameraSize();
+        Debug.Log("相机重置到默认状态");
+    }
+
+    /// <summary>
+    /// 获取当前相机大小
+    /// </summary>
+    public float GetCurrentCameraSize()
+    {
+        return virtualCamera != null ? virtualCamera.m_Lens.OrthographicSize : 0f;
     }
 }
