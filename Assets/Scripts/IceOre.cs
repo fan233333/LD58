@@ -18,7 +18,7 @@ public class IceOre : MonoBehaviour
     [SerializeField, Tooltip("可选：消失时播放的粒子特效")]
     private ParticleSystem disappearEffect;
 
-    private bool isShrinking = false;
+    public bool isShrinking = false;
     private float shrinkSpeed = 0.05f;
 
 

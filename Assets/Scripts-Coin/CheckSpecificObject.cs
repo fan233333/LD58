@@ -58,6 +58,15 @@ public class CheckSpecificObject : MonoBehaviour
                 childrenToAttract.Add(child.gameObject);
                 Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
                 rb.gravityScale = 0;
+                if(typeName == "Square")
+                {
+                    IceOre iceOre = child.GetComponent<IceOre>();
+                    if(iceOre != null)
+                    {
+                        iceOre.isShrinking = false;
+                    }
+                    
+                }
 
             }
         }
