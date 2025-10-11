@@ -64,6 +64,7 @@ public class CheckSpecificObject : MonoBehaviour
                     if(iceOre != null)
                     {
                         iceOre.isShrinking = false;
+                        child.tag = "Untagged";
                     }
                     
                 }
