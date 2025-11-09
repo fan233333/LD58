@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4120227817520156451}
   - component: {fileID: 3150251118911729513}
   - component: {fileID: 7391378110149835036}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: SectorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,6 +326,9 @@ MonoBehaviour:
   velocityMultiplier: 1
   maxBounceForce: 15
   InitParent: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &7349918880659542337
 MonoBehaviour:
   m_ObjectHideFlags: 0

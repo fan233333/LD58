@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  stopThreshold: 0.1
+  stopThreshold: 0.5
   checkFull: {fileID: 0}
   checkSpecificObject: {fileID: 2351012333734812481}
 --- !u!1 &334154162017294562
@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  stopThreshold: 0.1
+  stopThreshold: 0.5
   checkFull: {fileID: 0}
   checkSpecificObject: {fileID: 7613994032171925431}
 --- !u!1 &1582075366288066099
@@ -1477,6 +1477,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561bc64813d779349a47b1a5c975e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  triangle: {fileID: 0}
+  ice: {fileID: 0}
+  lava: {fileID: 0}
+  blue: {fileID: 0}
   ballContainer: {fileID: 9122249931363503208}
   triangleContainer: {fileID: 6103204586884304386}
   IceContainer: {fileID: 8045490104727014391}
@@ -1492,6 +1497,8 @@ MonoBehaviour:
   maxHorizontalForce: 2
   delayBetweenLayers: 0.05
   taskManager: {fileID: 0}
+  size: 0.5
+  globalSizeMultiplier: 0.3
 --- !u!1 &1873677119066827298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,7 +3999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  stopThreshold: 0.1
+  stopThreshold: 0.5
   checkFull: {fileID: 0}
   checkSpecificObject: {fileID: 5937426356537128144}
 --- !u!1 &8351429390333621868
@@ -4294,7 +4301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  stopThreshold: 0.1
+  stopThreshold: 0.5
   checkFull: {fileID: 0}
   checkSpecificObject: {fileID: 3704986444063285699}
 --- !u!1 &8696450144104303138
@@ -4491,7 +4498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  stopThreshold: 0.1
+  stopThreshold: 0.5
   checkFull: {fileID: 0}
   checkSpecificObject: {fileID: 7171616655956647171}
 --- !u!1 &9076294623142969208
