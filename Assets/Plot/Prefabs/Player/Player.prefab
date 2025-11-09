@@ -247,7 +247,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &605381513611770986
 BoxCollider2D:
@@ -322,9 +322,9 @@ MonoBehaviour:
   suckEffect: {fileID: 3177672622112787503}
   minMovementThreshold: 0.1
   maxMass: 20
-  baseBounceForce: 5
-  velocityMultiplier: 1.5
-  maxBounceForce: 20
+  baseBounceForce: 2
+  velocityMultiplier: 1
+  maxBounceForce: 15
   InitParent: {fileID: 0}
 --- !u!114 &7349918880659542337
 MonoBehaviour:

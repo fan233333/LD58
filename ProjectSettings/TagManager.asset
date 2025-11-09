@@ -22,7 +22,7 @@ TagManager:
   - UI Collision(ignore same layer)
   - UI Collision
   - Map
-  - 
+  - SectorCollider
   - 
   - 
   - 
